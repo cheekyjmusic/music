@@ -202,7 +202,7 @@
       <div class="album-details">
         <span class="album-text">Album</span>
         <h1>Cheeky Boomin</h1>
-        <a href="https://cheekyjmusic.github.io/music"><span class="album-text">Cheeky J</span></a><span class="album-text"> · August 18 2023 · 6 songs</span>
+        <a href="https://sites.google.com/view/music-playr/artists/jorge?authuser=0"><span class="album-text">Cheeky J</span></a><span class="album-text"> · August 18 2023 · 6 songs</span>
           <p class="sfeature" onclick="toggleFeatures()">Show Features</p>
       </div>
     </div>
@@ -210,21 +210,21 @@
     <div class="track-list-container">
      <p>Part 1</p>
       <ul class="track-list">
-       <li onclick="changeAudioSource(0)">1. Cheeky Boomin (prod. XAR)
+       <li id="0" onclick="changeAudioSource(0)">1. Cheeky Boomin (prod. XAR)
        <div class="feature-container">
         <a class="feature" href="princeton.html">Crazy P</a>
         </div></li>
-       <li onclick="changeAudioSource(1)">2. Submarine (Prod. by SIGHOST x Sixweeks)</li>   
-       <li onclick="changeAudioSource(2)">3. Hot Dog Stand (prod. SIGHOST)
+       <li id="1" onclick="changeAudioSource(1)">2. Submarine (Prod. by SIGHOST x Sixweeks)</li>   
+       <li id="2" onclick="changeAudioSource(2)">3. Hot Dog Stand (prod. SIGHOST)
          </li>
-       <li onclick="changeAudioSource(3)">4. Metro Station (prod. SIGHOST)</li>
+       <li id="3" onclick="changeAudioSource(3)">4. Metro Station (prod. SIGHOST)</li>
               
-       <li onclick="changeAudioSource(4)">5. Suburbs Freestyle Remix
+       <li id="4" onclick="changeAudioSource(4)">5. Suburbs Freestyle Remix
        <div class="feature-container">
     <a class="feature" href="derek.html">Lil Tonka</a>
   </div></li>
        
-       <li onclick="changeAudioSource(5)">
+       <li id="5" onclick="changeAudioSource(5)">
   6. Mr Clean (prod. makdouble)
   <div class="feature-container" id="featureContainer">
     <a class="feature" href="princeton.html">Crazy P</a>
@@ -243,7 +243,7 @@
       </ul>
     </div>
     <div class="rectangle">
-  <div class="song-text" id="songText"></div>
+  <!--<div class="song-text" id="songText"></div>-->
      <div class="pp-container">
       <img id="playPauseButton" class="pp" src="https://assets.scratch.mit.edu/f66cb52dadbf8e95758695b89a9ee75e.svg" alt="Play" onclick="togglePlayPause()">
      </div>
@@ -260,6 +260,23 @@
   var audioPlayer = document.getElementById('audioPlayer');
   var audioSource = document.getElementById('audioSource');
   var songText = document.getElementById('songText');
+     
+     var listItem = document.getElementById(index); // Get the <li> element by its id
+var previousListItem = document.querySelector('.selected-song'); // Get the previously selected song
+
+if (previousListItem) {
+  // Remove the 'selected-song' class and set the text color to white for the previously selected song
+  previousListItem.classList.remove('selected-song');
+  previousListItem.style.color = "white";
+}
+
+if (listItem && listItem.id == index) {
+  // Add the 'selected-song' class and set the text color to orange for the current selected song
+  listItem.classList.add('selected-song');
+  listItem.style.color = "orange";
+}
+
+
 
   // Check if the index is valid
   if (index >= 0 && index < songList.length) {
