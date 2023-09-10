@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* Add the following CSS rule */
+    .description-text {
+      margin-left: 20px;
+      color: black;
+    }
+  </style>
+
+  <title>Cheeky J</title>
+ <style>
+ body {
+    font-family: 'Prompt', sans-serif;    
+    margin: 0;
+    padding: 0;
+    background-color: #2C2D31; /* Updated background color */
+    color: black; /* Set default text color */
+  }
+    header {
+      padding: 20px;
+      color: white;
+      text-align: left;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin: 0;
+    }
+
+    .container {
+  max-width: auto;
+  margin: 0px;
+  padding: 20px;
+  margin-top: 0px;
+     margin-bottom: 30px;
+  background: linear-gradient(to bottom, #365B7B 0%, black 7%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+    .image-container {
+      text-align: center;
+    }
+
+    .image-container img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+    }
+
+    .popular-songs {
+      margin-top: 40px;
+    }
+
+    .popular-songs h2 {
+      margin: 0;
+      font-size: 24px;
+     color: white;
+    }
+
+    .popular-songs ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .popular-songs li {
+  margin: 10px 0;
+  display: flex; /* Enable flexbox */
+  align-items: center; /* Vertically center the content */
+}
+
+.popular-songs li a {
+  display: flex; /* Enable flexbox */
+  align-items: center; /* Vertically center the content */
+  text-decoration: none;
+  color: white;
+}
+
+.popular-songs li a img {
+  margin-right: 10px;
+ margin-left: 10px;
+}
+
+    .albums {
+      margin-top: 40px;
+    }
+
+    .albums h2 {
+      margin: 0;
+      font-size: 24px;
+          color: white;
+
+    }
+
+    .album {
+      display: inline-block;
+      margin: 10px;
+    }
+
+    .album img {
+      width: 150px;
+      height: 150px;
+      border-radius: 10px;
+      cursor: pointer;
+     /*filter: grayscale(100%);
+     opacity: 20%;*/
+    }
+    .album img,
+    .single img {
+      width: 150px;
+      height: 150px;
+      border-radius: 10px;
+      box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2); /* Add box shadow */
+    }
+
+    .album-name {
+      margin-top: 5px;
+      color: white; 
+    }
+
+    .singles,
+    .shop {
+      margin-top: 40px;
+     overflow-x: auto;
+     white-space: nowrap;
+    }
+
+    .singles h2 {
+      margin: 0;
+      font-size: 24px;
+          color: White;
+
+    }
+
+    .single {
+      display: inline-block;
+      margin: 10px;
+     vertical-align: top;
+    }
+
+    .single img {
+      width: 150px;
+      height: 150px;
+      border-radius: 10px;
+     cursor: pointer;
+    }
+
+    .single-name {
+      margin-top: 5px;
+      color: white;
+     
+    }
+
+    .about {
+      margin-top: 40px;
+    }
+
+    .about h2 {
+      margin: 0;
+      font-size: 24px;
+          color: white;
+
+    }
+   .about-image {
+  position: relative;
+  text-align: center;
+}
+
+.about-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.about-image .description-text {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+
+
+    .description {
+      margin-top: 20px;
+      color: black;
+      display: flex;
+    }
+
+   .thumbnail-container {
+  position: relative;
+  width: 100%;
+}
+
+.thumbnail-container img {
+ width: 100vw;
+    height: 300px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+}
+   .artist-thumbnail-text {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+  color: white;
+}
+   .artist-thumbnail-name {
+      font-size: calc(100vw / 10);
+  font-weight: bold;
+    margin-bottom: 10px;
+   }
+   .music-videos {
+  margin-bottom: 20px;
+    margin-top: 40px;
+    margin-left: 10px;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.music-videos-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.music-video-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  width: 200px; /* Adjust the width to fit your images */
+}
+
+.music-video-image {
+  width: 200px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+ margin-top: 10px;
+}
+
+.music-video-title {
+  margin-top: 5px;
+  font-size: 18px;
+  text-align: center;
+}
+.section-title {
+  color: white;
+}
+.audio {
+  pointer-events: none;
+ opacity: 0%;
+}
+
+.bottom-rectangle {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background-color: black;
+    justify-content: center;
+  }
+.action {
+  height: 60px;
+ margin-top: 10px;
+ margin-bottom: 10px;
+ width: auto;
+ align-items: center;
+ display: flex;
+}
+
+.play-pause-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+ cursor: pointer;
+}
+
+.progress-bar-container {
+  position: fixed;
+  bottom: 80px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background-color: #ddd;
+  z-index: 1;
+ display: flex;
+}
+
+.progress-bar {
+  position: relative;
+  height: 100%;
+  background-color: #324078;
+  width: 0;
+  transition: width 0.2s ease-in-out;
+}
+  .countdown-container {
+    background-color: red;
+   height: 20px;
+   width: 100%;
+   text-align: center;
+  }
+  .countdown {
+    color: white;
+  }
+  .current-time {
+    margin-left: 15px;
+    margin-top: 10px;
+   color: white;
+   opacity: 0%;
+   }
+  .song-playing {
+   height: 65px;
+   width: 65px;
+   opacity: 0%;
+  }
+  .song-info {
+  position: fixed;
+  bottom: 8px; /* Position it above the progress bar */
+  left: 10px; /* Adjust left positioning as needed */
+  display: flex;
+  align-items: center;
+  color: white;
+   z-index: 2;
+}
+  /* Add this CSS for the hover effect */
+.hover-outline {
+  outline: 4px solid transparent; /* Transparent outline by default */
+  transition: outline 0.3s ease; /* Smooth transition */
+}
+
+.hover-outline:hover {
+  outline: 4px solid white; /* White outline when hovering */
+}
+
+</style>
+
+</head>
+<body>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+  <div class="thumbnail-container">
+    <img src="https://assets.scratch.mit.edu/get_image/.%2E/94fde44387aaddaa48a16b6fe583bf8a.jpg" alt="artist-thumbnail">
+    <div class="artist-thumbnail-text">
+     <p class="artist-thumbnail-name">Cheeky J</p>
+   </div>
+  </div>
+  <div class="container">
+  
+  <div class="popular-songs">
+  <h2>Popular</h2>
+  <ul>
+   <li><a><span class="song-number">1 </span><img src="https://assets.scratch.mit.edu/d26bac23485630c30531ec1d07788fa7.png" alt="Song 1" width="35" height="35">Metro Station</a></li>
+   <li><a><span class="song-number">2 </span><img src="https://assets.scratch.mit.edu/get_image/.%2E/4b694557ccdfcbf0eb493f3a9e04d873.png" alt="Song 2" width="35" height="35">Submarine</a></li>
+  <li><a><span class="song-number">3 </span><img src="https://assets.scratch.mit.edu/d26bac23485630c30531ec1d07788fa7.png" alt="Song 3" width="35" height="35">Hotdog Stand</a></li>
+    <!-- Add more songs -->
+  </ul>
+</div>
+
+    <div class="albums">
+      <h2 class="section-title">Albums</h2>
+      <a href="https://sites.google.com/view/music-playr/artists/jorge/cheeky-boomin"><div class="album">
+          <img src="https://assets.scratch.mit.edu/d26bac23485630c30531ec1d07788fa7.png" alt="Cheeky Boomin">
+          <div class="album-name">Cheeky Boomin</div>
+       <!--<div class="countdown-container">
+        <p class="countdown" id="countdown">Countdown to August 18</p
+       </div>-->
+      </div></a>
+      <!-- Add more albums -->
+    </div>
+    <div class="singles">
+  <h2 class="section-title">Singles</h2>
+      <!--<div class="single">
+    <img src="scrambled.png" alt="Submarine">
+    <div class="single-name">Omelette</div>
+  </div>-->
+     <div class="single">
+    <img src="https://assets.scratch.mit.edu/get_image/.%2E/4b694557ccdfcbf0eb493f3a9e04d873.png" alt="Submarine" class="hover-outline">
+    <div class="single-name">Submarine</div>
+  </div>
+     <div class="single">
+    <img src="https://assets.scratch.mit.edu/36156c7f9f4d5174a0193bd074c05886.jpg" alt="Suburbs Freestyle Remix">
+    <div class="single-name">Suburbs Freestyle Remix</div>
+  </div>
+  <div class="single">
+    <img src="https://assets.scratch.mit.edu/14cfc1e7af4a906d6af19253eb8d6216.png" alt="Corner Store Twinkie">
+    <div class="single-name">Corner Store Twinkie</div>
+  </div>
+  <div class="single">
+    <img src="https://assets.scratch.mit.edu/get_image/.%2E/4ba87b4a808beba9ae9c481f167ee404.png" alt="1860 Lincoln">
+    <div class="single-name">1860 Lincoln</div>
+  </div>
+  <div class="single">
+    <img src="https://assets.scratch.mit.edu/aa1afa7b2194019008cb24d63fd0712d.png" alt="Sumo Wrestler">
+    <div class="single-name">Sumo Wrestler</div>
+  </div>
+  <div class="single">
+    <img src="https://assets.scratch.mit.edu/9910e0fb73f0d7762049ef1558cb290c.jpg" alt="Suburbs Freestyle">
+    <div class="single-name">Suburbs Freestyle</div>
+  </div>
+  <!-- Add more singles -->
+</div>
+
+     <div class="music-videos">
+  <h2 class="section-title">Music Videos</h2>
+  <div class="music-videos-container">
+    <a class="music-video-link" href="https://youtu.be/i3mEd9xiAT0">
+      <img class="music-video-image" src="https://assets.scratch.mit.edu/get_image/.%2E/9e6b10f256e7337d24b846d614dd3456.png" alt="Suburbs">
+      <span class="music-video-title">Suburbs Freestyle</span>
+    </a>
+  </div>
+</div>
+     <!--<a href="https://sites.google.com/view/music-playr/shop"><div class="shop">
+  <h2 class="section-title">Shop</h2>
+  <div class="single">
+    <img src="https://assets.scratch.mit.edu/dc1f2ef438ce04781a07d1f5f543469c.png" alt="Cheeky Boomin Shirt">
+    <div class="single-name">Cheeky Boomin Shirt</div>
+  </div>
+  <div class="single">
+    <img src="https://assets.scratch.mit.edu/6465111fd8c6adebe4c1107e963ef9b4.png" alt="CB Shirt Back">
+    <div class="single-name">CB Shirt Back</div>
+  </div>
+      <div class="single">
+    <img src="https://assets.scratch.mit.edu/f8854f010810b3a58917453c654c51af.png" alt="Cheeky Comic">
+    <div class="single-name">Cheeky Comic</div>
+  </div>
+      <div class="single">
+    <div class="single-name">See more at the shop</div>
+  </div>
+</div></a>-->
+     </div>
+ <audio class="audio" id="audioPlayer" controls></audio>
+ <div class="bottom-rectangle">
+  <div class="play-pause-container">
+    <img id="playPauseButton" class="action" src="https://assets.scratch.mit.edu/f66cb52dadbf8e95758695b89a9ee75e.svg">
+  </div>
+</div>
+ <div class="song-info">
+  <img class="song-playing" src="black.png">
+  <div class="current-time" id="currentTime">0:00</div>
+</div>
+ <div class="progress-bar-container">
+    <div class="progress-bar"></div>
+  
+  </div>
+
+ <script>
+ document.addEventListener("DOMContentLoaded", function() {
+  var songPlaying = "none";
+  var audioPlayer = document.getElementById("audioPlayer");
+  
+  var currentTime = document.querySelector('.current-time');
+  var playingImage = document.querySelector('.song-playing');
+
+  var singles = document.querySelectorAll(".single");
+
+  singles.forEach(function(single) {
+    single.addEventListener("click", function() {
+      var singleName = this.querySelector(".single-name").textContent;
+
+      songPlaying = singleName;
+      console.log("songPlaying:", songPlaying);
+
+      // Update the audio source based on the clicked single
+      var audioSource = getAudioSource(songPlaying);
+      audioPlayer.src = audioSource;
+
+      // Play the audio
+      audioPlayer.play();
+     currentTime.style.opacity = "100%";
+     playingImage.style.opacity = "100%";
+     
+    });
+  });
+
+  function getAudioSource(song) {
+    // Map the song name to the corresponding audio source
+    switch (song) {
+      case "Omelette":
+        return "music/omelette";
+      case "1860 Lincoln":
+        return "https://assets.scratch.mit.edu/get_image/.%2E/97a08ca7aa1f977ad713c9afdb78bc6e.mp3";
+      case "Sumo Wrestler":
+        return "https://assets.scratch.mit.edu/get_image/.%2E/cd61d7bfe772e23f006de0a07abbc990.mp3";
+      case "Suburbs Freestyle":
+        return "https://assets.scratch.mit.edu/get_image/.%2E/15da361dba6ad810f21595aee0d991f4.mp3";
+      case "Suburbs Freestyle Remix":
+        return "https://assets.scratch.mit.edu/get_image/.%2E/068fa9a4443dbc189f18993c939f9144.mp3";
+      case "Submarine":
+        return "https://assets.scratch.mit.edu/get_image/.%2E/3031330d599cd8f4fa961313032217cd.mp3";
+      default:
+        return "";
+    }
+  }
+});
+
+// Get references to the audio player and the play/pause button
+const audioPlayer = document.getElementById('audioPlayer');
+const playPauseButton = document.getElementById('playPauseButton');
+
+// Add a click event listener to the play/pause button
+playPauseButton.addEventListener('click', function() {
+  if (audioPlayer.paused) {
+    audioPlayer.play();
+  } else {
+    audioPlayer.pause();
+  }
+  updatePlayPauseButtonAppearance(); // Update the button appearance
+});
+
+// Function to update the play/pause button's appearance
+function updatePlayPauseButtonAppearance() {
+  if (audioPlayer.paused) {
+    playPauseButton.src = 'https://assets.scratch.mit.edu/7ed6574d26dcbae37ae86330448c4926.svg'; // Play icon
+  } else {
+    playPauseButton.src = 'https://assets.scratch.mit.edu/f66cb52dadbf8e95758695b89a9ee75e.svg'; // Pause icon
+  }
+}
+
+// Update the button appearance when the audio player state changes
+audioPlayer.addEventListener('play', updatePlayPauseButtonAppearance);
+audioPlayer.addEventListener('pause', updatePlayPauseButtonAppearance);
+
+
+// Get the progress bar element
+var progressBar = document.querySelector('.progress-bar');
+
+// Update the progress bar based on the current time of the audio player
+audioPlayer.addEventListener('timeupdate', function() {
+  var currentTime = audioPlayer.currentTime;
+  var duration = audioPlayer.duration;
+  var progress = (currentTime / duration) * 100;
+
+  // Update the width of the progress bar
+  progressBar.style.width = progress + '%';
+});
+  //code for changing song progress
+  document.addEventListener("DOMContentLoaded", function() {
+  var audioPlayer = document.getElementById("audioPlayer");
+  var progressBarContainer = document.querySelector(".progress-bar-container");
+  var progressBar = document.querySelector(".progress-bar");
+
+  // Update progress bar based on audio time
+  audioPlayer.addEventListener("timeupdate", function() {
+    var progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+    progressBar.style.width = progress + "%";
+  });
+
+  // Seek to specific time when clicking on progress bar
+  progressBarContainer.addEventListener("click", function(event) {
+    var progressBarWidth = progressBarContainer.offsetWidth;
+    var clickPositionX = event.clientX - progressBarContainer.getBoundingClientRect().left;
+    var seekTime = (clickPositionX / progressBarWidth) * audioPlayer.duration;
+    audioPlayer.currentTime = seekTime;
+  });
+});
+  
+  document.addEventListener("DOMContentLoaded", function() {
+  var countdown = document.getElementById("countdown");
+
+  // Set the target date and time to August 18, 2023, at 5 PM
+  var targetDate = new Date("August 18, 2023 17:00:00").getTime();
+
+  var countdownInterval = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = targetDate - now;
+
+    if (distance < 0) {
+      clearInterval(countdownInterval);
+      countdown.innerHTML = "Listen Now!";
+    } else {
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+    }
+  }, 1000);
+});
+  
+  //no right click
+  document.addEventListener('contextmenu', function (event) {
+      // Check if the right-clicked element is an image
+      if (event.target.tagName === 'IMG') {
+        // Prevent the default right-click behavior
+        event.preventDefault();
+      }
+    });
+   //current-time script
+  var currentTimeDisplay = document.getElementById('currentTime');
+
+  // Update the current time of the song display
+  audioPlayer.addEventListener('timeupdate', function () {
+    var currentTime = audioPlayer.currentTime;
+    var duration = audioPlayer.duration;
+    var progress = (currentTime / duration) * 100;
+
+    // Update the width of the progress bar
+    progressBar.style.width = progress + '%';
+
+    // Update the current time display
+    var minutes = Math.floor(currentTime / 60);
+    var seconds = Math.floor(currentTime % 60);
+    var formattedTime = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+    currentTimeDisplay.textContent = formattedTime;
+  });
+  
+  //songplaying image code
+  document.addEventListener("DOMContentLoaded", function() {
+  var songPlayingImage = document.querySelector(".song-playing");
+  var singles = document.querySelectorAll(".single");
+
+  singles.forEach(function(single) {
+    single.addEventListener("click", function() {
+      var singleImage = this.querySelector("img").src;
+
+      // Update the song-playing image's src attribute
+      songPlayingImage.src = singleImage;
+    });
+  });
+});
+
+  //outline code
+  // Get all the single elements
+const singleElements = document.querySelectorAll('.single');
+
+// Add event listeners for mouseenter and mouseleave
+singleElements.forEach((single) => {
+  single.addEventListener('mouseenter', () => {
+    const image = single.querySelector('img');
+    image.classList.add('hover-outline');
+  });
+
+  single.addEventListener('mouseleave', () => {
+    const image = single.querySelector('img');
+    image.classList.remove('hover-outline');
+  });
+});
+
+  document.addEventListener("DOMContentLoaded", function () {
+  var singles = document.querySelectorAll(".single");
+
+  singles.forEach(function (single) {
+    single.addEventListener("click", function () {
+      // Apply the scaling effect
+      this.style.transform = "scale(0.9)";
+      this.style.transition = "transform 0.2s ease";
+
+      // Listen for the transition end event to reset the scaling effect
+      this.addEventListener("transitionend", function () {
+        // Remove the scaling effect after the transition ends
+        this.style.transform = "";
+        this.style.transition = "";
+      });
+    });
+  });
+});
+
+
+</script>
+</body>
+</html>
