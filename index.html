@@ -358,7 +358,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
   <div class="thumbnail-container">
-    <img src="https://assets.scratch.mit.edu/get_image/.%2E/94fde44387aaddaa48a16b6fe583bf8a.jpg" alt="artist-thumbnail">
+    <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/backgroundmainnew.jpg" alt="artist-thumbnail">
     <div class="artist-thumbnail-text">
      <p class="artist-thumbnail-name">Cheeky J</p>
    </div>
@@ -368,9 +368,9 @@
   <div class="popular-songs">
   <h2>Popular</h2>
   <ul>
-   <li><a><span class="song-number">1 </span><img src="https://assets.scratch.mit.edu/d26bac23485630c30531ec1d07788fa7.png" alt="Song 1" width="35" height="35">Metro Station</a></li>
-   <li><a><span class="song-number">2 </span><img src="https://assets.scratch.mit.edu/get_image/.%2E/4b694557ccdfcbf0eb493f3a9e04d873.png" alt="Song 2" width="35" height="35">Submarine</a></li>
-  <li><a><span class="song-number">3 </span><img src="https://assets.scratch.mit.edu/d26bac23485630c30531ec1d07788fa7.png" alt="Song 3" width="35" height="35">Hotdog Stand</a></li>
+   <li><a><span class="song-number">1 </span><img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/cheekyboomin.png" alt="Song 1" width="35" height="35">Metro Station</a></li>
+   <li><a><span class="song-number">2 </span><img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/submarine.png" alt="Song 2" width="35" height="35">Submarine</a></li>
+  <li><a><span class="song-number">3 </span><img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/cheekyboomin.png" alt="Song 3" width="35" height="35">Hotdog Stand</a></li>
     <!-- Add more songs -->
   </ul>
 </div>
@@ -388,32 +388,32 @@
     </div>
     <div class="singles">
   <h2 class="section-title">Singles</h2>
-      <!--<div class="single">
-    <img src="scrambled.png" alt="Submarine">
+      <!--<div class="single" data-cover-url="https://raw.githubusercontent.com/cheekyjmusic/music/main/omelette.png">
+    <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/omelette.png" alt="Omelette">
     <div class="single-name">Omelette</div>
   </div>-->
-     <div class="single">
-    <img src="https://assets.scratch.mit.edu/get_image/.%2E/4b694557ccdfcbf0eb493f3a9e04d873.png" alt="Submarine" class="hover-outline">
+     <div class="single" data-cover-url="https://raw.githubusercontent.com/cheekyjmusic/music/main/submarine.png">
+    <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/submarine.png" alt="Submarine" class="hover-outline">
     <div class="single-name">Submarine</div>
   </div>
-     <div class="single">
-    <img src="https://assets.scratch.mit.edu/36156c7f9f4d5174a0193bd074c05886.jpg" alt="Suburbs Freestyle Remix">
+     <div class="single" data-cover-url="https://raw.githubusercontent.com/cheekyjmusic/music/main/sbremix.jpg">
+    <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/sbremix.jpg" alt="Suburbs Freestyle Remix">
     <div class="single-name">Suburbs Freestyle Remix</div>
   </div>
-  <div class="single">
-    <img src="https://assets.scratch.mit.edu/14cfc1e7af4a906d6af19253eb8d6216.png" alt="Corner Store Twinkie">
+  <div class="single" data-cover-url="https://raw.githubusercontent.com/cheekyjmusic/music/main/twinkie.png">
+    <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/twinkie.png" alt="Corner Store Twinkie">
     <div class="single-name">Corner Store Twinkie</div>
   </div>
-  <div class="single">
-    <img src="https://assets.scratch.mit.edu/get_image/.%2E/4ba87b4a808beba9ae9c481f167ee404.png" alt="1860 Lincoln">
+  <div class="single" data-cover-url="https://raw.githubusercontent.com/cheekyjmusic/music/main/lincoln.png">
+    <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/lincoln.png" alt="1860 Lincoln">
     <div class="single-name">1860 Lincoln</div>
   </div>
-  <div class="single">
-    <img src="https://assets.scratch.mit.edu/aa1afa7b2194019008cb24d63fd0712d.png" alt="Sumo Wrestler">
+  <div class="single" data-cover-url="https://raw.githubusercontent.com/cheekyjmusic/music/main/sumo.png">
+    <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/sumo.png" alt="Sumo Wrestler">
     <div class="single-name">Sumo Wrestler</div>
   </div>
-  <div class="single">
-    <img src="https://assets.scratch.mit.edu/9910e0fb73f0d7762049ef1558cb290c.jpg" alt="Suburbs Freestyle">
+  <div class="single" data-cover-url="https://raw.githubusercontent.com/cheekyjmusic/music/main/suburbsfreestyle.jpg">
+    <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/suburbsfreestyle.jpg" alt="Suburbs Freestyle">
     <div class="single-name">Suburbs Freestyle</div>
   </div>
   <!-- Add more singles -->
@@ -463,6 +463,22 @@
   </div>
 
  <script>
+  // Function to update the page title with the artist name and song name
+function updatePageTitle(artistName, songName) {
+  document.title = artistName + " - " + songName;
+}
+
+// Function to reset the page title to its original value
+function resetPageTitle() {
+  document.title = "Cheeky J"; // Change to your default title
+}
+  
+  // Function to update the favicon with the cover image URL
+function updateFavicon(imageUrl) {
+  var favicon = document.querySelector("link[rel='icon']");
+  favicon.href = imageUrl;
+}
+  
  document.addEventListener("DOMContentLoaded", function() {
   var songPlaying = "none";
   var audioPlayer = document.getElementById("audioPlayer");
@@ -475,9 +491,9 @@
   singles.forEach(function(single) {
     single.addEventListener("click", function() {
       var singleName = this.querySelector(".single-name").textContent;
+     var singleCoverUrl = this.dataset.coverUrl;
 
       songPlaying = singleName;
-      console.log("songPlaying:", songPlaying);
 
       // Update the audio source based on the clicked single
       var audioSource = getAudioSource(songPlaying);
@@ -488,14 +504,49 @@
      currentTime.style.opacity = "100%";
      playingImage.style.opacity = "100%";
      
+     //update the favicon
+     updateFavicon(singleCoverUrl);
+     
+     // Update the page title with the artist name and song name
+      updatePageTitle("Cheeky J", songPlaying);
+     
     });
   });
+  
+  // Reset the page title when audio is paused
+  audioPlayer.addEventListener("pause", function () {
+    resetPageTitle();
+  });
+  
+  
+  // Separate block of code for updating the favicon when needed
+function updateFaviconOnPlay() {
+  var audioPlayer = document.getElementById("audioPlayer");
+  var singles = document.querySelectorAll(".single");
+
+  audioPlayer.addEventListener("play", function () {
+    var songPlaying = audioPlayer.src;
+
+    singles.forEach(function (single) {
+      var singleCoverUrl = single.dataset.coverUrl; // Assuming you have a data attribute like data-cover-url
+      var audioSource = getAudioSource(single.querySelector(".single-name").textContent);
+
+      if (audioSource === songPlaying) {
+        // Update the favicon with the cover image of the playing single
+        updateFavicon(singleCoverUrl);
+      }
+    });
+  });
+}
+
+// Call the function to update the favicon when a song starts playing
+updateFaviconOnPlay();
 
   function getAudioSource(song) {
     // Map the song name to the corresponding audio source
     switch (song) {
-      case "Omelette":
-        return "music/omelette";
+      case "Corner Store Twinkie":
+        return "https://assets.scratch.mit.edu/get_image/.%2E/70f36a4a65863643693d2f851c171a39.mp3";
       case "1860 Lincoln":
         return "https://assets.scratch.mit.edu/get_image/.%2E/97a08ca7aa1f977ad713c9afdb78bc6e.mp3";
       case "Sumo Wrestler":
@@ -511,7 +562,29 @@
     }
   }
 });
+  
+  // Separate block of code for updating the page title when needed
+function updatePageTitleOnPlay() {
+  var audioPlayer = document.getElementById("audioPlayer");
 
+  audioPlayer.addEventListener("play", function () {
+    var songPlaying = audioPlayer.src;
+    var singles = document.querySelectorAll(".single");
+
+    singles.forEach(function (single) {
+      var audioSource = getAudioSource(single.querySelector(".single-name").textContent);
+
+      if (audioSource === songPlaying) {
+        // Update the page title with the artist name and song name
+        updatePageTitle("Cheeky J", single.querySelector(".single-name").textContent);
+      }
+    });
+  });
+}
+
+  // Call the function to update the page title when a song starts playing
+updatePageTitleOnPlay();
+  
 // Get references to the audio player and the play/pause button
 const audioPlayer = document.getElementById('audioPlayer');
 const playPauseButton = document.getElementById('playPauseButton');
