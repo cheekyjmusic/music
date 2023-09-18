@@ -347,6 +347,18 @@
 .hover-outline:hover {
   outline: 4px solid white; /* White outline when hovering */
 }
+.fullscreen {
+  position: absolute;
+  z-index: 10;
+  top: 10px;
+  right: 10px;
+}
+.fullscreen img {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  opacity: 50%;
+}
 
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -354,6 +366,9 @@
 
 </head>
 <body>
+ <div class="fullscreen">
+  <img onclick="fullscreen()" src="https://cdn-icons-png.flaticon.com/512/3354/3354155.png">
+ </div>
  <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
@@ -556,7 +571,7 @@ updateFaviconOnPlay();
       case "Suburbs Freestyle Remix":
         return "https://assets.scratch.mit.edu/get_image/.%2E/068fa9a4443dbc189f18993c939f9144.mp3";
       case "Omelette":
-        return "https://raw.githubusercontent.com/cheekyjmusic/music/main/songs/Omelette.mp3";
+        return "https://github.com/cheekyjmusic/music/blob/main/songs/Omelette.mp3?raw=true";
       case "Submarine":
         return "https://assets.scratch.mit.edu/get_image/.%2E/3031330d599cd8f4fa961313032217cd.mp3";
       default:
@@ -749,6 +764,30 @@ singleElements.forEach((single) => {
     });
   });
 });
+
+function fullscreen(){
+  if (!document.fullscreenElement) {
+    if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen();
+    } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+      document.documentElement.mozRequestFullScreen();
+    } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+      document.documentElement.webkitRequestFullscreen();
+    } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+      document.documentElement.msRequestFullscreen();
+    }
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) { // Firefox
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) { // Chrome, Safari and Opera
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { // IE/Edge
+      document.msExitFullscreen();
+    }
+  }
+}
 
 
 </script>
