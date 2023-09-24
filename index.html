@@ -76,6 +76,7 @@
             display: flex;
             font-size: 18px;
             color: white;
+            cursor: pointer;
         }
 
         .popular-image {
@@ -203,9 +204,9 @@
     <div class="main-container">
         <div>
             <h2 class="section-title">Popular</h2>
-            <p class="popular">1<img class="popular-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/cheekyboomin.png">Metro Station</p>
-            <p class="popular">2<img class="popular-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/Scrambled.png">Omelette</p>
-            <p class="popular">3<img class="popular-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/cheekyboomin.png">Hotdog Stand</p>
+            <p onclick="play('https://cheekyjmusic.github.io/music/songs/metro.mp3', 'Metro Station')" class="popular">1<img class="popular-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/cheekyboomin.png">Metro Station</p>
+            <p onclick="play('https://cheekyjmusic.github.io/music/songs/Omelette.mp3', 'Omelette')" class="popular">2<img class="popular-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/Scrambled.png">Omelette</p>
+            <p onclick="play('https://cheekyjmusic.github.io/music/songs/hds.mp3', 'Hotdog Stand') "class="popular">3<img class="popular-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/cheekyboomin.png">Hotdog Stand</p>
         </div>
 
         <div class="container">
@@ -263,9 +264,8 @@
                     <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/suburbsvideo.png">
                     <p class="item-name">Suburbs Freestyle</p>
                 </div>
-            </a>
+            </a>            
         </div>
-
     </div>
 
     <audio class="audio" id="audio-player" controls>
@@ -381,6 +381,12 @@
         case "https://cheekyjmusic.github.io/music/songs/suburbsfreestyle.mp3":
             playingImage.src = "https://cheekyjmusic.github.io/music/suburbsfreestyle.jpg";
             break;
+        case "https://cheekyjmusic.github.io/music/songs/metro.mp3":
+            playingImage.src = "https://cheekyjmusic.github.io/music/cheekyboomin.png";
+            break;
+        case "https://cheekyjmusic.github.io/music/songs/hds.mp3":
+            playingImage.src = "https://cheekyjmusic.github.io/music/cheekyboomin.png";
+            break;
         // Add cases for other songs as needed
         default:
             // Set a default image if the song doesn't match any cases
@@ -447,11 +453,15 @@ document.querySelector('.progress-bar-container').addEventListener('click', seek
         favicon.href = "https://cheekyjmusic.github.io/music/tacobell.png";
     } else if (song === "https://cheekyjmusic.github.io/music/songs/suburbsfreestyle.mp3") {
         favicon.href = "https://cheekyjmusic.github.io/music/suburbsfreestyle.jpg";
+    } else if (song === "https://cheekyjmusic.github.io/music/songs/metro.mp3") {
+        favicon.href = "https://cheekyjmusic.github.io/music/cheekyboomin.png";
+    } else if (song === "https://cheekyjmusic.github.io/music/songs/hds.mp3") {
+        favicon.href = "https://cheekyjmusic.github.io/music/cheekyboomin.png";
     } else {
         // Set the default favicon image
         favicon.href = "https://raw.githubusercontent.com/cheekyjmusic/music/main/logo.png";
     }
-}
+ }
 
     </script>    
 </body>
