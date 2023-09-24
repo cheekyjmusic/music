@@ -1,699 +1,425 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <style>
-    /* Add the following CSS rule */
-    .description-text {
-      margin-left: 20px;
-      color: black;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cheeky J</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/cheekyjmusic/music/main/logo.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2C2D31;
+            color: black;
+        }
 
-  <title>Cheeky J</title>
- <style>
- body {
-    font-family: 'Prompt', sans-serif;    
-    margin: 0;
-    padding: 0;
-    background-color: #2C2D31; /* Updated background color */
-    color: black; /* Set default text color */
-  }
-    header {
-      padding: 20px;
-      color: white;
-      text-align: left;
-    }
+        .fullscreen {
+            position: absolute;
+            z-index: 10;
+            top: 10px;
+            right: 10px;
+        }
 
-    h1 {
-      font-size: 32px;
-      margin: 0;
-    }
+        .fullscreen img {
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            opacity: 0.5;
+        }
 
-    .container {
-  max-width: auto;
-  margin: 0px;
-  padding: 20px;
-  margin-top: 0px;
-     margin-bottom: 30px;
-  background: linear-gradient(to bottom, #365B7B 0%, black 7%);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-    .image-container {
-      text-align: center;
-    }
+        .thumbnail-container {
+            position: relative;
+            width: 100%;
+        }
 
-    .image-container img {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-    }
+        .thumbnail-container img {
+            width: 100vw;
+            height: 300px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+        }
 
-    .popular-songs {
-      margin-top: 40px;
-    }
+        .artist-name-container {
+            position: absolute;
+            bottom: 8px;
+            left: 16px;
+            color: white;
+        }
 
-    .popular-songs h2 {
-      margin: 0;
-      font-size: 24px;
-     color: white;
-    }
+        .artist-name {
+            font-size: calc(100vw / 10);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
 
-    .popular-songs ul {
-      list-style-type: none;
-      padding: 0;
-    }
+        .main-container {
+            padding: 20px;
+            background: linear-gradient(to bottom, #365B7B 0%, black 7%);
+            min-height: 1220px;
+        }
 
-    .popular-songs li {
-  margin: 10px 0;
-  display: flex; /* Enable flexbox */
-  align-items: center; /* Vertically center the content */
-}
+        .section-title {
+            color: #ffffff;
+            font-size: 24px;
+            margin-top: 40px;
+        }
 
-.popular-songs li a {
-  display: flex; /* Enable flexbox */
-  align-items: center; /* Vertically center the content */
-  text-decoration: none;
-  color: white;
-}
+        .popular {
+            align-items: center;
+            display: flex;
+            font-size: 18px;
+            color: white;
+        }
 
-.popular-songs li a img {
-  margin-right: 10px;
- margin-left: 10px;
-}
+        .popular-image {
+            width: 35px;
+            height: 35px;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
 
-    .albums {
-      margin-top: 40px;
-    }
+        .bottom-rectangle {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 80px;
+            background-color: black;
+            display: flex;
+            justify-content: center; /* Horizontally center the content */
+            align-items: center; /* Vertically center the content */
+        }
 
-    .albums h2 {
-      margin: 0;
-      font-size: 24px;
-          color: white;
+        .play-pause-image {
+            height: 60px;
+            width: auto;
+        }
 
-    }
-
-    .album {
-      display: inline-block;
-      margin: 10px;
-    }
-
-    .album img {
-      width: 150px;
-      height: 150px;
-      border-radius: 10px;
-      cursor: pointer;
-     /*filter: grayscale(100%);
-     opacity: 20%;*/
-    }
-    .album img,
-    .single img {
-      width: 150px;
-      height: 150px;
-      border-radius: 10px;
-      box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2); /* Add box shadow */
-    }
-
-    .album-name {
-      margin-top: 5px;
-      color: white; 
-    }
-
-    .singles,
-    .shop {
-      margin-top: 40px;
-     overflow-x: auto;
-     white-space: nowrap;
-    }
-
-    .singles h2 {
-      margin: 0;
-      font-size: 24px;
-          color: White;
-
-    }
-
-    .single {
-      display: inline-block;
-      margin: 10px;
-     vertical-align: top;
-    }
-
-    .single img {
-      width: 150px;
-      height: 150px;
-      border-radius: 10px;
-     cursor: pointer;
-    }
-
-    .single-name {
-      margin-top: 5px;
-      color: white;
-     
-    }
-
-    .about {
-      margin-top: 40px;
-    }
-
-    .about h2 {
-      margin: 0;
-      font-size: 24px;
-          color: white;
-
-    }
-   .about-image {
-  position: relative;
-  text-align: center;
-}
-
-.about-image img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
-
-.about-image .description-text {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-
-
-    .description {
-      margin-top: 20px;
-      color: black;
-      display: flex;
-    }
-
-   .thumbnail-container {
-  position: relative;
-  width: 100%;
-}
-
-.thumbnail-container img {
- width: 100vw;
-    height: 300px;
-    object-fit: cover;
-    object-position: top;
-    display: block;
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
-}
-   .artist-thumbnail-text {
-  position: absolute;
-  bottom: 8px;
-  left: 16px;
-  color: white;
-}
-   .artist-thumbnail-name {
-      font-size: calc(100vw / 10);
-  font-weight: bold;
-    margin-bottom: 10px;
-   }
-   .music-videos {
-  margin-bottom: 20px;
-    margin-top: 40px;
-    margin-left: 10px;
-}
-
-.section-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.music-videos-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.music-video-link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  color: white;
-  width: 200px; /* Adjust the width to fit your images */
-}
-
-.music-video-image {
-  width: 200px;
-  height: auto;
-  object-fit: cover;
-  border-radius: 8px;
- margin-top: 10px;
-}
-
-.music-video-title {
-  margin-top: 5px;
-  font-size: 18px;
-  text-align: center;
-}
-.section-title {
-  color: white;
-}
-.audio {
-  pointer-events: none;
- opacity: 0%;
-}
-
-.bottom-rectangle {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 80px;
-    background-color: black;
-    justify-content: center;
-  }
-.action {
-  height: 60px;
- margin-top: 10px;
- margin-bottom: 10px;
- width: auto;
- align-items: center;
- display: flex;
-}
-
-.play-pause-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
- cursor: pointer;
-}
-
-.progress-bar-container {
-  position: fixed;
-  bottom: 80px;
-  left: 0;
-  width: 100%;
-  height: 10px;
-  background-color: #ddd;
-  z-index: 1;
- display: flex;
-}
-
-.progress-bar {
+        .progress-bar-container {
+            position: fixed;
+            bottom: 80px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: #ddd;
+            z-index: 1;
+            display: flex;
+        }
+        
+        .progress-bar {
   position: relative;
   height: 100%;
   background-color: #324078;
   width: 0;
-  transition: width 0.2s ease-in-out;
 }
-  .countdown-container {
-    background-color: red;
-   height: 20px;
-   width: 100%;
-   text-align: center;
-  }
-  .countdown {
-    color: white;
-  }
-  .current-time {
-    margin-left: 15px;
-    margin-top: 10px;
-   color: white;
-   opacity: 0%;
-   }
-  .song-playing {
-   height: 65px;
-   width: 65px;
-   opacity: 0%;
-  }
-  .song-info {
+
+        .item-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            cursor: pointer;
+            outline: 4px solid transparent;
+            margin: 5px;
+        }
+
+        .item-name {
+            font-size: 18px;
+            color: white;
+            margin-top: 5px;
+        }
+
+        .container {
+            margin-top: 10px;
+        }
+
+        .item-container {
+            white-space: nowrap;
+            overflow-x: auto;
+        }
+
+        .item {
+            display: inline-block;
+            width: 160px;
+            margin-right: 20px;
+            vertical-align: top;
+        }
+
+        .play-pause-container {
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+        }
+        
+        .audio {
+            pointer-events: none;
+            height: 0px;
+            width: 0px;
+            opacity: 0;
+        }
+        .song-info {
   position: fixed;
-  bottom: 8px; /* Position it above the progress bar */
-  left: 10px; /* Adjust left positioning as needed */
+  bottom: 8px;
+  left: 10px;
   display: flex;
   align-items: center;
   color: white;
    z-index: 2;
 }
-  /* Add this CSS for the hover effect */
-.hover-outline {
-  outline: 4px solid transparent; /* Transparent outline by default */
-  transition: outline 0.3s ease; /* Smooth transition */
-}
-
-.hover-outline:hover {
-  outline: 4px solid white; /* White outline when hovering */
-}
-.fullscreen {
-  position: absolute;
-  z-index: 10;
-  top: 10px;
-  right: 10px;
-}
-.fullscreen img {
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  opacity: 50%;
-}
-
-</style>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="https://raw.githubusercontent.com/cheekyjmusic/music/main/logo.png" type="image/x-icon">
-
+.current-time {
+    margin-left: 15px;
+    margin-top: 10px;
+   color: white;
+   opacity: 0%;
+   }
+   
+  .song-playing {
+   height: 65px;
+   width: 65px;
+   opacity: 0%;
+  }
+  .item-image:hover {
+    outline: 4px solid white;
+    transition: outline 0.3s ease;
+  }
+    </style>
 </head>
 <body>
- <div class="fullscreen">
+    <div class="fullscreen">
         <img onclick="fullscreen()" src="https://cdn-icons-png.flaticon.com/512/3354/3354155.png">
-       </div>
- <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
-  <div class="thumbnail-container">
-    <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/backgroundmainnew.jpg" alt="artist-thumbnail">
-    <div class="artist-thumbnail-text">
-     <p class="artist-thumbnail-name">Cheeky J</p>
-   </div>
-  </div>
-  <div class="container">
-  
-  <div class="popular-songs">
-  <h2>Popular</h2>
-  <ul>
-   <li><a><span class="song-number">1 </span><img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/cheekyboomin.png" alt="Song 1" width="35" height="35">Metro Station</a></li>
-   <li><a><span class="song-number">2 </span><img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/Scrambled.png" alt="Song 2" width="35" height="35">Omelette</a></li>
-  <li><a><span class="song-number">3 </span><img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/cheekyboomin.png" alt="Song 3" width="35" height="35">Hotdog Stand</a></li>
-    <!-- Add more songs -->
-  </ul>
-</div>
-
-    <div class="albums">
-      <h2 class="section-title">Albums</h2>
-      <a href="https://cheekyjmusic.github.io/music/cheekyboomin.html"><div class="album">
-          <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/cheekyboomin.png" alt="Cheeky Boomin">
-          <div class="album-name">Cheeky Boomin</div>
-       <!--<div class="countdown-container">
-        <p class="countdown" id="countdown">Countdown to August 18</p
-       </div>-->
-      </div></a>
-      <!-- Add more albums -->
     </div>
-    <div class="singles">
-  <h2 class="section-title">Singles</h2>
-      <div class="single" data-cover-url="https://raw.githubusercontent.com/cheekyjmusic/music/main/Scrambled.png">
-    <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/Scrambled.png" alt="Omelette">
-    <div class="single-name">Omelette</div>
-  </div>
-     <div class="single" data-cover-url="https://raw.githubusercontent.com/cheekyjmusic/music/main/submarine.png">
-    <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/submarine.png" alt="Submarine" class="hover-outline">
-    <div class="single-name">Submarine</div>
-  </div>
-     <div class="single" data-cover-url="https://raw.githubusercontent.com/cheekyjmusic/music/main/sbremix.jpg">
-    <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/sbremix.jpg" alt="Suburbs Freestyle Remix">
-    <div class="single-name">Suburbs Freestyle Remix</div>
-  </div>
-  <div class="single" data-cover-url="https://raw.githubusercontent.com/cheekyjmusic/music/main/twinkie.png">
-    <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/twinkie.png" alt="Corner Store Twinkie">
-    <div class="single-name">Corner Store Twinkie</div>
-  </div>
-  <div class="single" data-cover-url="https://raw.githubusercontent.com/cheekyjmusic/music/main/lincoln.png">
-    <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/lincoln.png" alt="1860 Lincoln">
-    <div class="single-name">1860 Lincoln</div>
-  </div>
-  <div class="single" data-cover-url="https://raw.githubusercontent.com/cheekyjmusic/music/main/sumo.png">
-    <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/sumo.png" alt="Sumo Wrestler">
-    <div class="single-name">Sumo Wrestler</div>
-  </div>
-  <div class="single" data-cover-url="https://raw.githubusercontent.com/cheekyjmusic/music/main/tacobell.png">
-    <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/tacobell.png" alt="Taco Bell Diss">
-    <div class="single-name">Taco Bell Diss</div>
-  </div>
-  <div class="single" data-cover-url="https://raw.githubusercontent.com/cheekyjmusic/music/main/suburbsfreestyle.jpg">
-    <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/suburbsfreestyle.jpg" alt="Suburbs Freestyle">
-    <div class="single-name">Suburbs Freestyle</div>
-  </div>
-  <!-- Add more singles -->
-</div>
 
-     <div class="music-videos">
-  <h2 class="section-title">Music Videos</h2>
-  <div class="music-videos-container">
-    <a class="music-video-link" href="https://youtu.be/i3mEd9xiAT0">
-      <img class="music-video-image" src="https://assets.scratch.mit.edu/get_image/.%2E/9e6b10f256e7337d24b846d614dd3456.png" alt="Suburbs">
-      <span class="music-video-title">Suburbs Freestyle</span>
-    </a>
-  </div>
-</div>
-     <!--<a href="https://sites.google.com/view/music-playr/shop"><div class="shop">
-  <h2 class="section-title">Shop</h2>
-  <div class="single">
-    <img src="https://assets.scratch.mit.edu/dc1f2ef438ce04781a07d1f5f543469c.png" alt="Cheeky Boomin Shirt">
-    <div class="single-name">Cheeky Boomin Shirt</div>
-  </div>
-  <div class="single">
-    <img src="https://assets.scratch.mit.edu/6465111fd8c6adebe4c1107e963ef9b4.png" alt="CB Shirt Back">
-    <div class="single-name">CB Shirt Back</div>
-  </div>
-      <div class="single">
-    <img src="https://assets.scratch.mit.edu/f8854f010810b3a58917453c654c51af.png" alt="Cheeky Comic">
-    <div class="single-name">Cheeky Comic</div>
-  </div>
-      <div class="single">
-    <div class="single-name">See more at the shop</div>
-  </div>
-</div></a>-->
-     </div>
- <audio class="audio" id="audioPlayer" controls></audio>
- <div class="bottom-rectangle">
-  <div class="play-pause-container">
-    <img id="playPauseButton" class="action" src="https://assets.scratch.mit.edu/f66cb52dadbf8e95758695b89a9ee75e.svg">
-  </div>
-</div>
- <div class="song-info">
-  <img class="song-playing" src="black.png">
-  <div class="current-time" id="currentTime">0:00</div>
-</div>
- <div class="progress-bar-container">
-    <div class="progress-bar"></div>
-  
-  </div>
+    <div class="thumbnail-container">
+        <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/backgroundmainnew.jpg" alt="artist-thumbnail">
+        <div class="artist-name-container">
+            <p class="artist-name">Cheeky J</p>
+        </div>
+    </div>
 
- <script>
-  // Function to update the page title with the artist name and song name
-function updatePageTitle(artistName, songName) {
-  document.title = artistName + " - " + songName;
-}
+    <div class="main-container">
+        <div>
+            <h2 class="section-title">Popular</h2>
+            <p class="popular">1<img class="popular-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/cheekyboomin.png">Metro Station</p>
+            <p class="popular">2<img class="popular-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/Scrambled.png">Omelette</p>
+            <p class="popular">3<img class="popular-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/cheekyboomin.png">Hotdog Stand</p>
+        </div>
 
-// Function to reset the page title to its original value
-function resetPageTitle() {
-  document.title = "Cheeky J"; // Change to your default title
-}
-  
-  // Function to update the favicon with the cover image URL
-function updateFavicon(imageUrl) {
-  var favicon = document.querySelector("link[rel='icon']");
-  favicon.href = imageUrl;
-}
-  
- document.addEventListener("DOMContentLoaded", function() {
-  var songPlaying = "none";
-  var audioPlayer = document.getElementById("audioPlayer");
-  
-  var currentTime = document.querySelector('.current-time');
-  var playingImage = document.querySelector('.song-playing');
+        <div class="container">
+            <h2 class="section-title">Albums</h2>
+            <a style="text-decoration: none;" href="https://cheekyjmusic.github.io/music/cheekyboomin.html">
+                <div class="item">
+                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/cheekyboomin.png">
+                    <p class="item-name">Cheeky Boomin</p>
+                </div>
+            </a>
+        </div>
 
-  var singles = document.querySelectorAll(".single");
+        <div class="container">
+            <h2 class="section-title">Singles</h2>
+            <div class="item-container">
+                <div class="item" onclick="play('https://cheekyjmusic.github.io/music/songs/Omelette.mp3', 'Omelette')">
+                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/Scrambled.png">
+                    <p class="item-name">Omelette</p>
+                </div>
+                <div class="item" onclick="play('https://cheekyjmusic.github.io/music/songs/submarine.mp3', 'Submarine')">
+                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/submarine.png">
+                    <p class="item-name">Submarine</p>
+                </div>
+                <div class="item" onclick="play('https://cheekyjmusic.github.io/music/songs/sbremix.mp3', 'Suburbs Freestyle Remix')">
+                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/sbremix.jpg">
+                    <p class="item-name">SB Freestyle Remix</p>
+                </div>
+                <div class="item" onclick="play('https://cheekyjmusic.github.io/music/songs/twinkie.mp3', 'Corner Store Twinkie')">
+                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/twinkie.png">
+                    <p class="item-name">Corner Store Twinkie</p>
+                </div>
+                <div class="item" onclick="play('https://cheekyjmusic.github.io/music/songs/lincoln.mp3', '1860s Lincoln')">
+                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/lincoln.png">
+                    <p class="item-name">1860s Lincoln</p>
+                </div>
+                <div class="item" onclick="play('https://cheekyjmusic.github.io/music/songs/sumo.mp3', 'Sumo Wrestler')">
+                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/sumo.png">
+                    <p class="item-name">Sumo Wrestler</p>
+                </div>
+                <div class="item" onclick="play('https://cheekyjmusic.github.io/music/songs/tacobell.mp3', 'Taco Bell Diss')">
+                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/tacobell.png">
+                    <p class="item-name">Taco Bell Diss</p>
+                </div>
+                <div class="item" onclick="play('https://cheekyjmusic.github.io/music/songs/suburbsfreestyle.mp3', 'Suburbs Freestyle')">
+                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/suburbsfreestyle.jpg">
+                    <p class="item-name">Suburbs Freestyle</p>
+                </div>
+            </div>
+        </div>
 
-  singles.forEach(function(single) {
-    single.addEventListener("click", function() {
-      var singleName = this.querySelector(".single-name").textContent;
-     var singleCoverUrl = this.dataset.coverUrl;
+        <div class="container">
+            <h2 class="section-title">Music Videos</h2>
+            <a style="text-decoration: none;" href="https://youtu.be/i3mEd9xiAT0">
+                <div class="item">
+                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/suburbsvideo.png">
+                    <p class="item-name">Suburbs Freestyle</p>
+                </div>
+            </a>
+        </div>
 
-      songPlaying = singleName;
+    </div>
 
-      // Update the audio source based on the clicked single
-      var audioSource = getAudioSource(songPlaying);
-      audioPlayer.src = audioSource;
+    <audio class="audio" id="audio-player" controls>
+        <source id="audio-source" src="" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio> 
+    <div class="bottom-rectangle">
+        <div class="play-pause-container" onclick="togglePlayPause()">
+            <img class="play-pause-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/pause.svg">
+        </div>
+    </div>   
+    <div class="song-info">
+        <img class="song-playing" src="black.png">
+        <div class="current-time" id="current-time">0:00</div>
+      </div> 
+    <div class="progress-bar-container">
+        <div class="progress-bar"></div>
+    </div>
 
-      // Play the audio
-      audioPlayer.play();
-     currentTime.style.opacity = "100%";
-     playingImage.style.opacity = "100%";
-     
-     //update the favicon
-     updateFavicon(singleCoverUrl);
-     
-     // Update the page title with the artist name and song name
-      updatePageTitle("Cheeky J", songPlaying);
-     
-    });
-  });
-  
-  // Reset the page title when audio is paused
-  audioPlayer.addEventListener("pause", function () {
-    resetPageTitle();
-  });
-  
-  
-  // Separate block of code for updating the favicon when needed
-function updateFaviconOnPlay() {
-  var audioPlayer = document.getElementById("audioPlayer");
-  var singles = document.querySelectorAll(".single");
+    <script>
+        function updateProgressBar() {
+    const audioPlayer = document.getElementById('audio-player');
+    const progressBar = document.querySelector('.progress-bar');
+    const currentTime = audioPlayer.currentTime;
+    const duration = audioPlayer.duration;
+    const currentTimeElement = document.getElementById('current-time');
 
-  audioPlayer.addEventListener("play", function () {
-    var songPlaying = audioPlayer.src;
+    if (!isNaN(duration)) {
+        const progress = (currentTime / duration) * 100;
+        progressBar.style.width = progress + '%';
 
-    singles.forEach(function (single) {
-      var singleCoverUrl = single.dataset.coverUrl; // Assuming you have a data attribute like data-cover-url
-      var audioSource = getAudioSource(single.querySelector(".single-name").textContent);
-
-      if (audioSource === songPlaying) {
-        // Update the favicon with the cover image of the playing single
-        updateFavicon(singleCoverUrl);
-      }
-    });
-  });
-}
-
-// Call the function to update the favicon when a song starts playing
-updateFaviconOnPlay();
-
-  function getAudioSource(song) {
-    // Map the song name to the corresponding audio source
-    switch (song) {
-      case "Corner Store Twinkie":
-        return "https://assets.scratch.mit.edu/get_image/.%2E/70f36a4a65863643693d2f851c171a39.mp3";
-      case "1860 Lincoln":
-        return "https://assets.scratch.mit.edu/get_image/.%2E/97a08ca7aa1f977ad713c9afdb78bc6e.mp3";
-      case "Sumo Wrestler":
-        return "https://assets.scratch.mit.edu/get_image/.%2E/cd61d7bfe772e23f006de0a07abbc990.mp3";
-      case "Taco Bell Diss":
-        return "https://cheekyjmusic.github.io/music/songs/tacobell.mp3";  
-      case "Suburbs Freestyle":
-        return "https://assets.scratch.mit.edu/get_image/.%2E/15da361dba6ad810f21595aee0d991f4.mp3";
-      case "Suburbs Freestyle Remix":
-        return "https://assets.scratch.mit.edu/get_image/.%2E/068fa9a4443dbc189f18993c939f9144.mp3";
-      case "Omelette":
-        return "https://cheekyjmusic.github.io/music/songs/Omelette.mp3";
-      case "Submarine":
-        return "https://cheekyjmusic.github.io/music/songs/submarine.mp3";
-      default:
-        return "";
+        // Format the current time in minutes and seconds
+        const minutes = Math.floor(currentTime / 60);
+        const seconds = Math.floor(currentTime % 60);
+        const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        currentTimeElement.textContent = formattedTime;
     }
-  }
-});
-  
-  // Separate block of code for updating the page title when needed
-function updatePageTitleOnPlay() {
-  var audioPlayer = document.getElementById("audioPlayer");
 
-  audioPlayer.addEventListener("play", function () {
-    var songPlaying = audioPlayer.src;
-    var singles = document.querySelectorAll(".single");
-
-    singles.forEach(function (single) {
-      var audioSource = getAudioSource(single.querySelector(".single-name").textContent);
-
-      if (audioSource === songPlaying) {
-        // Update the page title with the artist name and song name
-        updatePageTitle("Cheeky J", single.querySelector(".single-name").textContent);
-      }
-    });
-  });
+    requestAnimationFrame(updateProgressBar);
 }
 
-  // Call the function to update the page title when a song starts playing
-updatePageTitleOnPlay();
-  
-// Get references to the audio player and the play/pause button
-const audioPlayer = document.getElementById('audioPlayer');
-const playPauseButton = document.getElementById('playPauseButton');
 
-// Add a click event listener to the play/pause button
-playPauseButton.addEventListener('click', function() {
-  if (audioPlayer.paused) {
+    document.getElementById('audio-player').addEventListener('timeupdate', updateProgressBar);
+
+    
+        document.getElementById('audio-player').addEventListener('timeupdate', updateProgressBar);
+    
+        function fullscreen() {
+            if (!document.fullscreenElement) {
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else if (document.documentElement.mozRequestFullScreen) {
+                    document.documentElement.mozRequestFullScreen();
+                } else if (document.documentElement.webkitRequestFullscreen) {
+                    document.documentElement.webkitRequestFullscreen();
+                } else if (document.documentElement.msRequestFullscreen) {
+                    document.documentElement.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+    
+        function play(song, itemName) {
+    const currentTime = document.querySelector('.current-time');
+    const playPause = document.querySelector('.play-pause-image');
+
+    const audioPlayer = document.getElementById('audio-player');
+    playingImage(song);
+    updateFavicon(song);
+    audioPlayer.src = song;
     audioPlayer.play();
-  } else {
-    audioPlayer.pause();
-  }
-  updatePlayPauseButtonAppearance(); // Update the button appearance
-});
+    currentTime.style.opacity = 1;
+    playPause.src = 'https://cheekyjmusic.github.io/music/pause.svg';
 
-// Function to update the play/pause button's appearance
-function updatePlayPauseButtonAppearance() {
-  if (audioPlayer.paused) {
-    playPauseButton.src = 'https://assets.scratch.mit.edu/7ed6574d26dcbae37ae86330448c4926.svg'; // Play icon
-  } else {
-    playPauseButton.src = 'https://assets.scratch.mit.edu/f66cb52dadbf8e95758695b89a9ee75e.svg'; // Pause icon
-  }
+    document.title = itemName + " - Cheeky J";
 }
 
-// Update the button appearance when the audio player state changes
-audioPlayer.addEventListener('play', updatePlayPauseButtonAppearance);
-audioPlayer.addEventListener('pause', updatePlayPauseButtonAppearance);
 
+        function playingImage(song) {
+    const playingImage = document.querySelector('.song-playing');
 
-// Get the progress bar element
-var progressBar = document.querySelector('.progress-bar');
-
-// Update the progress bar based on the current time of the audio player
-audioPlayer.addEventListener('timeupdate', function() {
-  var currentTime = audioPlayer.currentTime;
-  var duration = audioPlayer.duration;
-  var progress = (currentTime / duration) * 100;
-
-  // Update the width of the progress bar
-  progressBar.style.width = progress + '%';
-});
-  //code for changing song progress
-  document.addEventListener("DOMContentLoaded", function() {
-  var audioPlayer = document.getElementById("audioPlayer");
-  var progressBarContainer = document.querySelector(".progress-bar-container");
-  var progressBar = document.querySelector(".progress-bar");
-
-  // Update progress bar based on audio time
-  audioPlayer.addEventListener("timeupdate", function() {
-    var progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-    progressBar.style.width = progress + "%";
-  });
-
-  // Seek to specific time when clicking on progress bar
-  progressBarContainer.addEventListener("click", function(event) {
-    var progressBarWidth = progressBarContainer.offsetWidth;
-    var clickPositionX = event.clientX - progressBarContainer.getBoundingClientRect().left;
-    var seekTime = (clickPositionX / progressBarWidth) * audioPlayer.duration;
-    audioPlayer.currentTime = seekTime;
-  });
-});
-  
-  document.addEventListener("DOMContentLoaded", function() {
-  var countdown = document.getElementById("countdown");
-
-  // Set the target date and time to August 18, 2023, at 5 PM
-  var targetDate = new Date("August 18, 2023 17:00:00").getTime();
-
-  var countdownInterval = setInterval(function() {
-    var now = new Date().getTime();
-    var distance = targetDate - now;
-
-    if (distance < 0) {
-      clearInterval(countdownInterval);
-      countdown.innerHTML = "Listen Now!";
-    } else {
-      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      countdown.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+    switch (song) {
+        case "https://cheekyjmusic.github.io/music/songs/Omelette.mp3":
+            playingImage.src = "https://cheekyjmusic.github.io/music/Scrambled.png";
+            break;
+        case "https://cheekyjmusic.github.io/music/songs/submarine.mp3":
+            playingImage.src = "https://cheekyjmusic.github.io/music/submarine.png";
+            break;
+        case "https://cheekyjmusic.github.io/music/songs/sbremix.mp3":
+            playingImage.src = "https://cheekyjmusic.github.io/music/sbremix.jpg";
+            break;
+        case "https://cheekyjmusic.github.io/music/songs/twinkie.mp3":
+            playingImage.src = "https://cheekyjmusic.github.io/music/twinkie.png";
+            break;
+        case "https://cheekyjmusic.github.io/music/songs/lincoln.mp3":
+            playingImage.src = "https://cheekyjmusic.github.io/music/lincoln.png";
+            break;
+        case "https://cheekyjmusic.github.io/music/songs/sumo.mp3":
+            playingImage.src = "https://cheekyjmusic.github.io/music/sumo.png";
+            break;
+        case "https://cheekyjmusic.github.io/music/songs/tacobell.mp3":
+            playingImage.src = "https://cheekyjmusic.github.io/music/tacobell.png";
+            break;
+        case "https://cheekyjmusic.github.io/music/songs/suburbsfreestyle.mp3":
+            playingImage.src = "https://cheekyjmusic.github.io/music/suburbsfreestyle.jpg";
+            break;
+        // Add cases for other songs as needed
+        default:
+            // Set a default image if the song doesn't match any cases
+            playingImage.src = "default-image.png";
     }
-  }, 1000);
-});
-  
-  //no right click
+
+    playingImage.style.opacity = 1;
+}
+
+
+
+        function togglePlayPause() {
+    const audioPlayer = document.getElementById('audio-player');
+    const playPauseImage = document.querySelector('.play-pause-container img');
+
+    if (audioPlayer.paused) {
+        audioPlayer.play();
+        playPauseImage.src = "https://raw.githubusercontent.com/cheekyjmusic/music/main/pause.svg";
+    } else {
+        audioPlayer.pause();
+        playPauseImage.src = "https://raw.githubusercontent.com/cheekyjmusic/music/main/play.svg";
+    }
+}
+function seek(event) {
+    const progressBar = document.querySelector('.progress-bar-container');
+    const audioPlayer = document.getElementById('audio-player');
+
+    const clickX = event.clientX - progressBar.getBoundingClientRect().left;
+    const progressBarWidth = progressBar.offsetWidth;
+    const duration = audioPlayer.duration;
+
+    const newTime = (clickX / progressBarWidth) * duration;
+    audioPlayer.currentTime = newTime;
+}
+
+// Add an onclick event to the progress bar container
+document.querySelector('.progress-bar-container').addEventListener('click', seek);
+
+//no right click
   document.addEventListener('contextmenu', function (event) {
       // Check if the right-clicked element is an image
       if (event.target.tagName === 'IMG') {
@@ -701,101 +427,32 @@ audioPlayer.addEventListener('timeupdate', function() {
         event.preventDefault();
       }
     });
-   //current-time script
-  var currentTimeDisplay = document.getElementById('currentTime');
 
-  // Update the current time of the song display
-  audioPlayer.addEventListener('timeupdate', function () {
-    var currentTime = audioPlayer.currentTime;
-    var duration = audioPlayer.duration;
-    var progress = (currentTime / duration) * 100;
+    function updateFavicon(song) {
+    const favicon = document.querySelector('link[rel="icon"]');
 
-    // Update the width of the progress bar
-    progressBar.style.width = progress + '%';
-
-    // Update the current time display
-    var minutes = Math.floor(currentTime / 60);
-    var seconds = Math.floor(currentTime % 60);
-    var formattedTime = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-    currentTimeDisplay.textContent = formattedTime;
-  });
-  
-  //songplaying image code
-  document.addEventListener("DOMContentLoaded", function() {
-  var songPlayingImage = document.querySelector(".song-playing");
-  var singles = document.querySelectorAll(".single");
-
-  singles.forEach(function(single) {
-    single.addEventListener("click", function() {
-      var singleImage = this.querySelector("img").src;
-
-      // Update the song-playing image's src attribute
-      songPlayingImage.src = singleImage;
-    });
-  });
-});
-
-  //outline code
-  // Get all the single elements
-const singleElements = document.querySelectorAll('.single');
-
-// Add event listeners for mouseenter and mouseleave
-singleElements.forEach((single) => {
-  single.addEventListener('mouseenter', () => {
-    const image = single.querySelector('img');
-    image.classList.add('hover-outline');
-  });
-
-  single.addEventListener('mouseleave', () => {
-    const image = single.querySelector('img');
-    image.classList.remove('hover-outline');
-  });
-});
-
-  document.addEventListener("DOMContentLoaded", function () {
-  var singles = document.querySelectorAll(".single");
-
-  singles.forEach(function (single) {
-    single.addEventListener("click", function () {
-      // Apply the scaling effect
-      this.style.transform = "scale(0.9)";
-      this.style.transition = "transform 0.2s ease";
-
-      // Listen for the transition end event to reset the scaling effect
-      this.addEventListener("transitionend", function () {
-        // Remove the scaling effect after the transition ends
-        this.style.transform = "";
-        this.style.transition = "";
-      });
-    });
-  });
-});
-
-function fullscreen(){
-  if (!document.fullscreenElement) {
-    if (document.documentElement.requestFullscreen) {
-      document.documentElement.requestFullscreen();
-    } else if (document.documentElement.mozRequestFullScreen) { // Firefox
-      document.documentElement.mozRequestFullScreen();
-    } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
-      document.documentElement.webkitRequestFullscreen();
-    } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
-      document.documentElement.msRequestFullscreen();
+    if (song === "https://cheekyjmusic.github.io/music/songs/Omelette.mp3") {
+        favicon.href = "https://cheekyjmusic.github.io/music/Scrambled.png";
+    } else if (song === "https://cheekyjmusic.github.io/music/songs/submarine.mp3") {
+        favicon.href = "https://cheekyjmusic.github.io/music/submarine.png";
+    } else if (song === "https://cheekyjmusic.github.io/music/songs/sbremix.mp3") {
+        favicon.href = "https://cheekyjmusic.github.io/music/sbremix.jpg";
+    } else if (song === "https://cheekyjmusic.github.io/music/songs/twinkie.mp3") {
+        favicon.href = "https://cheekyjmusic.github.io/music/twinkie.png";
+    } else if (song === "https://cheekyjmusic.github.io/music/songs/lincoln.mp3") {
+        favicon.href = "https://cheekyjmusic.github.io/music/lincoln.png";
+    } else if (song === "https://cheekyjmusic.github.io/music/songs/sumo.mp3") {
+        favicon.href = "https://cheekyjmusic.github.io/music/sumo.png";
+    } else if (song === "https://cheekyjmusic.github.io/music/songs/tacobell.mp3") {
+        favicon.href = "https://cheekyjmusic.github.io/music/tacobell.png";
+    } else if (song === "https://cheekyjmusic.github.io/music/songs/suburbsfreestyle.mp3") {
+        favicon.href = "https://cheekyjmusic.github.io/music/suburbsfreestyle.jpg";
+    } else {
+        // Set the default favicon image
+        favicon.href = "https://raw.githubusercontent.com/cheekyjmusic/music/main/logo.png";
     }
-  } else {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) { // Firefox
-      document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) { // Chrome, Safari and Opera
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { // IE/Edge
-      document.msExitFullscreen();
-    }
-  }
 }
 
-
-</script>
+    </script>    
 </body>
 </html>
