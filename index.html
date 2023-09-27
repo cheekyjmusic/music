@@ -193,22 +193,9 @@
     margin-top: 0px;
     opacity: 50%;
   }
-  
-  .lock {
-    opacity: 0;
-    pointer-events: none;
-    background-color: white;
-    top: 0px;
-    left: 0px;
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    z-index: 5;
-  }
     </style>
 </head>
 <body>
-    <div class="lock">Locked</div>
     <div class="fullscreen">
         <img onclick="fullscreen()" src="https://cdn-icons-png.flaticon.com/512/3354/3354155.png">
     </div>
@@ -493,43 +480,6 @@ document.querySelector('.progress-bar-container').addEventListener('click', seek
         favicon.href = "https://raw.githubusercontent.com/cheekyjmusic/music/main/logo.png";
     }
  }
-     
-     // GitHub Raw content URL for your JSON file
-var githubRawUrl = "https://raw.githubusercontent.com/cheekyjmusic/music/main/key.json";
-     
-    function lock() {
-    var lockerDiv = document.querySelector('.lock');
-
-    fetch(githubRawUrl)
-        .then(response => response.json())
-        .then(data => {
-            // Access the data from the JSON file
-            var locked = data.locked;
-
-            // Use the 'locked' variable here
-            if (locked === true) {
-                lockerDiv.style.opacity = 1;
-                lockerDiv.style.pointerEvents = "auto"; // Enable pointer events
-            } else {
-                lockerDiv.style.opacity = 0;
-                lockerDiv.style.pointerEvents = "none"; // Disable pointer events
-            }
-        })
-        .catch(error => {
-            // Handle any errors that occur during the fetch
-            console.error("Error fetching the file:", error);
-        });
-}
-
-// Call the lock function initially
-lock();
-
-// Call the lock function every 5 seconds (5000 milliseconds)
-setInterval(lock, 5000);
-
-    
-
-
     </script>    
 </body>
 </html>
