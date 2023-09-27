@@ -191,10 +191,24 @@
     color:gray;
     cursor: pointer;
     margin-top: 0px;
+    opacity: 50%;
+  }
+  
+  .lock {
+    opacity: 0;
+    pointer-events: none;
+    background-color: white;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 5;
   }
     </style>
 </head>
 <body>
+    <div class="lock">Locked</div>
     <div class="fullscreen">
         <img onclick="fullscreen()" src="https://cdn-icons-png.flaticon.com/512/3354/3354155.png">
     </div>
@@ -225,8 +239,12 @@
         </div>
 
         <div class="container">
-            <h2 style="display: inline;" class="section-title">Singles <a href="https://cheekyjmusic.github.io/music/singles.html" class="expand-singles">Expand</a></h2>
+            <h2 style="display: inline;" class="section-title">Singles <a href="https://cheekyjmusic.github.io/music/singles.html" class="expand-singles">See All</a></h2>
             <div class="item-container">
+                <!--<div class="item" onclick="play('file:///media/removable/Samsung%20USB/spotyf/music/hammock.wav', 'Hammock')">
+                    <img class="item-image" src="hammock.png">
+                    <p class="item-name">Hammock</p>
+                </div>-->
                 <div class="item" onclick="play('https://cheekyjmusic.github.io/music/songs/Omelette.mp3', 'Omelette')">
                     <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/Scrambled.png">
                     <p class="item-name">Omelette</p>
@@ -291,6 +309,9 @@
     </div>
 
     <script>
+    
+
+
         function updateProgressBar() {
     const audioPlayer = document.getElementById('audio-player');
     const progressBar = document.querySelector('.progress-bar');
@@ -392,6 +413,9 @@
         case "https://cheekyjmusic.github.io/music/songs/hds.mp3":
             playingImage.src = "https://cheekyjmusic.github.io/music/cheekyboomin.png";
             break;
+        case "file:///media/removable/Samsung%20USB/spotyf/music/hammock.wav":
+            playingImage.src = "hammock.png";
+            break;
         // Add cases for other songs as needed
         default:
             // Set a default image if the song doesn't match any cases
@@ -460,6 +484,8 @@ document.querySelector('.progress-bar-container').addEventListener('click', seek
         favicon.href = "https://cheekyjmusic.github.io/music/suburbsfreestyle.jpg";
     } else if (song === "https://cheekyjmusic.github.io/music/songs/metro.mp3") {
         favicon.href = "https://cheekyjmusic.github.io/music/cheekyboomin.png";
+    } else if (song === "file:///media/removable/Samsung%20USB/spotyf/music/hammock.wav") {
+        favicon.href = "hammock.png";
     } else if (song === "https://cheekyjmusic.github.io/music/songs/hds.mp3") {
         favicon.href = "https://cheekyjmusic.github.io/music/cheekyboomin.png";
     } else {
@@ -467,6 +493,54 @@ document.querySelector('.progress-bar-container').addEventListener('click', seek
         favicon.href = "https://raw.githubusercontent.com/cheekyjmusic/music/main/logo.png";
     }
  }
+     
+     // GitHub Raw content URL for your JSON file
+var githubRawUrl = "https://raw.githubusercontent.com/cheekyjmusic/music/main/key.json";
+
+// Fetch the JSON content of the file
+fetch(githubRawUrl)
+    .then(response => response.json())
+    .then(data => {
+        // Access the data from the JSON file
+        var locked = data.locked;
+    })
+    .catch(error => {
+        // Handle any errors that occur during the fetch
+        console.error("Error fetching the file:", error);
+    });
+     
+    function lock() {
+    var lockerDiv = document.querySelector('.lock');
+
+    fetch(githubRawUrl)
+        .then(response => response.json())
+        .then(data => {
+            // Access the data from the JSON file
+            var locked = data.locked;
+
+            // Use the 'locked' variable here
+            if (locked === true) {
+                lockerDiv.style.opacity = 1;
+                lockerDiv.style.pointerEvents = "auto"; // Enable pointer events
+            } else {
+                lockerDiv.style.opacity = 0;
+                lockerDiv.style.pointerEvents = "none"; // Disable pointer events
+            }
+        })
+        .catch(error => {
+            // Handle any errors that occur during the fetch
+            console.error("Error fetching the file:", error);
+        });
+}
+
+// Call the lock function initially
+lock();
+
+// Call the lock function every 5 seconds (5000 milliseconds)
+setInterval(lock, 5000);
+
+    
+
 
     </script>    
 </body>
