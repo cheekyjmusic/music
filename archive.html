@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* Existing CSS code */
+
+    /* Add the following CSS rule */
+    .description-text {
+      margin-left: 20px;
+      color: black;
+    }
+
+    body.dark-mode .description-text {
+      color: white;
+    }
+  </style>
+
+  <title>Artist Page - Spotify Style</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+      color: black; /* Set default text color */
+      transition: background-color 0.5s, color 0.5s; /* Add transition effect for smooth color change */
+    }
+
+    /* Dark mode styles */
+    body.dark-mode {
+      background-color: #000;
+      color: white;
+    }
+
+    header {
+      background-color: #1DB954;
+      padding: 20px;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.5s; /* Add transition effect for smooth background color change */
+    }
+
+    /* Dark mode styles */
+    .container.dark-mode {
+      background-color: #222;
+    }
+
+    .image-container {
+      text-align: center;
+    }
+
+    .image-container img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+    }
+
+    .artist-info {
+      margin-top: 20px;
+    }
+
+    .artist-info p {
+      margin: 10px 0;
+    }
+
+    .popular-songs {
+      margin-top: 40px;
+    }
+
+    .popular-songs h2 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .popular-songs ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .popular-songs li {
+      margin: 10px 0;
+    }
+
+    .popular-songs li a {
+      color: #1DB954;
+      text-decoration: none;
+    }
+
+    .albums {
+      margin-top: 40px;
+    }
+
+    .albums h2 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .album {
+      display: inline-block;
+      margin: 10px;
+    }
+
+    .album img {
+      width: 150px;
+      height: 150px;
+      border-radius: 10px;
+    }
+    .album img,
+    .single img {
+      width: 150px;
+      height: 150px;
+      border-radius: 10px;
+      box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2); /* Add box shadow */
+    }
+
+    .album-name {
+      margin-top: 5px;
+      color: #1DB954; /* Set album text color to green */
+    }
+
+    .singles {
+      margin-top: 40px;
+    }
+
+    .singles h2 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .single {
+      display: inline-block;
+      margin: 10px;
+    }
+
+    .single img {
+      width: 150px;
+      height: 150px;
+      border-radius: 10px;
+    }
+
+    .single-name {
+      margin-top: 5px;
+      color: #1DB954; /* Set single text color to green */
+    }
+
+    .about {
+      margin-top: 40px;
+    }
+
+    .about h2 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .about-image {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .about-image img {
+      width: 400px;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .description {
+      margin-top: 20px;
+      color: black;
+      display: flex;
+    }
+
+    .description-text {
+      margin-left: 20px;
+      color: black;
+    }
+
+    /* Dark mode button styles */
+    .dark-mode-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #1DB954;
+      color: white;
+      padding: 10px;
+      border-radius: 50%;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* Add the following styles for the copy URL button */
+    .copy-url-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+    }
+
+    .copy-url-btn img {
+      width: 20px;
+      height: 20px;
+    }
+    .password {
+    z-index: 1000;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    position: fixed;
+    color: black;
+    padding: 20px;
+   }
+   .password h1 {
+     font-size: 40px;
+   }
+  </style>
+</head>
+<body>
+  <div class="password" id="passwordOverlay">
+    <h1>Enter "Password"</h1>
+    <input type="password" id="passwordInput" placeholder="Enter password">
+      <button onclick="checkPassword()">Submit</button>
+   </div>
+  <header>
+    <h1>Maximum Haver Of Flow</h1>
+  </header>
+  <div class="container">
+    <div class="image-container">
+      <img src="flow.jpg" alt="Artist Image">
+    </div>
+    <div class="artist-info">
+      <p>Genre: Rap</p>
+      <p>Active Since: 2022</p>
+      <p>Followers: 10</p>
+    </div>
+    <div class="popular-songs">
+      <h2>Popular Songs</h2>
+      <ul>
+        <li><a href="track1">Track 1</a></li>
+        <li><a href="nikekicks">Nike Kicks</a></li>
+        <li><a href="#">Whopper Whopper</a></li>
+        <li><a href="#">1000 pound flow</a></li>
+        <li><a href="#">Eating Crayons</a></li>
+        <!-- Add more songs -->
+      </ul>
+    </div>
+    <div class="albums">
+      <h2>Albums</h2>
+      <div class="album">
+        <a href="">
+          <img src="dawgalbum.png" alt="DawgAlbum">
+          <div class="album-name">Dawg</div>
+        </a>
+      </div>
+      <!--<div class="album">
+        <a href="henryalbum">
+          <img src="henry.jpg" alt="Henry">
+          <div class="album-name">Henry</div>
+        </a>
+      </div>
+      <!-- Add more albums -->
+    </div>
+    <div class="singles">
+      <h2>Singles</h2>
+      <div class="single">
+        <a href="">
+          <img src="nikekicks.jpg" alt="Single 1">
+          <div class="single-name">Nike Kicks</div>
+        </a>
+      </div>
+      <div class="single">
+        <a href="">
+          <img src="track1.png" alt="Track 1">
+          <div class="single-name">Track 1</div>
+        </a>
+      </div>
+      <div class="single">
+        <a href="">
+          <img src="nikekicksremix.jpg" alt="Nike Kicks Remix">
+          <div class="single-name">Nike Kicks Remix</div>
+        </a>
+      </div>
+    </div>
+    <div class="about">
+      <h2>About</h2>
+      <div class="description">
+        <div class="about-image">
+          <img src="banner.jpg" alt="Artist Image">
+        </div>
+        <div class="description-text">
+          <p>The Maximum Haver of Flow is a very humble artist from Los Angeles.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="dark-mode-btn" onclick="toggleDarkMode()">Dark Mode</button>
+
+  <div class="copy-url-btn" onclick="copyURL()">
+    <img src="share.png" alt="Copy URL">
+  </div>
+
+  <script>
+    function toggleDarkMode() {
+      const body = document.body;
+      const container = document.querySelector('.container');
+      body.classList.toggle('dark-mode');
+      container.classList.toggle('dark-mode');
+    }
+
+    function copyURL() {
+      const url = 'nothing here';
+      navigator.clipboard.writeText(url).then(function() {
+        alert('URL copied to clipboard');
+      });
+    }
+
+  function checkPassword() {
+      var enteredPassword = document.getElementById('passwordInput').value;
+      var correctPassword = 'password';
+
+      if (enteredPassword === correctPassword) {
+        var passwordOverlay = document.getElementById('passwordOverlay');
+        passwordOverlay.remove();
+      } else {
+      }
+    }
+  </script>
+</body>
+</html>
