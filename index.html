@@ -17,20 +17,6 @@
             color: black;
         }
 
-        .fullscreen {
-            position: absolute;
-            z-index: 10;
-            top: 10px;
-            right: 10px;
-        }
-
-        .fullscreen img {
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            opacity: 0.5;
-        }
-
         .thumbnail-container {
             position: relative;
             width: 100%;
@@ -89,6 +75,7 @@
         .bottom-rectangle {
             position: fixed;
             bottom: 0;
+            opacity: 0;
             width: 100%;
             height: 80px;
             background-color: black;
@@ -106,6 +93,7 @@
             position: fixed;
             bottom: 80px;
             left: 0;
+            opacity: 0;
             width: 100%;
             height: 10px;
             background-color: #ddd;
@@ -193,11 +181,66 @@
     margin-top: 0px;
     opacity: 50%;
   }
+  .menu-button {
+    position: absolute;
+    z-index: 10;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+  }
+  .menu-button img {
+    height: 40px;
+    width: 40px;
+  }
+  .menu-container {
+    position: fixed;
+    height: 100%;
+    width: 25vw;
+    background-color: transparent;
+    z-index: 4;
+    padding: 5px;
+    object-position: top;
+    transition: width 0.3s ease;
+    transform: translateX(-100%);
+    transition: all 0.3s ease;
+  }
+  .menu-offscreen {
+    transform: translateX(0);
+  }
+  .menu-item img{
+    width: 5vw;
+    height: auto;
+  }
+  .menu-item h1 {
+    margin-left: 10px;
+    font-size: 20px;
+    }
+    .menu-item {
+    display: flex;
+    align-items: center;
+    color: black;
+    margin-left: 5px;
+    cursor: pointer
+}
     </style>
 </head>
 <body>
-    <div class="fullscreen">
-        <img onclick="fullscreen()" src="https://cdn-icons-png.flaticon.com/512/3354/3354155.png">
+    <div class="menu-button">
+        <img onclick="toggleMenu()" src="https://static.thenounproject.com/png/3869892-200.png">
+    </div>
+    <div class="menu-container">
+        <div style="margin-top: 50px;" class="menu-item">
+            <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/logo.png">
+            <h1>Menu</h1>
+        </div> 
+        <a style="text-decoration: none;" href="https://cheekyjmusic.github.io/music/saved.html"><div style="margin-top: 10px;" class="menu-item">
+            <img src="https://icones.pro/wp-content/uploads/2021/02/icone-de-coeur-bleu-1.png">
+            <h1>Saved</h1>
+        </div></a> 
+        <div onclick="fullscreen()" style="margin-top: 10px;" class="menu-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/3354/3354155.png">
+            <h1>Fullscreen</h1>
+        </div>       
     </div>
 
     <div class="thumbnail-container">
@@ -226,10 +269,10 @@
         </div>
 
         <div class="container">
-            <h2 style="display: inline;" class="section-title">Singles <a href="https://cheekyjmusic.github.io/music/singles.html" class="expand-singles">See All</a></h2>
+            <h2 style="display: inline;" class="section-title">Singles <a href="https://cheekyjmusic.github.io/music/singles.html" class="expand-singles">Expand</a></h2>
             <div class="item-container">
                 <!--<div class="item" onclick="play('file:///media/removable/Samsung%20USB/spotyf/music/hammock.wav', 'Hammock')">
-                    <img class="item-image" src="hammock.png">
+                    <img class="item-image" src="covers/hammock.png">
                     <p class="item-name">Hammock</p>
                 </div>-->
                 <div class="item" onclick="play('https://cheekyjmusic.github.io/music/songs/Omelette.mp3', 'Omelette')">
@@ -353,6 +396,8 @@
         function play(song, itemName) {
     const currentTime = document.querySelector('.current-time');
     const playPause = document.querySelector('.play-pause-image');
+    const bottomRectangle = document.querySelector('.bottom-rectangle');
+    const progressBarContainer = document.querySelector('.progress-bar-container');
 
     const audioPlayer = document.getElementById('audio-player');
     playingImage(song);
@@ -360,6 +405,8 @@
     audioPlayer.src = song;
     audioPlayer.play();
     currentTime.style.opacity = 1;
+    bottomRectangle.style.opacity = 1;
+    progressBarContainer.style.opacity = 1;
     playPause.src = 'https://cheekyjmusic.github.io/music/pause.svg';
 
     document.title = itemName + " - Cheeky J";
@@ -401,7 +448,7 @@
             playingImage.src = "https://cheekyjmusic.github.io/music/cheekyboomin.png";
             break;
         case "file:///media/removable/Samsung%20USB/spotyf/music/hammock.wav":
-            playingImage.src = "hammock.png";
+            playingImage.src = "covers/hammock.png";
             break;
         // Add cases for other songs as needed
         default:
@@ -472,14 +519,30 @@ document.querySelector('.progress-bar-container').addEventListener('click', seek
     } else if (song === "https://cheekyjmusic.github.io/music/songs/metro.mp3") {
         favicon.href = "https://cheekyjmusic.github.io/music/cheekyboomin.png";
     } else if (song === "file:///media/removable/Samsung%20USB/spotyf/music/hammock.wav") {
-        favicon.href = "hammock.png";
+        favicon.href = "covers/hammock.png";
     } else if (song === "https://cheekyjmusic.github.io/music/songs/hds.mp3") {
         favicon.href = "https://cheekyjmusic.github.io/music/cheekyboomin.png";
     } else {
-        // Set the default favicon image
         favicon.href = "https://raw.githubusercontent.com/cheekyjmusic/music/main/logo.png";
     }
  }
+
+ var menuState = "closed";
+const menuContainer = document.querySelector('.menu-container');
+
+function toggleMenu() {
+    if (menuState === "closed") {
+        menuState = "open";
+        menuContainer.style.backgroundColor = 'white';
+        menuContainer.classList.add("menu-offscreen");
+    } else if (menuState === "open") {
+        menuState = "closed";
+        menuContainer.classList.remove("menu-offscreen");
+        menuContainer.style.backgroundColor = 'transparent';
+    }
+}
+
+
     </script>    
 </body>
 </html>
