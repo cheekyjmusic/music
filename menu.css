@@ -5,7 +5,7 @@
     left: 10px;
     cursor: pointer;
   }
-  .menu-button img {
+  .menu-button-img {
     height: 40px;
     width: 40px;
     filter: invert(100%);
