@@ -181,63 +181,12 @@
     margin-top: 0px;
     opacity: 50%;
   }
-  .menu-button {
-    position: absolute;
-    z-index: 10;
-    top: 10px;
-    left: 10px;
-    cursor: pointer;
-  }
-  .menu-button img {
-    height: 40px;
-    width: 40px;
-  }
-  .menu-container {
-    position: fixed;
-    height: 100%;
-    width: 25vw;
-    min-width: 400px;
-    background-color: transparent;
-    z-index: 5;
-    padding: 5px;
-    object-position: top;
-    transition: width 0.3s ease;
-    transform: translateX(-100%);
-    transition: all 0.3s ease;
-  }
-  .menu-offscreen {
-    transform: translateX(0);
-  }
-  .menu-item img{
-    width: 5vw;
-    height: auto;
-  }
-  .menu-item h1 {
-    margin-left: 10px;
-    font-size: 20px;
-    }
-    .menu-item {
-    display: flex;
-    align-items: center;
-    color: black;
-    margin-left: 5px;
-    cursor: pointer;
-}
-.menu-shadow {
-    background-color:black;
-    opacity: 0;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: 4;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
     </style>
+    <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/menu.css">
 </head>
 <body>
     <div class="menu-button">
-        <img onclick="toggleMenu()" src="https://static.thenounproject.com/png/3869892-200.png">
+        <img class="menu-button-img" onclick="toggleMenu()" src="https://static.thenounproject.com/png/3869892-200.png">
     </div>
     <div class="menu-container">
         <div style="margin-top: 50px;" class="menu-item">
@@ -269,7 +218,7 @@
     <div onclick="toggleMenu()" class="menu-shadow"></div>
 
     <div class="thumbnail-container">
-        <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/backgroundmainnew.jpg" alt="artist-thumbnail">
+        <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/backgroundmainnew.jpg" alt="artist-thumbnail">
         <div class="artist-name-container">
             <p class="artist-name">Cheeky J</p>
         </div>
@@ -278,16 +227,16 @@
     <div class="main-container">
         <div>
             <h2 class="section-title">Popular</h2>
-            <p onclick="play('https://cheekyjmusic.github.io/music/songs/metro.mp3', 'Metro Station')" class="popular">1<img class="popular-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/cheekyboomin.png">Metro Station</p>
-            <p onclick="play('https://cheekyjmusic.github.io/music/songs/Omelette.mp3', 'Omelette')" class="popular">2<img class="popular-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/Scrambled.png">Omelette</p>
-            <p onclick="play('https://cheekyjmusic.github.io/music/songs/hds.mp3', 'Hotdog Stand') "class="popular">3<img class="popular-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/cheekyboomin.png">Hotdog Stand</p>
+            <p onclick="play('https://cheekyjmusic.github.io/music/songs/metro.mp3', 'Metro Station')" class="popular">1<img class="popular-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/cheekyboomin.png">Metro Station</p>
+            <p onclick="play('https://cheekyjmusic.github.io/music/songs/Omelette.mp3', 'Omelette')" class="popular">2<img class="popular-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/Scrambled.png">Omelette</p>
+            <p onclick="play('https://cheekyjmusic.github.io/music/songs/hds.mp3', 'Hotdog Stand') "class="popular">3<img class="popular-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/cheekyboomin.png">Hotdog Stand</p>
         </div>
 
         <div class="container">
             <h2 class="section-title">Albums</h2>
             <a style="text-decoration: none;" href="https://cheekyjmusic.github.io/music/cheekyboomin.html">
                 <div class="item">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/cheekyboomin.png">
+                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/cheekyboomin.png">
                     <p class="item-name">Cheeky Boomin</p>
                 </div>
             </a>
@@ -296,44 +245,44 @@
         <div class="container">
             <h2 style="display: inline;" class="section-title">Singles <a href="https://cheekyjmusic.github.io/music/singles.html" class="expand-singles">Expand</a></h2>
             <div class="item-container">
-              <!--<div class="item" onclick="play('file:///media/removable/Samsung%20USB/spotyf/music/bh.wav', 'Big Hippo')">
+              <div class="item" onclick="play('file:///media/removable/Samsung%20USB/spotyf/music/bh.wav', 'Big Hippo')">
                     <img class="item-image" src="covers/bh.png">
                     <p class="item-name">Big Hippo</p>
                 </div>
                 <div class="item" onclick="play('file:///media/removable/Samsung%20USB/spotyf/music/hammock.wav', 'Hammock')">
                     <img class="item-image" src="covers/hammock.png">
                     <p class="item-name">Hammock</p>
-                </div>-->
+                </div>
                 <div class="item" onclick="play('https://cheekyjmusic.github.io/music/songs/Omelette.mp3', 'Omelette')">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/Scrambled.png">
+                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/Scrambled.png">
                     <p class="item-name">Omelette</p>
                 </div>
                 <div class="item" onclick="play('https://cheekyjmusic.github.io/music/songs/submarine.mp3', 'Submarine')">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/submarine.png">
+                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/submarine.png">
                     <p class="item-name">Submarine</p>
                 </div>
                 <div class="item" onclick="play('https://cheekyjmusic.github.io/music/songs/sbremix.mp3', 'Suburbs Freestyle Remix')">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/sbremix.jpg">
+                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/sbremix.jpg">
                     <p class="item-name">SB Freestyle Remix</p>
                 </div>
                 <div class="item" onclick="play('https://cheekyjmusic.github.io/music/songs/twinkie.mp3', 'Corner Store Twinkie')">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/twinkie.png">
+                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/twinkie.png">
                     <p class="item-name">Corner Store Twinkie</p>
                 </div>
                 <div class="item" onclick="play('https://cheekyjmusic.github.io/music/songs/lincoln.mp3', '1860s Lincoln')">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/lincoln.png">
+                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/lincoln.png">
                     <p class="item-name">1860s Lincoln</p>
                 </div>
                 <div class="item" onclick="play('https://cheekyjmusic.github.io/music/songs/sumo.mp3', 'Sumo Wrestler')">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/sumo.png">
+                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/sumo.png">
                     <p class="item-name">Sumo Wrestler</p>
                 </div>
                 <div class="item" onclick="play('https://cheekyjmusic.github.io/music/songs/tacobell.mp3', 'Taco Bell Diss')">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/tacobell.png">
+                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/tacobell.png">
                     <p class="item-name">Taco Bell Diss</p>
                 </div>
                 <div class="item" onclick="play('https://cheekyjmusic.github.io/music/songs/suburbsfreestyle.mp3', 'Suburbs Freestyle')">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/suburbsfreestyle.jpg">
+                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/suburbsfreestyle.jpg">
                     <p class="item-name">Suburbs Freestyle</p>
                 </div>
             </div>
@@ -343,7 +292,7 @@
             <h2 class="section-title">Music Videos</h2>
             <a style="text-decoration: none;" href="https://youtu.be/i3mEd9xiAT0">
                 <div class="item">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/suburbsvideo.png">
+                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/suburbsvideo.png">
                     <p class="item-name">Suburbs Freestyle</p>
                 </div>
             </a>            
@@ -356,7 +305,7 @@
     </audio> 
     <div class="bottom-rectangle">
         <div class="play-pause-container" onclick="togglePlayPause()">
-            <img class="play-pause-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/pause.svg">
+            <img class="play-pause-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/pause.svg">
         </div>
     </div>   
     <div class="song-info">
@@ -436,7 +385,7 @@
     currentTime.style.opacity = 1;
     bottomRectangle.style.opacity = 1;
     progressBarContainer.style.opacity = 1;
-    playPause.src = 'https://cheekyjmusic.github.io/music/pause.svg';
+    playPause.src = 'https://cheekyjmusic.github.io/music/assets/pause.svg';
 
     document.title = itemName + " - Cheeky J";
 }
@@ -447,34 +396,34 @@
 
     switch (song) {
         case "https://cheekyjmusic.github.io/music/songs/Omelette.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/Scrambled.png";
+            playingImage.src = "https://cheekyjmusic.github.io/music/assets/Scrambled.png";
             break;
         case "https://cheekyjmusic.github.io/music/songs/submarine.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/submarine.png";
+            playingImage.src = "https://cheekyjmusic.github.io/music/assets/submarine.png";
             break;
         case "https://cheekyjmusic.github.io/music/songs/sbremix.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/sbremix.jpg";
+            playingImage.src = "https://cheekyjmusic.github.io/music/assets/sbremix.jpg";
             break;
         case "https://cheekyjmusic.github.io/music/songs/twinkie.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/twinkie.png";
+            playingImage.src = "https://cheekyjmusic.github.io/music/assets/twinkie.png";
             break;
         case "https://cheekyjmusic.github.io/music/songs/lincoln.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/lincoln.png";
+            playingImage.src = "https://cheekyjmusic.github.io/music/assets/lincoln.png";
             break;
         case "https://cheekyjmusic.github.io/music/songs/sumo.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/sumo.png";
+            playingImage.src = "https://cheekyjmusic.github.io/music/assets/sumo.png";
             break;
         case "https://cheekyjmusic.github.io/music/songs/tacobell.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/tacobell.png";
+            playingImage.src = "https://cheekyjmusic.github.io/music/assets/tacobell.png";
             break;
         case "https://cheekyjmusic.github.io/music/songs/suburbsfreestyle.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/suburbsfreestyle.jpg";
+            playingImage.src = "https://cheekyjmusic.github.io/music/assets/suburbsfreestyle.jpg";
             break;
         case "https://cheekyjmusic.github.io/music/songs/metro.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/cheekyboomin.png";
+            playingImage.src = "https://cheekyjmusic.github.io/music/assets/cheekyboomin.png";
             break;
         case "https://cheekyjmusic.github.io/music/songs/hds.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/cheekyboomin.png";
+            playingImage.src = "https://cheekyjmusic.github.io/music/assets/cheekyboomin.png";
             break;
         case "file:///media/removable/Samsung%20USB/spotyf/music/hammock.wav":
             playingImage.src = "covers/hammock.png";
@@ -496,10 +445,10 @@
 
     if (audioPlayer.paused) {
         audioPlayer.play();
-        playPauseImage.src = "https://raw.githubusercontent.com/cheekyjmusic/music/main/pause.svg";
+        playPauseImage.src = "https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/pause.svg";
     } else {
         audioPlayer.pause();
-        playPauseImage.src = "https://raw.githubusercontent.com/cheekyjmusic/music/main/play.svg";
+        playPauseImage.src = "https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/play.svg";
     }
 }
 function seek(event) {
@@ -530,59 +479,33 @@ document.querySelector('.progress-bar-container').addEventListener('click', seek
     const favicon = document.querySelector('link[rel="icon"]');
 
     if (song === "https://cheekyjmusic.github.io/music/songs/Omelette.mp3") {
-        favicon.href = "https://cheekyjmusic.github.io/music/Scrambled.png";
+        favicon.href = "https://cheekyjmusic.github.io/music/assets/Scrambled.png";
     } else if (song === "https://cheekyjmusic.github.io/music/songs/submarine.mp3") {
-        favicon.href = "https://cheekyjmusic.github.io/music/submarine.png";
+        favicon.href = "https://cheekyjmusic.github.io/music/assets/submarine.png";
     } else if (song === "https://cheekyjmusic.github.io/music/songs/sbremix.mp3") {
-        favicon.href = "https://cheekyjmusic.github.io/music/sbremix.jpg";
+        favicon.href = "https://cheekyjmusic.github.io/music/assets/sbremix.jpg";
     } else if (song === "https://cheekyjmusic.github.io/music/songs/twinkie.mp3") {
-        favicon.href = "https://cheekyjmusic.github.io/music/twinkie.png";
+        favicon.href = "https://cheekyjmusic.github.io/music/assets/twinkie.png";
     } else if (song === "https://cheekyjmusic.github.io/music/songs/lincoln.mp3") {
-        favicon.href = "https://cheekyjmusic.github.io/music/lincoln.png";
+        favicon.href = "https://cheekyjmusic.github.io/music/assets/lincoln.png";
     } else if (song === "https://cheekyjmusic.github.io/music/songs/sumo.mp3") {
-        favicon.href = "https://cheekyjmusic.github.io/music/sumo.png";
+        favicon.href = "https://cheekyjmusic.github.io/music/assets/sumo.png";
     } else if (song === "https://cheekyjmusic.github.io/music/songs/tacobell.mp3") {
-        favicon.href = "https://cheekyjmusic.github.io/music/tacobell.png";
+        favicon.href = "https://cheekyjmusic.github.io/music/assets/tacobell.png";
     } else if (song === "https://cheekyjmusic.github.io/music/songs/suburbsfreestyle.mp3") {
-        favicon.href = "https://cheekyjmusic.github.io/music/suburbsfreestyle.jpg";
+        favicon.href = "https://cheekyjmusic.github.io/music/assets/suburbsfreestyle.jpg";
     } else if (song === "https://cheekyjmusic.github.io/music/songs/metro.mp3") {
-        favicon.href = "https://cheekyjmusic.github.io/music/cheekyboomin.png";
+        favicon.href = "https://cheekyjmusic.github.io/music/assets/cheekyboomin.png";
     } else if (song === "file:///media/removable/Samsung%20USB/spotyf/music/hammock.wav") {
         favicon.href = "covers/hammock.png";
     } else if (song === "https://cheekyjmusic.github.io/music/songs/hds.mp3") {
-        favicon.href = "https://cheekyjmusic.github.io/music/cheekyboomin.png";
+        favicon.href = "https://cheekyjmusic.github.io/music/assets/cheekyboomin.png";
     } else {
         favicon.href = "https://raw.githubusercontent.com/cheekyjmusic/music/main/logo.png";
     }
  }
 
- var menuState = "closed";
-const menuContainer = document.querySelector('.menu-container');
-const menuShadow = document.querySelector('.menu-shadow');
-const menuButton = document.querySelector('.menu-button');
-
-
-
-function toggleMenu() {
-    if (menuState === "closed") {
-        menuState = "open";
-        menuContainer.style.backgroundColor = 'white';
-        menuContainer.classList.add("menu-offscreen");
-        menuShadow.style.opacity = 0.5;
-        menuShadow.style.pointerEvents = 'auto';
-        menuButton.style.position = 'fixed';
-    } else if (menuState === "open") {
-        menuState = "closed";
-        menuContainer.classList.remove("menu-offscreen");
-        menuContainer.style.backgroundColor = 'transparent';
-        menuShadow.style.opacity = 0;
-        menuShadow.style.pointerEvents = 'none';
-        menuButton.style.position = 'absolute';
-
-    }
-}
-
-
     </script>    
+    <script src="https://cheekyjmusic.github.io/music/menu.js"></script>
 </body>
 </html>
