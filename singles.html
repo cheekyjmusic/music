@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <title>Cheeky J - Discography</title>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cheeky J</title>
-    <link rel="icon" href="https://raw.githubusercontent.com/cheekyjmusic/music/main/logo.png" type="image/x-icon">
+    <link rel="icon" href="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/logo.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
@@ -141,11 +139,9 @@
    opacity: 0%;
   }
     </style>
+    <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/menu.css">
 </head>
 <body>
-    <div class="fullscreen">
-        <img onclick="fullscreen()" src="https://cdn-icons-png.flaticon.com/512/3354/3354155.png">
-    </div>
 
     <div class="main-container">
         <div class="header">
@@ -258,33 +254,6 @@
     </div>
 
     <script>
-        function updateProgressBar() {
-    const audioPlayer = document.getElementById('audio-player');
-    const progressBar = document.querySelector('.progress-bar');
-    const currentTime = audioPlayer.currentTime;
-    const duration = audioPlayer.duration;
-    const currentTimeElement = document.getElementById('current-time');
-
-    if (!isNaN(duration)) {
-        const progress = (currentTime / duration) * 100;
-        progressBar.style.width = progress + '%';
-
-        // Format the current time in minutes and seconds
-        const minutes = Math.floor(currentTime / 60);
-        const seconds = Math.floor(currentTime % 60);
-        const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-        currentTimeElement.textContent = formattedTime;
-    }
-
-    requestAnimationFrame(updateProgressBar);
-}
-
-
-    document.getElementById('audio-player').addEventListener('timeupdate', updateProgressBar);
-
-    
-        document.getElementById('audio-player').addEventListener('timeupdate', updateProgressBar);
-    
         function fullscreen() {
             if (!document.fullscreenElement) {
                 if (document.documentElement.requestFullscreen) {
@@ -308,133 +277,8 @@
                 }
             }
         }
-    
-        function play(song, itemName) {
-    const currentTime = document.querySelector('.current-time');
-    const playPause = document.querySelector('.play-pause-image');
-
-    const audioPlayer = document.getElementById('audio-player');
-    playingImage(song);
-    updateFavicon(song);
-    audioPlayer.src = song;
-    audioPlayer.play();
-    currentTime.style.opacity = 1;
-    playPause.src = 'https://cheekyjmusic.github.io/music/pause.svg';
-
-    document.title = itemName + " - Cheeky J";
-}
-
-
-        function playingImage(song) {
-    const playingImage = document.querySelector('.song-playing');
-
-    switch (song) {
-        case "https://cheekyjmusic.github.io/music/songs/Omelette.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/Scrambled.png";
-            break;
-        case "https://cheekyjmusic.github.io/music/songs/submarine.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/submarine.png";
-            break;
-        case "https://cheekyjmusic.github.io/music/songs/sbremix.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/sbremix.jpg";
-            break;
-        case "https://cheekyjmusic.github.io/music/songs/twinkie.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/twinkie.png";
-            break;
-        case "https://cheekyjmusic.github.io/music/songs/lincoln.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/lincoln.png";
-            break;
-        case "https://cheekyjmusic.github.io/music/songs/sumo.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/sumo.png";
-            break;
-        case "https://cheekyjmusic.github.io/music/songs/tacobell.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/tacobell.png";
-            break;
-        case "https://cheekyjmusic.github.io/music/songs/suburbsfreestyle.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/suburbsfreestyle.jpg";
-            break;
-        case "https://cheekyjmusic.github.io/music/songs/metro.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/cheekyboomin.png";
-            break;
-        case "https://cheekyjmusic.github.io/music/songs/hds.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/cheekyboomin.png";
-            break;
-        // Add cases for other songs as needed
-        default:
-            // Set a default image if the song doesn't match any cases
-            playingImage.src = "default-image.png";
-    }
-
-    playingImage.style.opacity = 1;
-}
-
-
-
-        function togglePlayPause() {
-    const audioPlayer = document.getElementById('audio-player');
-    const playPauseImage = document.querySelector('.play-pause-container img');
-
-    if (audioPlayer.paused) {
-        audioPlayer.play();
-        playPauseImage.src = "https://raw.githubusercontent.com/cheekyjmusic/music/main/pause.svg";
-    } else {
-        audioPlayer.pause();
-        playPauseImage.src = "https://raw.githubusercontent.com/cheekyjmusic/music/main/play.svg";
-    }
-}
-function seek(event) {
-    const progressBar = document.querySelector('.progress-bar-container');
-    const audioPlayer = document.getElementById('audio-player');
-
-    const clickX = event.clientX - progressBar.getBoundingClientRect().left;
-    const progressBarWidth = progressBar.offsetWidth;
-    const duration = audioPlayer.duration;
-
-    const newTime = (clickX / progressBarWidth) * duration;
-    audioPlayer.currentTime = newTime;
-}
-
-// Add an onclick event to the progress bar container
-document.querySelector('.progress-bar-container').addEventListener('click', seek);
-
-//no right click
-  document.addEventListener('contextmenu', function (event) {
-      // Check if the right-clicked element is an image
-      if (event.target.tagName === 'IMG') {
-        // Prevent the default right-click behavior
-        event.preventDefault();
-      }
-    });
-
-    function updateFavicon(song) {
-    const favicon = document.querySelector('link[rel="icon"]');
-
-    if (song === "https://cheekyjmusic.github.io/music/songs/Omelette.mp3") {
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/Scrambled.png";
-    } else if (song === "https://cheekyjmusic.github.io/music/songs/submarine.mp3") {
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/submarine.png";
-    } else if (song === "https://cheekyjmusic.github.io/music/songs/sbremix.mp3") {
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/sbremix.jpg";
-    } else if (song === "https://cheekyjmusic.github.io/music/songs/twinkie.mp3") {
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/twinkie.png";
-    } else if (song === "https://cheekyjmusic.github.io/music/songs/lincoln.mp3") {
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/lincoln.png";
-    } else if (song === "https://cheekyjmusic.github.io/music/songs/sumo.mp3") {
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/sumo.png";
-    } else if (song === "https://cheekyjmusic.github.io/music/songs/tacobell.mp3") {
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/tacobell.png";
-    } else if (song === "https://cheekyjmusic.github.io/music/songs/suburbsfreestyle.mp3") {
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/suburbsfreestyle.jpg";
-    } else if (song === "https://cheekyjmusic.github.io/music/songs/metro.mp3") {
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/cheekyboomin.png";
-    } else if (song === "https://cheekyjmusic.github.io/music/songs/hds.mp3") {
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/cheekyboomin.png";
-    } else {
-        // Set the default favicon image
-        favicon.href = "https://raw.githubusercontent.com/cheekyjmusic/music/main/logo.png";
-    }
- }
-
     </script>
+    <script src="https://cheekyjmusic.github.io/music/menu.js"></script>
+    <script src="https://cheekyjmusic.github.io/music/player.js"></script>
 </body>
 </html>
