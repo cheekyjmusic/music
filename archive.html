@@ -221,11 +221,11 @@
   </style>
 </head>
 <body>
-  <div class="password" id="passwordOverlay">
+  <!--<div class="password" id="passwordOverlay">
     <h1>Enter "Password"</h1>
     <input type="password" id="passwordInput" placeholder="Enter password">
       <button onclick="checkPassword()">Submit</button>
-   </div>
+   </div>-->
   <header>
     <h1>Maximum Haver Of Flow</h1>
   </header>
@@ -306,6 +306,11 @@
   </div>
 
   <script>
+    window.onload = function() {
+    alert('This is what the music player looked like on May 27, 2023');
+};
+
+
     function toggleDarkMode() {
       const body = document.body;
       const container = document.querySelector('.container');
