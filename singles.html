@@ -73,72 +73,8 @@
             height: 1700px;
 
         }
-        .bottom-rectangle {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: 80px;
-            background-color: black;
-            display: flex;
-            justify-content: center; /* Horizontally center the content */
-            align-items: center; /* Vertically center the content */
-        }
-
-        .play-pause-image {
-            height: 60px;
-            width: auto;
-        }
-
-        .progress-bar-container {
-            position: fixed;
-            bottom: 80px;
-            left: 0;
-            width: 100%;
-            height: 10px;
-            background-color: #ddd;
-            z-index: 1;
-            display: flex;
-        }
-        
-        .progress-bar {
-  position: relative;
-  height: 100%;
-  background-color: #324078;
-  width: 0;
-}
-.play-pause-container {
-            margin-left: calc(-50vw + 50%);
-            margin-right: calc(-50vw + 50%);
-        }
-        
-        .audio {
-            pointer-events: none;
-            height: 0px;
-            width: 0px;
-            opacity: 0;
-        }
-        .song-info {
-  position: fixed;
-  bottom: 8px;
-  left: 10px;
-  display: flex;
-  align-items: center;
-  color: white;
-   z-index: 2;
-}
-.current-time {
-    margin-left: 15px;
-    margin-top: 10px;
-   color: white;
-   opacity: 0%;
-   }
-   
-  .song-playing {
-   height: 65px;
-   width: 65px;
-   opacity: 0%;
-  }
     </style>
+    <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/player.css">
     <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/menu.css">
 </head>
 <body>
@@ -146,10 +82,10 @@
         <img class="menu-button-img" onclick="toggleMenu()" src="https://static.thenounproject.com/png/3869892-200.png">
     </div>
     <div class="menu-container">
-        <div style="margin-top: 50px;" class="menu-item">
+        <a href="https://cheekyjmusic.github.io/music"><div style="margin-top: 50px;" class="menu-item">
             <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/logo.png">
             <h1>Menu</h1>
-        </div> 
+        </div></a>
         <!--<a style="text-decoration: none;" href="https://cheekyjmusic.github.io/music/saved.html"><div style="margin-top: 10px;" class="menu-item">
             <img src="https://icones.pro/wp-content/uploads/2021/02/icone-de-coeur-bleu-1.png">
             <h1>Saved</h1>
@@ -261,7 +197,7 @@
 
         <div class="container">
             <div onclick="play('https://cheekyjmusic.github.io/music/songs/suburbsfreestyle.mp3', 'Suburbs Freestyle')" class="single-container">
-                <img src="https://cheekyjmusic.github.io/music/suburbsfreestyle.jpg">
+                <img src="https://cheekyjmusic.github.io/music/assets/suburbsfreestyle.jpg">
                 <div class="single-details">
                     <h2 class="single-name">Suburbs Freestyle</h2>
                     <p class="single-info">Single • 2023</p>
