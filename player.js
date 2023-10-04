@@ -10,7 +10,6 @@ function play(song, itemName) {
     const progressBarContainer = document.querySelector('.progress-bar-container');
 
     const audioPlayer = document.getElementById('audio-player');
-    /*playingImage(song);*/
     updateFavicon(song);
     audioPlayer.src = song;
     audioPlayer.play();

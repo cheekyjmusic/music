@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cheeky J</title>
+    <title>Search</title>
     <link rel="icon" href="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/logo.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,9 +12,39 @@
         body {
             font-family: 'Prompt', sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 10px;
             background-color: black;
             color: white;
+        }
+        .title-container img{
+            filter: invert(100%);
+            height: 30px;
+            width: auto;
+        }
+        .title-container {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .title-container h1{
+            margin-left: 10px;
+        }
+        .search {
+            background-color: white;
+            color: black;
+            outline: 5px black solid;
+            width: 100%;
+            height: 20px;
+            border-radius: 20px;
+            margin-left: 10px;
+        }
+        .error h1{
+            font-size: 8vw;
+            color: white;
+        }
+        .error {
+            height: 50vh;
+            opacity: 0;
         }
     </style>
     <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/player.css">
@@ -57,10 +87,16 @@
 
     <div onclick="toggleMenu()" class="menu-shadow"></div>
 
-    <div class="search container">
+    <div class="title-container">
         <img src="https://cdn-icons-png.flaticon.com/512/3031/3031293.png">
         <h1>Search</h1>
+        <input class="search" id="search" type="text" name="search" placeholder="What do you want to listen to?">
     </div>
+
+    <div class="error">
+        <h1>Nothing Found</h1>
+    </div>
+    
 
     <script>
         function fullscreen() {
@@ -86,6 +122,73 @@
                 }
             }
         }
+
+        const songsList = [
+            {
+                name: 'Omelette'
+            },
+            {
+                name: 'Submarine'
+            },
+            {
+                name: 'Metro Station'
+            },
+            {
+                name: 'Hotdog Stand'
+            },
+            {
+                name: 'Mr Clean'
+            },
+            {
+                name: 'Cheeky Boomin'
+            },
+            {
+                name: "Suburbs Freestyle Remix"
+            },
+            {
+                name: 'Corner Store Twinkie'
+            },
+            {
+                name: '1860s Lincoln'
+            },
+            {
+                name: 'Sumo Wrestler'
+            },
+            {
+                name: 'Tacobell Diss'
+            },
+            {
+                name: 'Suburbs Freestyle'
+            }
+        ];
+
+        const searchInput = document.getElementById('search');
+searchInput.addEventListener('keyup', search);
+        const error = document.querySelector('.error');
+
+function search(event){
+    if (event.key === 'Enter') {
+        const searchQuery = event.target.value.toLowerCase(); // Convert the query to lowercase for case-insensitive search
+        
+        // Search for a matching song in the songsList
+        const matchingSongs = songsList.filter(song => song.name.toLowerCase().includes(searchQuery));
+        
+        if (matchingSongs.length > 0) {
+            redirectToSong(matchingSongs.map(song => song.name).join(', '));
+        } else {
+            error.style.opacity = 1;
+        }
+    }
+}
+
+function redirectToSong(songName) {
+    // Replace the URL below with the actual URL of the song's page or audio file
+    if (songName === 'Metro Station' || songName === 'Hotdog Stand' || songName === 'Mr Clean' || songName === 'Cheeky Boomin') {
+        window.location.href = 'https://cheekyjmusic.github.io/music/cheekyboomin.html?' + songName;
+    } else {
+        window.location.href = 'https://cheekyjmusic.github.io/music/singles.html?loadInSong=' + songName;
+    }
+}
     </script>    
     <script src="https://cheekyjmusic.github.io/music/menu.js"></script>
     <script src="https://cheekyjmusic.github.io/music/player.js"></script>

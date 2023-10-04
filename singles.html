@@ -189,10 +189,10 @@
         </div>
 
         <div class="container">
-            <div onclick="play('https://cheekyjmusic.github.io/music/songs/tacobell.mp3', 'Taco Bell Diss')" class="single-container">
+            <div onclick="play('https://cheekyjmusic.github.io/music/songs/tacobell.mp3', 'Tacobell Diss')" class="single-container">
                 <img src="https://cheekyjmusic.github.io/music/assets/tacobell.png">
                 <div class="single-details">
-                    <h2 class="single-name">Taco Bell Diss</h2>
+                    <h2 class="single-name">Tacobell Diss</h2>
                     <p class="single-info">Single • 2023</p>
                     <img src="https://cheekyjmusic.github.io/music/assets/playbutton.svg">
                 </div>
@@ -252,6 +252,37 @@
                 }
             }
         }
+        // Create a URLSearchParams object from the current URL
+const urlParams = new URLSearchParams(window.location.search);
+
+// Get the value of the "loadInSong" parameter
+const loadInSong = urlParams.get('loadInSong');
+
+if (loadInSong) {
+  playLoad(loadInSong);
+}
+
+function playLoad(songToPlay){
+    if (songToPlay === 'Omelette'){
+        play('https://cheekyjmusic.github.io/music/songs/Omelette.mp3', 'Omelette');
+    } else if (songToPlay === 'Submarine'){
+        play('https://cheekyjmusic.github.io/music/songs/submarine.mp3', 'Submarine');
+    } else if (songToPlay === 'Suburbs Freestyle Remix'){
+        play('https://cheekyjmusic.github.io/music/songs/sbremix.mp3', 'Suburbs Freestyle Remix');
+    } else if (songToPlay === 'Corner Store Twinkie'){
+        play('https://cheekyjmusic.github.io/music/songs/twinkie.mp3', 'Corner Store Twinkie');
+    } else if (songToPlay === '1860s Lincoln'){
+        play('https://cheekyjmusic.github.io/music/songs/lincoln.mp3', '1860s Lincoln');
+    } else if (songToPlay === 'Sumo Wrestler'){
+        play('https://cheekyjmusic.github.io/music/songs/sumo.mp3', 'Sumo Wrestler');
+    } else if (songToPlay === 'Tacobell Diss'){
+        play('https://cheekyjmusic.github.io/music/songs/tacobell.mp3', 'Tacobell Diss');
+    } else if (songToPlay === 'Suburbs Freestyle'){
+        play('https://cheekyjmusic.github.io/music/songs/suburbsfreestyle.mp3', 'Suburbs Freestyle');
+    }
+}
+
+        
     </script>
     <script src="https://cheekyjmusic.github.io/music/menu.js"></script>
     <script src="https://cheekyjmusic.github.io/music/player.js"></script>
