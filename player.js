@@ -21,53 +21,6 @@ function play(song, itemName) {
     document.title = itemName + " - Cheeky J";
 }
 
-
-        function playingImage(song) {
-    const playingImage = document.querySelector('.song-playing');
-
-    switch (song) {
-        case "https://cheekyjmusic.github.io/music/songs/Omelette.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/assets/Scrambled.png";
-            break;
-        case "https://cheekyjmusic.github.io/music/songs/submarine.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/assets/submarine.png";
-            break;
-        case "https://cheekyjmusic.github.io/music/songs/sbremix.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/assets/sbremix.jpg";
-            break;
-        case "https://cheekyjmusic.github.io/music/songs/twinkie.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/assets/twinkie.png";
-            break;
-        case "https://cheekyjmusic.github.io/music/songs/lincoln.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/assets/lincoln.png";
-            break;
-        case "https://cheekyjmusic.github.io/music/songs/sumo.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/assets/sumo.png";
-            break;
-        case "https://cheekyjmusic.github.io/music/songs/tacobell.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/assets/tacobell.png";
-            break;
-        case "https://cheekyjmusic.github.io/music/songs/suburbsfreestyle.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/assets/suburbsfreestyle.jpg";
-            break;
-        case "https://cheekyjmusic.github.io/music/songs/metro.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/assets/cheekyboomin.png";
-            break;
-        case "https://cheekyjmusic.github.io/music/songs/hds.mp3":
-            playingImage.src = "https://cheekyjmusic.github.io/music/assets/cheekyboomin.png";
-            break;
-        case "file:///media/removable/Samsung%20USB/spotyf/music/hammock.wav":
-            playingImage.src = "covers/hammock.png";
-            break;
-        // Add cases for other songs as needed
-        default:
-            // Set a default image if the song doesn't match any cases
-            playingImage.src = "default-image.png";
-    }
-
-    playingImage.style.opacity = 1;
-}
-
 function togglePlayPause() {
     const audioPlayer = document.getElementById('audio-player');
     const playPauseImage = document.querySelector('.play-pause-container img');
@@ -143,6 +96,7 @@ document.querySelector('.progress-bar-container').addEventListener('click', seek
     } else {
         favicon.href = "https://raw.githubusercontent.com/cheekyjmusic/music/main/logo.png";
     }
+    playingImage.style.opacity = 1;
  }
  function updateProgressBar() {
     const audioPlayer = document.getElementById('audio-player');

@@ -252,15 +252,16 @@
                 }
             }
         }
-        // Create a URLSearchParams object from the current URL
-const urlParams = new URLSearchParams(window.location.search);
 
-// Get the value of the "loadInSong" parameter
-const loadInSong = urlParams.get('loadInSong');
+        window.onload = loadUrlVar;
 
-if (loadInSong) {
-  playLoad(loadInSong);
-}
+        function loadUrlVar(){
+            const urlParams = new URLSearchParams(window.location.search);
+            const loadInSong = urlParams.get("loadInSong");
+            playLoad(loadInSong);
+        }
+        
+
 
 function playLoad(songToPlay){
     if (songToPlay === 'Omelette'){
