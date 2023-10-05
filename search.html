@@ -92,6 +92,8 @@
         <h1>Search</h1>
         <input class="search" id="search" type="text" name="search" placeholder="What do you want to listen to?">
     </div>
+    <div class="search-results" id="searchResults"></div>
+
 
     <div class="error">
         <h1>Nothing Found</h1>
@@ -124,51 +126,53 @@
         }
 
         const songsList = [
-            {
-                name: 'Omelette'
-            },
-            {
-                name: 'Submarine'
-            },
-            {
-                name: 'Metro Station'
-            },
-            {
-                name: 'Hotdog Stand'
-            },
-            {
-                name: 'Mr Clean'
-            },
-            {
-                name: 'Cheeky Boomin'
-            },
-            {
-                name: "Suburbs Freestyle Remix"
-            },
-            {
-                name: 'Corner Store Twinkie'
-            },
-            {
-                name: '1860s Lincoln'
-            },
-            {
-                name: 'Sumo Wrestler'
-            },
-            {
-                name: 'Tacobell Diss'
-            },
-            {
-                name: 'Suburbs Freestyle'
-            }
-        ];
+    {
+        name: 'Omelette'
+    },
+    {
+        name: 'Submarine'
+    },
+    {
+        name: 'Metro Station'
+    },
+    {
+        name: 'Hotdog Stand'
+    },
+    {
+        name: 'Mr Clean'
+    },
+    {
+        name: 'Cheeky Boomin'
+    },
+    {
+        name: "Suburbs Freestyle Remix"
+    },
+    {
+        name: 'Corner Store Twinkie'
+    },
+    {
+        name: '1860s Lincoln'
+    },
+    {
+        name: 'Sumo Wrestler'
+    },
+    {
+        name: 'Tacobell Diss'
+    },
+    {
+        name: 'Suburbs Freestyle'
+    }
+];
 
-        const searchInput = document.getElementById('search');
-searchInput.addEventListener('keyup', search);
-        const error = document.querySelector('.error');
+const searchInput = document.getElementById('search');
+const searchResults = document.getElementById('searchResults'); // Reference to the results div
+const error = document.querySelector('.error');
 
-function search(event){
+searchInput.addEventListener('input', updateSearchResults); // Use 'input' event for real-time updates
+
+searchInput.addEventListener('keyup', function(event) {
     if (event.key === 'Enter') {
-        const searchQuery = event.target.value.toLowerCase(); // Convert the query to lowercase for case-insensitive search
+        const searchQuery = searchInput.value.toLowerCase(); // Use the searchInput variable
         
         // Search for a matching song in the songsList
         const matchingSongs = songsList.filter(song => song.name.toLowerCase().includes(searchQuery));
@@ -178,6 +182,46 @@ function search(event){
         } else {
             error.style.opacity = 1;
         }
+    }
+});
+
+function updateSearchResults(event) {
+    const searchQuery = event.target.value.toLowerCase();
+    
+    if (searchQuery === '') {
+        // Clear the results box if the search bar is empty
+        searchResults.innerHTML = '';
+        return;
+    }
+    
+    // Filter matching songs
+    const matchingSongs = songsList.filter(song => song.name.toLowerCase().includes(searchQuery));
+    
+    // Create a list of matching song names
+    const matchingSongNames = matchingSongs.map(song => song.name);
+    
+    // Update the results box with the matching song names
+    displaySearchResults(matchingSongNames);
+}
+
+function displaySearchResults(results) {
+    if (results.length > 0) {
+        // Create an unordered list to display the results
+        const resultList = document.createElement('ul');
+        
+        // Add each result as a list item
+        results.forEach(result => {
+            const listItem = document.createElement('li');
+            listItem.textContent = result;
+            resultList.appendChild(listItem);
+        });
+        
+        // Clear previous results and display the new list
+        searchResults.innerHTML = '';
+        searchResults.appendChild(resultList);
+    } else {
+        // If no results, clear the results box
+        searchResults.innerHTML = '';
     }
 }
 
@@ -189,6 +233,7 @@ function redirectToSong(songName) {
         window.location.href = 'https://cheekyjmusic.github.io/music/singles.html?loadInSong=' + songName;
     }
 }
+
     </script>    
     <script src="https://cheekyjmusic.github.io/music/menu.js"></script>
     <script src="https://cheekyjmusic.github.io/music/player.js"></script>
