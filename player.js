@@ -23,15 +23,7 @@ function play(song, itemName) {
 
 //script to pause with space key
 document.addEventListener('keydown', function(event) {
-    if (event.key === ' ') {
-        if (audioPlayer.paused) {
-            audioPlayer.play();
-            playPauseImage.src = "https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/pause.svg";
-        } else {
-            audioPlayer.pause();
-            playPauseImage.src = "https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/play.svg";
-        }
-    }
+    togglePlayPause();
 });
 
 function togglePlayPause() {
