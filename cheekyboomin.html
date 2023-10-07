@@ -1,528 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cheeky Boomin</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-  <style>
-    /* Additional CSS styles specific to the album page */
-    body {
-      background-color: orange;
-      color: #fff;
-      font-family: 'Prompt', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cheeky Boomin by Cheeky J</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/cheekyboomin.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+        }
+        .master-album-container {
+            background-image: linear-gradient(to bottom, orange, #8B4000);
+            height: fit-content;
+            max-width: 100%;
+            top: 0px;
+            left: 0px;
+            padding-top: 50px;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .album-cover{
+            width: 20vw;
+            height: auto;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+            border-radius: 6%;
+        }
+        .album-details {
+            margin-left: 20px;
+        }
+        .album-name {
+            font-size: 6vw;
+            margin-bottom: 0px;
+        }
+        .album-desc {
+            font-size: 2vw;
+            font-weight: normal;
+            margin-top: 0px;
+        }
+        .song-title{
+            font-size: 20px;
+            margin-left: 5px;
+        }
+        .songs-container{
+            padding: 20px;
+            padding-top: 0px;
+        }
+        .song {
+            background-color: black;
+            width: 100%;
+            height: fit-content;
+            border-radius: 10px;
+            padding: 0px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .song:hover {
+            background-color: rgb(47, 47, 47);
+        }
+        .gradient-container{
+            height: 20px;
+            margin-top: 0px;
+            background-image: linear-gradient(to bottom, #8B4000, black);
+        }
+        .progress-bar {
+            background-color: #8B4000 !important;
+        }
 
-    .container {
-      max-width: 100%;
-      padding: 0 0px;
-    }
-
-    .album-container {
-      display: flex;
-      align-items: center;
-      background-image: linear-gradient(to bottom, orange, #8B4000);
-      padding: 20px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-     min-height: 180px;
-     transition: all 0.3s ease-in-out;
-     flex-wrap: wrap;
-    }
-
-    .album-cover {
-      width: 20vw;
-      height: auto;
-      margin-right: 20px;
-      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
-      border-radius: 5%;
-     cursor: pointer;
-     transition: all 0.3s ease-in-out;
-     margin-bottom: 10px;
-    }
-
-    .album-details {
-      flex-grow: 1;
-    }
-
-    .album-details h1 {
-      font-size: 4vw;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .album-details .album-text {
-      font-size: 3vw;
-      margin-bottom: 5px;
-    }
-
-    .gradient-container {
-      background-image: linear-gradient(to bottom, #8B4000 0%, black 100%);
-      height: 20px;
-    }
-
-    .track-list-container {
-      padding: 20px;
-      background-color: black;
-      height: 500px;
-    }
-
-    .track-list {
-      list-style-type: none;
-      font-size: 20px;
-    }
-
-    .track-list li {
-      cursor: pointer;
-      margin-bottom: 15px;
-    }
-
-    .rectangle {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-color: /*#8B4000*/black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column; /* Added to stack text and audio player vertically */
-     height: 80px;
-     transition: all 0.3s ease-in-out;
-    }
-
-    .audio-player {
-      width: 0px;
-      height: 0px;
-      background-color: #fff;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-left: 20px;
-      margin-right: 20px;
-     opacity: 50%;
-    }
-
-    .audio-player audio {
-      outline: none;
-     margin-right: 20px;
-     margin-left: 20px;
-    }
-
-    .song-text {
-      font-size: 18px;
-      margin-top: 5px;
-      color: #fff;
-    }
-   .feature {
-    color: gray;
-     font-size: 0px;
-   }
-   .feature-container {
-     display: flex;
-     gap: 10px;
-    margin-top: 5px;
-   }
-   .pp-container {
-    margin-bottom: 2px;
-    margin-top: 2px;
-   }
-   .pp {
-    height: 40px !important;
-   }
-   .progress-bar-container {
-  position: fixed;
-  bottom: 80px;
-  left: 0;
-  width: 100%;
-  height: 10px;
-  background-color: #ddd;
-  z-index: 1;
-}
-
-.progress-bar {
-  position: relative;
-  height: 100%;
-  background-color: orange;
-  width: 0;
-  transition: width 0.4s ease-in-out;
-}
-      .sfeature {
-        opacity: 80%;
-        cursor: pointer;
-      }
-   .current-time {
-    margin-left: 15px;
-    margin-top: 10px;
-   }
-   .password {
-    z-index: 1000;
-    height: 100%;
-    width: 100%;
-    background-color: white;
-    position: fixed;
-    color: black;
-    padding: 20px;
-   }
-   .password h1 {
-     font-size: 40px;
-   }
-   .pp-container img {
-     height: 60px;
-    width: auto;
-   }
-   .track-list-container p {
-    color: orange;
-    font-size: 20px;
-    margin-bottom: 10px;
-   }
-   .fullscreen {
-  position: absolute;
-  z-index: 10;
-  top: 10px;
-  right: 10px;
-}
-.fullscreen img {
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  opacity: 50%;
-}
-  </style>
-  <link rel="icon" href="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/cheekyboomin.png" type="image/x-icon">
+        </style>
+    <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/player.css">
+    <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/menu.css">
 </head>
 <body>
-    <div class="fullscreen">
-        <img onclick="fullscreen()" src="https://cdn-icons-png.flaticon.com/512/3354/3354155.png">
-       </div>
- <div class="audio-player">
-    <audio id="audioPlayer" controls>
-      <source id="audioSource" src="" type="audio/mpeg">
-    </audio>
-  </div>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
- <!--remove this later (start)->
- <div class="password" id="passwordOverlay">
-  <h1>Password</h1>
-  <input type="password" id="passwordInput" placeholder="Enter password">
-    <button onclick="checkPassword()">Submit</button>
- </div>
- <!--remove this later (end)-->
-  <div class="container">
-    <div class="album-container">
-      <img class="album-cover" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/cheekyboomin.png" alt="Album Cover" onclick="resize()">
-      <div class="album-details">
-        <span class="album-text">Album</span>
-        <h1>Cheeky Boomin</h1>
-        <a href="https://cheekyjmusic.github.io/music"><span class="album-text">Cheeky J</span></a><span class="album-text"> · August 18 2023 · 6 songs</span>
-          <p class="sfeature" onclick="toggleFeatures()">Show Features</p>
-      </div>
+    <div class="menu-button">
+        <img class="menu-button-img" onclick="toggleMenu()" src="https://static.thenounproject.com/png/3869892-200.png">
+    </div>
+    <div class="menu-container">
+        <div style="margin-top: 50px;" class="menu-item">
+            <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/logo.png">
+            <h1>Menu</h1>
+        </div> 
+        <a style="text-decoration: none;" href="https://cheekyjmusic.github.io/music/search.html"><div style="margin-top: 10px;" class="menu-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/3031/3031293.png">
+            <h1>Search</h1>
+        </div></a>
+        <!--<a style="text-decoration: none;" href="https://cheekyjmusic.github.io/music/saved.html"><div style="margin-top: 10px;" class="menu-item">
+            <img src="https://icones.pro/wp-content/uploads/2021/02/icone-de-coeur-bleu-1.png">
+            <h1>Saved</h1>
+        </div></a>-->
+        <a style="text-decoration: none;" href="https://cheekyjmusic.github.io/music/credits.txt"><div style="margin-top: 10px;" class="menu-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/864/864685.png">
+            <h1>Credits</h1>
+        </div></a>
+        <a style="text-decoration: none;" href="https://cheekyjmusic.github.io/music/singles.html"><div style="margin-top: 10px;" class="menu-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/1705/1705062.png">
+            <h1>Discography</h1>
+        </div></a>
+        <div onclick="fullscreen()" style="margin-top: 10px;" class="menu-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/3354/3354155.png">
+            <h1>Fullscreen</h1>
+        </div>
+        <a style="text-decoration: none;" href="https://cheekyjmusic.github.io/music/archive.html"><div style="margin-top: 10px;" class="menu-item">
+            <img src="https://static.thenounproject.com/png/21032-200.png">
+            <h1>Archive</h1>
+        </div></a>
+        <a style="text-decoration: none;" href="https://github.com/cheekyjmusic/music/issues/new"><div style="margin-top: 10px;" class="menu-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/193/193224.png">
+            <h1>Report Bug</h1>
+        </div></a>
+    </div>
+
+    <div onclick="toggleMenu()" class="menu-shadow"></div>
+
+    <div class="master-album-container">
+        <img class="album-cover" src="https://cheekyjmusic.github.io/music/assets/cheekyboomin.png">
+        <div class="album-details">
+            <h1 class="album-name">Cheeky Boomin</h1>
+            <h1 class="album-desc">Cheeky J · August 18 2023 · 6 songs</h1>
+        </div>
     </div>
     <div class="gradient-container"></div>
-    <div class="track-list-container">
-     <p>Part 1</p>
-      <ul class="track-list">
-       <li id="0" onclick="changeAudioSource(0)">1. Cheeky Boomin (prod. XAR)
-       <div class="feature-container">
-        <a class="feature" href="princeton.html">Crazy P</a>
-        </div></li>
-       <li id="1" onclick="changeAudioSource(1)">2. Submarine (Prod. by SIGHOST x Sixweeks)</li>   
-       <li id="2" onclick="changeAudioSource(2)">3. Hot Dog Stand (prod. SIGHOST)
-         </li>
-       <li id="3" onclick="changeAudioSource(3)">4. Metro Station (prod. SIGHOST)</li>
-              
-       <li id="4" onclick="changeAudioSource(4)">5. Suburbs Freestyle Remix
-       <div class="feature-container">
-    <a class="feature" href="derek.html">Lil Tonka</a>
-  </div></li>
-       
-       <li id="5" onclick="changeAudioSource(5)">
-  6. Mr Clean (prod. makdouble)
-  <div class="feature-container" id="featureContainer">
-    <a class="feature" href="princeton.html">Crazy P</a>
-  </div>
-</li>
-       <!--<p>Part 2</p>
-       <li onclick="changeAudioSource(6)">7. Carwash</li>
-       
-       <li onclick="changeAudioSource(7)">8. Scrambled Eggs (Prod. Gonzu Beats x Juko)</li>
-       
-       <li onclick="changeAudioSource(8)">9. Untitled</li>
-       
-       <li onclick="changeAudioSource(9)">10. Untitled</li>-->
-       
-        <!-- Add more tracks here -->
-      </ul>
+    <div class="songs-container">
+        <div onclick="play('https://cheekyjmusic.github.io/music/songs/Cheeky Boomin.mp3','Cheeky Boomin')" class="song">
+            <p class="song-title">1. Cheeky Boomin (prod. XAR)</p>
+        </div>
+        <div onclick="play('https://cheekyjmusic.github.io/music/songs/submarine.mp3','Submarine')" class="song">
+            <p class="song-title">2. Submarine (Prod. by SIGHOST x Sixweeks)</p>
+        </div>
+        <div onclick="play('https://cheekyjmusic.github.io/music/songs/hds.mp3','Hotdog Stand')" class="song">
+            <p class="song-title">3. Hotdog Stand (prod. SIGHOST)</p>
+        </div>
+        <div onclick="play('https://cheekyjmusic.github.io/music/songs/metro.mp3','Metro Station')" class="song">
+            <p class="song-title">4. Metro Station (prod. SIGHOST)</p>
+        </div>
+        <div onclick="play('https://cheekyjmusic.github.io/music/songs/sbremix.mp3','Suburbs Freestyle Remix')" class="song">
+            <p class="song-title">5. Suburbs Freestyle Remix</p>
+        </div>
+        <div onclick="play('https://cheekyjmusic.github.io/music/songs/mrclean.mp3','Mr Clean')" class="song">
+            <p class="song-title">6. Mr Clean (prod. makdouble)</p>
+        </div>
     </div>
-    <div class="rectangle">
-  <!--<div class="song-text" id="songText"></div>-->
-     <div class="pp-container">
-      <img id="playPauseButton" class="pp" src="https://assets.scratch.mit.edu/f66cb52dadbf8e95758695b89a9ee75e.svg" alt="Play" onclick="togglePlayPause()">
-     </div>
-</div>
-
-  </div>
- <div class="progress-bar-container">
-    <div class="progress-bar"></div>
-  <div class="current-time" id="currentTime">0:00</div>
-  </div>
- 
-  <script>
-    function changeAudioSource(index) {
-  var audioPlayer = document.getElementById('audioPlayer');
-  var audioSource = document.getElementById('audioSource');
-  var songText = document.getElementById('songText');
-     
-     var listItem = document.getElementById(index); // Get the <li> element by its id
-var previousListItem = document.querySelector('.selected-song'); // Get the previously selected song
-
-if (previousListItem) {
-  // Remove the 'selected-song' class and set the text color to white for the previously selected song
-  previousListItem.classList.remove('selected-song');
-  previousListItem.style.color = "white";
-}
-
-if (listItem && listItem.id == index) {
-  // Add the 'selected-song' class and set the text color to orange for the current selected song
-  listItem.classList.add('selected-song');
-  listItem.style.color = "orange";
-}
 
 
+    <audio class="audio" id="audio-player" controls>
+        <source id="audio-source" src="" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio> 
+    <div class="bottom-rectangle">
+        <div class="play-pause-container" onclick="togglePlayPause()">
+            <img class="play-pause-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/pause.svg">
+        </div>
+    </div>   
+    <div class="song-info">
+        <img class="song-playing" src="black.png">
+        <div class="current-time" id="current-time">0:00</div>
+      </div> 
+    <div class="progress-bar-container">
+        <div class="progress-bar"></div>
+    </div>
 
-  // Check if the index is valid
-  if (index >= 0 && index < songList.length) {
-    // Get the song information from the array
-    var currentSong = songList[index];
-    audioSource.src = currentSong.url;
-    audioPlayer.load();
-    audioPlayer.play();
-    songText.textContent = currentSong.name;
-   document.title = currentSong.name;
-   playPauseButton.src = 'https://assets.scratch.mit.edu/f66cb52dadbf8e95758695b89a9ee75e.svg';
-
-    // Add an event listener to detect when the current song ends
-    audioPlayer.addEventListener('ended', function() {
-      // Automatically play the next song
-      var nextIndex = index + 1;
-      if (nextIndex < songList.length) {
-        changeAudioSource(nextIndex);
-      }
-    });
-  }
-}
-
-   
-   function togglePlayPause() {
-  var audioPlayer = document.getElementById('audioPlayer');
-  var playPauseButton = document.getElementById('playPauseButton');
-
-  if (audioPlayer.paused) {
-    audioPlayer.play();
-    playPauseButton.src = 'https://assets.scratch.mit.edu/f66cb52dadbf8e95758695b89a9ee75e.svg';
-  } else {
-    audioPlayer.pause();
-    playPauseButton.src = 'https://assets.scratch.mit.edu/7ed6574d26dcbae37ae86330448c4926.svg';
-  }
-}
-   
-// Get the progress bar element
-var progressBar = document.querySelector('.progress-bar');
-
-// Update the progress bar based on the current time of the audio player
-audioPlayer.addEventListener('timeupdate', function() {
-  var currentTime = audioPlayer.currentTime;
-  var duration = audioPlayer.duration;
-  var progress = (currentTime / duration) * 100;
-
-  // Update the width of the progress bar
-  progressBar.style.width = progress + '%';
-});
-  //code for changing song progress
-  document.addEventListener("DOMContentLoaded", function() {
-  var audioPlayer = document.getElementById("audioPlayer");
-  var progressBarContainer = document.querySelector(".progress-bar-container");
-  var progressBar = document.querySelector(".progress-bar");
-
-  // Update progress bar based on audio time
-  audioPlayer.addEventListener("timeupdate", function() {
-    var progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-    progressBar.style.width = progress + "%";
-  });
-
-  // Seek to specific time when clicking on progress bar
-  progressBarContainer.addEventListener("click", function(event) {
-    var progressBarWidth = progressBarContainer.offsetWidth;
-    var clickPositionX = event.clientX - progressBarContainer.getBoundingClientRect().left;
-    var seekTime = (clickPositionX / progressBarWidth) * audioPlayer.duration;
-    audioPlayer.currentTime = seekTime;
-  });
-});
-   //no right click
-   document.addEventListener('contextmenu', function (event) {
-      // Check if the right-clicked element is an image
-      if (event.target.tagName === 'IMG') {
-        // Prevent the default right-click behavior
-        event.preventDefault();
-      }
-    });
-      
-       // Initialize the variable showingFeatures as "no" initially
-var showingFeatures = "no";
-
-function toggleFeatures() {
-  var features = document.querySelectorAll('.feature');
- var trackContainer = document.querySelector('.track-list-container');
-
-  // Toggle the visibility of features
-  if (showingFeatures === "no") {
-    features.forEach(function(feature) {
-      feature.style.display = 'block';
-      feature.style.fontSize = 'initial';
-    });
-    showingFeatures = "yes";
-     trackContainer.style.height = '500px'
-  } else {
-    features.forEach(function(feature) {
-      feature.style.display = 'none';
-      feature.style.fontSize = '0';
-    });
-    showingFeatures = "no";
-   trackContainer.style.height = '500px'
-  }
-}
-
-   var currentTimeDisplay = document.getElementById('currentTime');
-
-  // Update the current time of the song display
-  audioPlayer.addEventListener('timeupdate', function () {
-    var currentTime = audioPlayer.currentTime;
-    var duration = audioPlayer.duration;
-    var progress = (currentTime / duration) * 100;
-
-    // Update the width of the progress bar
-    progressBar.style.width = progress + '%';
-
-    // Update the current time display
-    var minutes = Math.floor(currentTime / 60);
-    var seconds = Math.floor(currentTime % 60);
-    var formattedTime = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-    currentTimeDisplay.textContent = formattedTime;
-  });
-   
-   // Initialize a flag variable to track the state of changes
-var isResized = false;
-
-function resize() {
-  var albumCover = document.querySelector('.album-cover');
-  var albumDetails = document.querySelector('.album-details');
-  var albumContainer = document.querySelector('.album-container');
- var gradientContainer = document.querySelector('.gradient-container');
- var rectangle = document.querySelector('.rectangle');
- 
-  if (isResized) {
-    // Undo changes if already resized
-    albumCover.style.marginLeft = '';
-    albumCover.style.marginRight = '';
-    albumCover.style.height = '';
-    albumCover.style.width = '';
-    albumDetails.style.display = '';
-    albumContainer.style.height = '';
-    albumContainer.style.backgroundImage = '';
-    albumContainer.style.backgroundColor = '';
-    gradientContainer.style.height = '';
-    rectangle.style.backgroundColor = '';
-    
-  } else {
-    // Apply changes if not resized
-    albumCover.style.marginLeft = 'auto';
-    albumCover.style.marginRight = 'auto';
-    albumCover.style.height = window.innerHeight - 400 + 'px';
-    albumCover.style.width = 'auto';
-    albumDetails.style.display = 'none';
-    albumContainer.style.height = window.innerHeight - 100 + 'px';
-    albumContainer.style.backgroundImage = 'none';
-    albumContainer.style.backgroundColor = 'black';
-    gradientContainer.style.height = '0px';
-    rectangle.style.backgroundColor = 'black';
-  }
-
-  // Toggle the flag variable
-  isResized = !isResized;
-}
-
-  //password script
-  function checkPassword() {
-      var enteredPassword = document.getElementById('passwordInput').value;
-      var correctPassword = 'cb4186'; // Replace with the actual correct password
-
-      if (enteredPassword === correctPassword) {
-        var passwordOverlay = document.getElementById('passwordOverlay');
-        passwordOverlay.remove(); // Remove the password overlay from the DOM
-      } else {
-        // Password is incorrect, you can show an error message or take other action here
-      }
-    }
-   
-   //song list
-   var songList = [
-  {
-    name: 'Cheeky Boomin (prod. XAR)',
-    url: 'https://assets.scratch.mit.edu/get_image/.%2E/ed5e41ce0ac069da4c4f08a3569f4de3.mp3',
-  },
-  {
-    name: 'Submarine (Prod. by SIGHOST x Sixweeks)',
-    url: 'https://assets.scratch.mit.edu/get_image/.%2E/3031330d599cd8f4fa961313032217cd.mp3',
-  },
-  {
-    name: 'Hot Dog Stand (prod. SIGHOST)',
-    url: 'https://assets.scratch.mit.edu/get_image/.%2E/739662852255f66873c8811c5491718d.mp3',
-  },
-  {
-    name: 'Metro Station (prod. BeatsByMilo)',
-    url: 'https://assets.scratch.mit.edu/get_image/.%2E/020d387930d6e73ce2cc46e305abb97d.mp3',
-  },
-  {
-    name: 'Suburbs Freestyle Remix',
-    url: 'https://assets.scratch.mit.edu/get_image/.%2E/068fa9a4443dbc189f18993c939f9144.mp3',
-  },
-  {
-    name: 'Mr Clean (prod. makdouble)',
-    url: 'https://assets.scratch.mit.edu/get_image/.%2E/eb99fbd923f173793215934105cde228.mp3',
-  },
-  // Add more songs with their names and URLs
-];
-
-function fullscreen(){
-  if (!document.fullscreenElement) {
-    if (document.documentElement.requestFullscreen) {
-      document.documentElement.requestFullscreen();
-    } else if (document.documentElement.mozRequestFullScreen) { // Firefox
-      document.documentElement.mozRequestFullScreen();
-    } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
-      document.documentElement.webkitRequestFullscreen();
-    } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
-      document.documentElement.msRequestFullscreen();
-    }
-  } else {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) { // Firefox
-      document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) { // Chrome, Safari and Opera
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { // IE/Edge
-      document.msExitFullscreen();
-    }
-  }
-}
-
-    alert('This page will be updated soon');
-
-  </script>
+    <script>
+        function fullscreen() {
+            if (!document.fullscreenElement) {
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else if (document.documentElement.mozRequestFullScreen) {
+                    document.documentElement.mozRequestFullScreen();
+                } else if (document.documentElement.webkitRequestFullscreen) {
+                    document.documentElement.webkitRequestFullscreen();
+                } else if (document.documentElement.msRequestFullscreen) {
+                    document.documentElement.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+    </script>    
+    <script src="https://cheekyjmusic.github.io/music/playfromurl.js"></script>
+    <script src="https://cheekyjmusic.github.io/music/menu.js"></script>
+    <script src="https://cheekyjmusic.github.io/music/player.js"></script>
 </body>
 </html>
