@@ -47,7 +47,7 @@
 
         .main-container {
             padding: 20px;
-            background: linear-gradient(to bottom, #282008 0%, black 7%);
+            background: linear-gradient(to bottom, #282008 0%, black 50%);
             min-height: 1220px;
         }
 
@@ -258,29 +258,6 @@
     </div>
 
     <script>
-        function fullscreen() {
-            if (!document.fullscreenElement) {
-                if (document.documentElement.requestFullscreen) {
-                    document.documentElement.requestFullscreen();
-                } else if (document.documentElement.mozRequestFullScreen) {
-                    document.documentElement.mozRequestFullScreen();
-                } else if (document.documentElement.webkitRequestFullscreen) {
-                    document.documentElement.webkitRequestFullscreen();
-                } else if (document.documentElement.msRequestFullscreen) {
-                    document.documentElement.msRequestFullscreen();
-                }
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.mozCancelFullScreen) {
-                    document.mozCancelFullScreen();
-                } else if (document.webkitExitFullscreen) {
-                    document.webkitExitFullscreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                }
-            }
-        }
     </script>    
     <script src="https://cheekyjmusic.github.io/music/playfromurl.js"></script>
     <script src="https://cheekyjmusic.github.io/music/menu.js"></script>

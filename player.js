@@ -23,8 +23,12 @@ function play(song, itemName) {
 
 //script to pause with space key
 document.addEventListener('keydown', function(event) {
-    togglePlayPause();
+    if (event.key === ' '){
+        event.preventDefault();
+        togglePlayPause();
+    }
 });
+
 
 function togglePlayPause() {
     const audioPlayer = document.getElementById('audio-player');
@@ -50,14 +54,11 @@ function seek(event) {
     audioPlayer.currentTime = newTime;
 }
 
-// Add an onclick event to the progress bar container
 document.querySelector('.progress-bar-container').addEventListener('click', seek);
 
 //no right click
   document.addEventListener('contextmenu', function (event) {
-      // Check if the right-clicked element is an image
       if (event.target.tagName === 'IMG') {
-        // Prevent the default right-click behavior
         event.preventDefault();
       }
     });
