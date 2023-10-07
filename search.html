@@ -165,16 +165,14 @@
 ];
 
 const searchInput = document.getElementById('search');
-const searchResults = document.getElementById('searchResults'); // Reference to the results div
+const searchResults = document.getElementById('searchResults');
 const error = document.querySelector('.error');
 
-searchInput.addEventListener('input', updateSearchResults); // Use 'input' event for real-time updates
+searchInput.addEventListener('input', updateSearchResults);
 
 searchInput.addEventListener('keyup', function(event) {
     if (event.key === 'Enter') {
-        const searchQuery = searchInput.value.toLowerCase(); // Use the searchInput variable
-        
-        // Search for a matching song in the songsList
+        const searchQuery = searchInput.value.toLowerCase();
         const matchingSongs = songsList.filter(song => song.name.toLowerCase().includes(searchQuery));
         
         if (matchingSongs.length > 0) {
@@ -189,46 +187,37 @@ function updateSearchResults(event) {
     const searchQuery = event.target.value.toLowerCase();
     
     if (searchQuery === '') {
-        // Clear the results box if the search bar is empty
         searchResults.innerHTML = '';
         return;
     }
     
-    // Filter matching songs
     const matchingSongs = songsList.filter(song => song.name.toLowerCase().includes(searchQuery));
     
-    // Create a list of matching song names
     const matchingSongNames = matchingSongs.map(song => song.name);
     
-    // Update the results box with the matching song names
     displaySearchResults(matchingSongNames);
 }
 
 function displaySearchResults(results) {
     if (results.length > 0) {
-        // Create an unordered list to display the results
         const resultList = document.createElement('ul');
         
-        // Add each result as a list item
         results.forEach(result => {
             const listItem = document.createElement('li');
             listItem.textContent = result;
             resultList.appendChild(listItem);
         });
         
-        // Clear previous results and display the new list
         searchResults.innerHTML = '';
         searchResults.appendChild(resultList);
     } else {
-        // If no results, clear the results box
         searchResults.innerHTML = '';
     }
 }
 
 function redirectToSong(songName) {
-    // Replace the URL below with the actual URL of the song's page or audio file
     if (songName === 'Metro Station' || songName === 'Hotdog Stand' || songName === 'Mr Clean' || songName === 'Cheeky Boomin') {
-        window.location.href = 'https://cheekyjmusic.github.io/music/cheekyboomin.html?' + songName;
+        window.location.href = 'https://cheekyjmusic.github.io/music/cheekyboomin.html?loadInSong' + songName;
     } else {
         window.location.href = 'https://cheekyjmusic.github.io/music/singles.html?loadInSong=' + songName;
     }
