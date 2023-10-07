@@ -21,6 +21,19 @@ function play(song, itemName) {
     document.title = itemName + " - Cheeky J";
 }
 
+//script to pause with space key
+document.addEventListener('keydown', function(event) {
+    if (event.key === ' ') {
+        if (audioPlayer.paused) {
+            audioPlayer.play();
+            playPauseImage.src = "https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/pause.svg";
+        } else {
+            audioPlayer.pause();
+            playPauseImage.src = "https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/play.svg";
+        }
+    }
+});
+
 function togglePlayPause() {
     const audioPlayer = document.getElementById('audio-player');
     const playPauseImage = document.querySelector('.play-pause-container img');
