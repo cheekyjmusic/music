@@ -112,6 +112,30 @@
     cursor: pointer;
     margin-top: 0px;
     opacity: 50%;
+    text-decoration: none;
+  }
+  .popular-container {
+    width: fit-content;
+    height: fit-content;
+  }
+  .artist-announcement {
+    width: fit-content;
+    height: fit-content;
+    background-color: #403927;
+    border-radius: 12px;
+    padding: 5px;
+  }
+  .announcement-title{
+  	color:white;
+    opacity: 0.8;
+    font-size: 28px;
+    margin: 0px;
+  }
+  .artist-announcement p {
+  	color:white;
+    opacity: 0.8;
+    font-size: 16px;
+    margin: 0px;
   }
     </style>
     <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/player.css">
@@ -167,11 +191,17 @@
     </div>
 
     <div class="main-container">
-        <div>
+        <div class="top-container">
+            <div class="popular-container">
             <h2 class="section-title">Popular</h2>
             <p onclick="play('https://cheekyjmusic.github.io/music/songs/metro.mp3', 'Metro Station')" class="popular">1<img class="popular-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/cheekyboomin.png">Metro Station</p>
             <p onclick="play('https://cheekyjmusic.github.io/music/songs/Omelette.mp3', 'Omelette')" class="popular">2<img class="popular-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/Scrambled.png">Omelette</p>
             <p onclick="play('https://cheekyjmusic.github.io/music/songs/hds.mp3', 'Hotdog Stand') "class="popular">3<img class="popular-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/cheekyboomin.png">Hotdog Stand</p>
+            </div>
+            <div class="artist-announcement">
+                <h1 class="announcement-title">Artist Announcement</h1>
+                <p>New Single Coming Soon: "Big Hippo"</p>
+            </div>
         </div>
 
         <div class="container">
