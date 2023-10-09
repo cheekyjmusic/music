@@ -1,4 +1,4 @@
-var targetDate = new Date('2023-10-13T17:00:00');
+var targetDate = new Date('2023-10-11T16:00:00');
 
         function checkUpcoming() {
          var currentDate = new Date();
