@@ -14,3 +14,13 @@ var targetDate = new Date('2023-10-11T16:00:00');
         }
 
 setInterval(checkUpcoming, 1000);
+
+function playRelease(songUrl, songName){
+   var currentDate = new Date();
+
+        if (currentDate <= targetDate) {
+         play(songUrl, songName);
+         } else {
+            alert('Not Out Yet');
+         }
+}
