@@ -14,5 +14,6 @@ Taco Bell Diss - prod by cheeky j made with samples provided by soundtrap
 Suburbs Freestyle - prod by cheeky j made with samples provided by soundtrap
 
 the website "https://cheekyjmusic.github.io/music" and its subpages were made by Cheeky J
+a portion of 'playfromurl.js' was made with help from chatgpt
 
-updated september 30, 2023
+updated october 10, 2023
