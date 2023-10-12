@@ -35,7 +35,7 @@ function playLoad(songToPlay){
         play('https://cheekyjmusic.github.io/music/songs/mrclean.mp3','Mr Clean');
     } else if (songToPlay === 'Suburbs Freestyle Remix'){
         play('https://cheekyjmusic.github.io/music/songs/sbremix.mp3','Suburbs Freestyle Remix');
-    } else if (songToPlay === 'Hippo Big'){
+    } else if (songToPlay === 'Big Hippo'){
         play('https://cheekyjmusic.github.io/music/songs/bighippo.mp3','Big Hippo');
     }
 }
