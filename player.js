@@ -67,10 +67,10 @@ document.querySelector('.progress-bar-container').addEventListener('click', seek
     const favicon = document.querySelector('link[rel="icon"]');
     const playingImage = document.querySelector('.song-playing');
 
-    var nameToPutInImageUrl = song.replace(/\s+/g, '');
-    var songImgUrl = 'https://cheekyjmusic.github.io/music/assets/' + nameToPutInImageUrl + '.png';
-    favicon.href = songImgUrl;
-    playingImage.src = songImgUrl;
+    var songImgUrl = song.replace(/\s+/g, '');
+    favicon.href = 'https://cheekyjmusic.github.io/music/assets/' + songImgUrl + '.png';
+    playingImage.src = 'https://cheekyjmusic.github.io/music/assets/' + songImgUrl + '.png';
+    playingImage.style.opacity = 1;
     }
 
 
