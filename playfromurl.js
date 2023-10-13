@@ -38,4 +38,5 @@ function playLoad(songToPlay){
     } else if (songToPlay === 'Big Hippo'){
         play('https://cheekyjmusic.github.io/music/songs/bighippo.mp3','Big Hippo');
     }
+    bigImage(songToPlay);
 }

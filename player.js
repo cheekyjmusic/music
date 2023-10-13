@@ -67,15 +67,21 @@ document.querySelector('.progress-bar-container').addEventListener('click', seek
     const favicon = document.querySelector('link[rel="icon"]');
     const playingImage = document.querySelector('.song-playing');
 
-    if (song === "Omelette") {
-        playingImage.src = "https://cheekyjmusic.github.io/music/assets/Scrambled.png";
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/Scrambled.png";
+    var songImgUrl = song.replace(/\s+/g, '');
+    playingImage.src = 'https://cheekyjmusic.github.io/music/assets/' + songImgUrl + '.png';
+    favicon.href = 'https://cheekyjmusic.github.io/music/assets/' + songImgUrl + '.png';
+    }
+
+
+    /*if (song === "Omelette") {
+      playingImage.src = "https://cheekyjmusic.github.io/music/assets/Omelette.png";
+        favicon.href = "https://cheekyjmusic.github.io/music/assets/Omelette.png";
     } else if (song === "Submarine") {
-        playingImage.src = "https://cheekyjmusic.github.io/music/assets/submarine.png";
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/submarine.png";
+        playingImage.src = "https://cheekyjmusic.github.io/music/assets/Submarine.png";
+        favicon.href = "https://cheekyjmusic.github.io/music/assets/Submarine.png";
     } else if (song === "Suburbs Freestyle Remix") {
-        playingImage.src = "https://cheekyjmusic.github.io/music/assets/sbremix.jpg";
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/sbremix.jpg";
+        playingImage.src = "https://cheekyjmusic.github.io/music/assets/sbremix.png";
+        favicon.href = "https://cheekyjmusic.github.io/music/assets/SuburbsFreestyleRemix.png";
     } else if (song === "Corner Store Twinkie") {
         playingImage.src = "https://cheekyjmusic.github.io/music/assets/twinkie.png";
         favicon.href = "https://cheekyjmusic.github.io/music/assets/twinkie.png";
@@ -103,7 +109,7 @@ document.querySelector('.progress-bar-container').addEventListener('click', seek
         favicon.href = "https://raw.githubusercontent.com/cheekyjmusic/music/main/logo.png";
     }
     playingImage.style.opacity = 1;
- }
+ }*/
  function updateProgressBar() {
     const audioPlayer = document.getElementById('audio-player');
     const progressBar = document.querySelector('.progress-bar');

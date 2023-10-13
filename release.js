@@ -15,11 +15,11 @@ function checkUpcoming() {
         var minutesLeft = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
         var secondsLeft = Math.floor((timeDifference % (1000 * 60) / 1000));
 
-        announcement.textContent = 'Big Hippo out in ' + daysLeft + ' days, ' + hoursLeft + ' hours, ' + minutesLeft + ' minutes, ' + secondsLeft + ' seconds';
+        announcement.textContent = 'Hammock out in ' + daysLeft + ' days, ' + hoursLeft + ' hours, ' + minutesLeft + ' minutes, ' + secondsLeft + ' seconds';
     } else {
         upcoming.style.display = 'inline-block';
         upcoming.style.pointerEvents = 'auto';
-        announcement.textContent = 'Big Hippo Out Now!';
+        announcement.textContent = 'Hammock Hippo Out Now!';
     }
 }
 

@@ -73,6 +73,15 @@
             height: 1700px;
 
         }
+        .big-single-container {
+            display:none;
+            background-color: black;
+            width: 100%;
+            top: 0px;
+            left: 0px;
+            pointer-events: none;
+            height: 100;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/player.css">
     <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/menu.css">
@@ -113,6 +122,9 @@
     </div>
 
     <div onclick="toggleMenu()" class="menu-shadow"></div>
+    <div class="big-single-container">
+        <img src="songimage.png">
+    </div>
 
     <div class="main-container">
         <div class="header">
@@ -120,7 +132,7 @@
         </div>
         <div class="container">
             <div onclick="play('https://cheekyjmusic.github.io/music/songs/bighippo.mp3', 'Big Hippo')" class="single-container">
-                <img src="https://cheekyjmusic.github.io/music/assets/bighippo.png">
+                <img id='Big Hippo' src="https://cheekyjmusic.github.io/music/assets/BigHippo.png">
                 <div class="single-details">
                     <h2 class="single-name">Big Hippo</h2>
                     <p class="single-info">Single • 2023</p>
@@ -130,7 +142,7 @@
         </div>
         <div class="container">
             <div onclick="play('https://cheekyjmusic.github.io/music/songs/Omelette.mp3', 'Omelette')" class="single-container">
-                <img src="https://cheekyjmusic.github.io/music/assets/Scrambled.png">
+                <img id='Omelette' src="https://cheekyjmusic.github.io/music/assets/Omelette.png">
                 <div class="single-details">
                     <h2 class="single-name">Omelette</h2>
                     <p class="single-info">Single • 2023</p>
@@ -141,7 +153,7 @@
 
         <div class="container">
             <div onclick="play('https://cheekyjmusic.github.io/music/songs/submarine.mp3', 'Submarine')" class="single-container">
-                <img src="https://cheekyjmusic.github.io/music/assets/submarine.png">
+                <img id='Submarine' src="https://cheekyjmusic.github.io/music/assets/Submarine.png">
                 <div class="single-details">
                     <h2 class="single-name">Submarine</h2>
                     <p class="single-info">Single • 2023</p>
@@ -152,7 +164,7 @@
 
         <div class="container">
             <div onclick="play('https://cheekyjmusic.github.io/music/songs/sbremix.mp3', 'Suburbs Freestyle Remix')" class="single-container">
-                <img src="https://cheekyjmusic.github.io/music/assets/sbremix.jpg">
+                <img id='Suburbs Freestyle Remix' src="https://cheekyjmusic.github.io/music/assets/SuburbsFreestyleRemix.png">
                 <div class="single-details">
                     <h2 class="single-name">Suburbs Freestyle Remix</h2>
                     <p class="single-info">Single • 2023</p>
@@ -163,7 +175,7 @@
 
         <div class="container">
             <div onclick="play('https://cheekyjmusic.github.io/music/songs/twinkie.mp3', 'Corner Store Twinkie')" class="single-container">
-                <img src="https://cheekyjmusic.github.io/music/assets/twinkie.png">
+                <img id='Corner Store Twinkie' src="https://cheekyjmusic.github.io/music/assets/CornerStoreTwinkieng">
                 <div class="single-details">
                     <h2 class="single-name">Corner Store Twinkie</h2>
                     <p class="single-info">Single • 2023</p>
@@ -174,7 +186,7 @@
 
         <div class="container">
             <div onclick="play('https://cheekyjmusic.github.io/music/songs/lincoln.mp3', '1860s Lincoln')" class="single-container">
-                <img src="https://cheekyjmusic.github.io/music/assets/lincoln.png">
+                <img id='1860s Lincoln' src="https://cheekyjmusic.github.io/music/assets/1860sLincoln.png">
                 <div class="single-details">
                     <h2 class="single-name">1860s Lincoln</h2>
                     <p class="single-info">Single • 2023</p>
@@ -185,7 +197,7 @@
 
         <div class="container">
             <div onclick="play('https://cheekyjmusic.github.io/music/songs/sumo.mp3', 'Sumo Wrestler')" class="single-container">
-                <img src="https://cheekyjmusic.github.io/music/assets/sumo.png">
+                <img id="Sumo Wrestler" src="https://cheekyjmusic.github.io/music/assets/SumoWrestler.png">
                 <div class="single-details">
                     <h2 class="single-name">Sumo Wrestler</h2>
                     <p class="single-info">Single • 2023</p>
@@ -196,7 +208,7 @@
 
         <div class="container">
             <div onclick="play('https://cheekyjmusic.github.io/music/songs/tacobell.mp3', 'Tacobell Diss')" class="single-container">
-                <img src="https://cheekyjmusic.github.io/music/assets/tacobell.png">
+                <img id="Tacobell Diss" src="https://cheekyjmusic.github.io/music/assets/TacobellDiss.png">
                 <div class="single-details">
                     <h2 class="single-name">Tacobell Diss</h2>
                     <p class="single-info">Single • 2023</p>
@@ -207,7 +219,7 @@
 
         <div class="container">
             <div onclick="play('https://cheekyjmusic.github.io/music/songs/suburbsfreestyle.mp3', 'Suburbs Freestyle')" class="single-container">
-                <img src="https://cheekyjmusic.github.io/music/assets/suburbsfreestyle.jpg">
+                <img id="Suburbs Freestyle" src="https://cheekyjmusic.github.io/music/assets/SuburbsFreestyle.png">
                 <div class="single-details">
                     <h2 class="single-name">Suburbs Freestyle</h2>
                     <p class="single-info">Single • 2023</p>
@@ -233,6 +245,17 @@
     <div class="progress-bar-container">
         <div class="progress-bar"></div>
     </div>
+    <script>
+        function bigImage(song){
+            const bigSinle = document.querySelector('.big-single-container');
+            const singleImage = document.getElementById(song);
+
+            var songImgUrl = song.replace(/\s+/g, '');
+
+            singleImage.src = 'https://cheekyjmusic.github.io/music/assets/' + songImgUrl + '.png';
+            bigSingle.display = 'block';
+        }
+    </script>
     <script src="https://cheekyjmusic.github.io/music/release.js"></script>
     <script src="https://cheekyjmusic.github.io/music/playfromurl.js"></script>
     <script src="https://cheekyjmusic.github.io/music/menu.js"></script>
