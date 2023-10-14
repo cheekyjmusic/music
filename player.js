@@ -4,6 +4,7 @@ document.getElementById('audio-player').addEventListener('timeupdate', updatePro
 document.getElementById('audio-player').addEventListener('timeupdate', updateProgressBar);
 
 function play(itemName) {
+    var songThatIsPlaying = itemName;
     const currentTime = document.querySelector('.current-time');
     const playPause = document.querySelector('.play-pause-image');
     const bottomRectangle = document.querySelector('.bottom-rectangle');
@@ -73,9 +74,14 @@ document.querySelector('.progress-bar-container').addEventListener('click', seek
     const favicon = document.querySelector('link[rel="icon"]');
     const playingImage = document.querySelector('.song-playing');
 
-    var songImgUrl = song.replace(/\s+/g, '');
-    favicon.href = 'https://cheekyjmusic.github.io/music/assets/' + songImgUrl + '.png';
-    playingImage.src = 'https://cheekyjmusic.github.io/music/assets/' + songImgUrl + '.png';
+    if (song === 'Metro Station' || song === 'Hotdog Stand' || song === 'Mr Clean' || song === 'Cheeky Boomin') {
+        favicon.href = 'https://cheekyjmusic.github.io/music/assets/cheekyboomin.png';
+        playingImage.src = 'https://cheekyjmusic.github.io/music/assets/cheekyboomin.png';
+    } else {
+        var songImgUrl = song.replace(/\s+/g, '');
+        favicon.href = 'https://cheekyjmusic.github.io/music/assets/' + songImgUrl + '.png';
+        playingImage.src = 'https://cheekyjmusic.github.io/music/assets/' + songImgUrl + '.png';
+    }
     playingImage.style.opacity = 1;
     }
  function updateProgressBar() {

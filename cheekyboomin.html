@@ -170,30 +170,39 @@
     <script>
         const songsList = [
     {
-        name: 'Submarine'
+        name: 'Cheeky Boomin'
     },
     {
-        name: 'Metro Station'
+        name: 'Submarine'
     },
     {
         name: 'Hotdog Stand'
     },
     {
-        name: 'Mr Clean'
+        name: 'Metro Station'
     },
     {
-        name: 'Cheeky Boomin'
+        name: 'Suburbs Freestyle Remix'
     },
     {
-        name: "Suburbs Freestyle Remix"
+        name: "Mr Clean"
     }
 ];
-        audioPlayer.addEventListener('paused', playNext);
+        audioPlayer.addEventListener('ended', playNext);
 
-        function playNext(){
+        function playNext() {
+    var currentIndex = songsList.findIndex(function(song) {
+        return song.name === songThatIsPlaying;
+    });
 
-            play('', '')
-        }
+    if (currentIndex !== -1) {
+        var nextIndex = (currentIndex + 1) % songsList.length;
+        var nextSong = songsList[nextIndex].name;
+
+        play(nextSong);
+    }
+}
+
     </script>    
     <script src="https://cheekyjmusic.github.io/music/playfromurl.js"></script>
     <script src="https://cheekyjmusic.github.io/music/menu.js"></script>
