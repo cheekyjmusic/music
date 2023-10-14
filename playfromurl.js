@@ -36,6 +36,6 @@ function playLoad(songToPlay){
     } else if (songToPlay === 'Suburbs Freestyle Remix'){
         play('https://cheekyjmusic.github.io/music/songs/sbremix.mp3','Suburbs Freestyle Remix');
     } else if (songToPlay === 'Big Hippo'){
-        play('https://cheekyjmusic.github.io/music/songs/bighippo.mp3','Big Hippo');
+        play('Big Hippo');
     }
 }

@@ -3,16 +3,19 @@ document.getElementById('audio-player').addEventListener('timeupdate', updatePro
     
 document.getElementById('audio-player').addEventListener('timeupdate', updateProgressBar);
 
-function play(song, itemName) {
+function play(itemName) {
     const currentTime = document.querySelector('.current-time');
     const playPause = document.querySelector('.play-pause-image');
     const bottomRectangle = document.querySelector('.bottom-rectangle');
     const progressBarContainer = document.querySelector('.progress-bar-container');
     const songPlayingName = document.querySelector('.song-name');
+    
+    var songUrlInput = song.replace(/\s+/g, '');
+    var songUrl = 'https://cheekyjmusic.github.io/music/songs/' + songUrl + '.mp3';
 
     const audioPlayer = document.getElementById('audio-player');
     updateFavicon(itemName);
-    audioPlayer.src = song;
+    audioPlayer.src = songUrl;
     songPlayingName.textContent = itemName;
     audioPlayer.play();
     currentTime.style.opacity = 1;
