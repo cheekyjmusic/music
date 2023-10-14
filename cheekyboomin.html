@@ -172,17 +172,17 @@
         audioPlayer.addEventListener('ended', playNext);
 
         function playNext() {
-            if(songThatIsPlaying === 'Cheeky Boomin'){
+            if(audioPlayer.src === 'https://cheekyjmusic.github.io/music/songs/CheekyBoomin.mp3'){
                 play('Submarine');
-            } else if(songThatIsPlaying === 'Submarine'){
+            } else if(audioPlayer.src === 'https://cheekyjmusic.github.io/music/songs/Submarine.mp3'){
                 play('Hotdog Stand');
-            } else if(songThatIsPlaying === 'Hotdog Stand'){
+            } else if(audioPlayer.src === 'https://cheekyjmusic.github.io/music/songs/HotdogStand.mp3'){
                 play('Metro Station');
-            } else if(songThatIsPlaying === 'Metro Station'){
+            } else if(audioPlayer.src === 'https://cheekyjmusic.github.io/music/songs/MetroStation.mp3'){
                 play('Suburbs Freestyle Remix');
-            } else if(songThatIsPlaying === 'Suburbs Freestyle Remix'){
+            } else if(audioPlayer.src === 'https://cheekyjmusic.github.io/music/songs/SuburbsFreestyleRemix.mp3'){
                 play('Mr Clean');
-            } else if(songThatIsPlaying === 'Mr Clean'){
+            } else if(audioPlayer.src === 'https://cheekyjmusic.github.io/music/songs/MrClean.mp3'){
                 play('Cheeky Boomin');
             }
         }
