@@ -16,6 +16,7 @@ function play(song, itemName) {
     songPlayingName.textContent = itemName;
     audioPlayer.play();
     currentTime.style.opacity = 1;
+    songPlayingName.style.opacity = 1;
     bottomRectangle.style.opacity = 1;
     progressBarContainer.style.opacity = 1;
     playPause.src = 'https://cheekyjmusic.github.io/music/assets/pause.svg';
