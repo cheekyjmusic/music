@@ -70,3 +70,10 @@ opacity: 0%;
     position: block;
     margin-left: 15px;
    }
+   .song-name {
+    text-overflow: ellipsis;
+      white-space: nowrap;
+  overflow: hidden;
+      max-width: 25vw;
+      background-color: transparent;
+   }
