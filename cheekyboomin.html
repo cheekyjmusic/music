@@ -188,9 +188,11 @@
         name: "Mr Clean"
     }
 ];
+        const audioPlayer = document.getElementById('audio-player');
         audioPlayer.addEventListener('ended', playNext);
 
         function playNext() {
+            alert('going to play next');
     var currentIndex = songsList.findIndex(function(song) {
         return song.name === songThatIsPlaying;
     });
