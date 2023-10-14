@@ -168,42 +168,24 @@
     </div>
 
     <script>
-        const songsList = [
-    {
-        name: 'Cheeky Boomin'
-    },
-    {
-        name: 'Submarine'
-    },
-    {
-        name: 'Hotdog Stand'
-    },
-    {
-        name: 'Metro Station'
-    },
-    {
-        name: 'Suburbs Freestyle Remix'
-    },
-    {
-        name: "Mr Clean"
-    }
-];
         const audioPlayer = document.getElementById('audio-player');
         audioPlayer.addEventListener('ended', playNext);
 
         function playNext() {
-            alert('going to play next');
-    var currentIndex = songsList.findIndex(function(song) {
-        return song.name === songThatIsPlaying;
-    });
-
-    if (currentIndex !== -1) {
-        var nextIndex = (currentIndex + 1) % songsList.length;
-        var nextSong = songsList[nextIndex].name;
-
-        play(nextSong);
-    }
-}
+            if(songThatIsPlaying === 'Cheeky Boomin'){
+                play('Submarine');
+            } else if(songThatIsPlaying === 'Submarine'){
+                play('Hotdog Stand');
+            } else if(songThatIsPlaying === 'Hotdog Stand'){
+                play('Metro Station');
+            } else if(songThatIsPlaying === 'Metro Station'){
+                play('Suburbs Freestyle Remix');
+            } else if(songThatIsPlaying === 'Suburbs Freestyle Remix'){
+                play('Mr Clean');
+            } else if(songThatIsPlaying === 'Mr Clean'){
+                play('Cheeky Boomin');
+            }
+        }
 
     </script>    
     <script src="https://cheekyjmusic.github.io/music/playfromurl.js"></script>
