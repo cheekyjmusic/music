@@ -104,3 +104,25 @@ document.querySelector('.progress-bar-container').addEventListener('click', seek
 
     requestAnimationFrame(updateProgressBar);
 }
+
+audioPlayer.addEventListener('ended', playNext);
+
+function playNext() {
+    const currentURL = window.location.href;
+
+    if (currentURL.includes('https://cheekyjmusic.github.io/music/cheekyboomin.html')) {
+        if(audioPlayer.src === 'https://cheekyjmusic.github.io/music/songs/CheekyBoomin.mp3'){
+          play('Submarine');
+     } else if(audioPlayer.src === 'https://cheekyjmusic.github.io/music/songs/Submarine.mp3'){
+         play('Hotdog Stand');
+     } else if(audioPlayer.src === 'https://cheekyjmusic.github.io/music/songs/HotdogStand.mp3'){
+            play('Metro Station');
+     } else if(audioPlayer.src === 'https://cheekyjmusic.github.io/music/songs/MetroStation.mp3'){
+            play('Suburbs Freestyle Remix');
+     } else if(audioPlayer.src === 'https://cheekyjmusic.github.io/music/songs/SuburbsFreestyleRemix.mp3'){
+         play('Mr Clean');
+     } else if(audioPlayer.src === 'https://cheekyjmusic.github.io/music/songs/MrClean.mp3'){
+            play('Cheeky Boomin');
+     }
+}
+}
