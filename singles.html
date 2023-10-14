@@ -73,15 +73,6 @@
             height: 1700px;
 
         }
-        .big-single-container {
-            display:none;
-            background-color: black;
-            width: 100%;
-            top: 0px;
-            left: 0px;
-            pointer-events: none;
-            height: 100;
-        }
     </style>
     <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/player.css">
     <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/menu.css">
@@ -122,10 +113,6 @@
     </div>
 
     <div onclick="toggleMenu()" class="menu-shadow"></div>
-    <div class="big-single-container">
-        <img src="songimage.png">
-    </div>
-
     <div class="main-container">
         <div class="header">
             <a style="text-decoration: none;" href="https://cheekyjmusic.github.io/music/"><h2>Cheeky J - Discography</h2></a>
@@ -240,21 +227,13 @@
     </div>   
     <div class="song-info">
         <img class="song-playing" src="black.png">
+        <div class="song-name" id="song-name"> </div>
         <div class="current-time" id="current-time">0:00</div>
       </div> 
     <div class="progress-bar-container">
         <div class="progress-bar"></div>
     </div>
     <script>
-        function bigImage(song){
-            const bigSinle = document.querySelector('.big-single-container');
-            const singleImage = document.getElementById(song);
-
-            var songImgUrl = song.replace(/\s+/g, '');
-
-            singleImage.src = 'https://cheekyjmusic.github.io/music/assets/' + songImgUrl + '.png';
-            bigSingle.display = 'block';
-        }
     </script>
     <script src="https://cheekyjmusic.github.io/music/release.js"></script>
     <script src="https://cheekyjmusic.github.io/music/playfromurl.js"></script>

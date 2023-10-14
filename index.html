@@ -14,7 +14,7 @@
             margin: 0;
             padding: 0;
             background-color: black;
-            color: black;
+            color: white;
         }
 
         .thumbnail-container {
@@ -137,6 +137,23 @@
     font-size: 16px;
     margin: 0px;
   }
+  .artist-name-sticky {
+    height: auto;
+    width: 100%;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color:#282008;
+    z-index: 10;
+    object-position: top;
+    padding: 10px;
+  }
+     .artist-name-sticky p{
+     margin: 0px;
+     font-size: 26px;
+     font-weight: bold;
+     }
     </style>
     <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/player.css">
     <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/menu.css">
@@ -183,6 +200,10 @@
         <div class="artist-name-container">
             <p class="artist-name">Cheeky J</p>
         </div>
+    </div>
+
+    <div class="artist-name-sticky" id="artist-name-sticky">
+        <p>Cheeky J</p>
     </div>
 
     <div class="main-container">
@@ -275,11 +296,29 @@
     </div>   
     <div class="song-info">
         <img class="song-playing" src="black.png">
+        <div class="song-name" id="song-name"> </div>
         <div class="current-time" id="current-time">0:00</div>
       </div> 
     <div class="progress-bar-container">
         <div class="progress-bar"></div>
     </div>
+    <script>
+        window.addEventListener('scroll', function() {
+            var artistNameSticky = document.getElementById('artist-name-sticky');
+            var scrollPosition = window.scrollY || window.pageYOffset;
+            
+            var opacity = scrollPosition - 150;
+    
+            artistNameSticky.style.opacity = opacity + '%';
+    
+            if (scrollPosition >= 150) {
+                artistNameSticky.style.display = 'block';
+            } else {
+                artistNameSticky.style.display = 'none';
+            }
+        });
+    </script>
+    
     <script src="https://cheekyjmusic.github.io/music/release.js"></script>    
     <script src="https://cheekyjmusic.github.io/music/playfromurl.js"></script>
     <script src="https://cheekyjmusic.github.io/music/menu.js"></script>

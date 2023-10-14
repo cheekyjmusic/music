@@ -8,10 +8,12 @@ function play(song, itemName) {
     const playPause = document.querySelector('.play-pause-image');
     const bottomRectangle = document.querySelector('.bottom-rectangle');
     const progressBarContainer = document.querySelector('.progress-bar-container');
+    const songPlayingName = document.querySelector('.song-name');
 
     const audioPlayer = document.getElementById('audio-player');
     updateFavicon(itemName);
     audioPlayer.src = song;
+    songPlayingName.textContent = itemName;
     audioPlayer.play();
     currentTime.style.opacity = 1;
     bottomRectangle.style.opacity = 1;
@@ -72,45 +74,6 @@ document.querySelector('.progress-bar-container').addEventListener('click', seek
     playingImage.src = 'https://cheekyjmusic.github.io/music/assets/' + songImgUrl + '.png';
     playingImage.style.opacity = 1;
     }
-
-
-    /*if (song === "Omelette") {
-      playingImage.src = "https://cheekyjmusic.github.io/music/assets/Omelette.png";
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/Omelette.png";
-    } else if (song === "Submarine") {
-        playingImage.src = "https://cheekyjmusic.github.io/music/assets/Submarine.png";
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/Submarine.png";
-    } else if (song === "Suburbs Freestyle Remix") {
-        playingImage.src = "https://cheekyjmusic.github.io/music/assets/sbremix.png";
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/SuburbsFreestyleRemix.png";
-    } else if (song === "Corner Store Twinkie") {
-        playingImage.src = "https://cheekyjmusic.github.io/music/assets/twinkie.png";
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/twinkie.png";
-    } else if (song === "1860s Lincoln") {
-        playingImage.src = "https://cheekyjmusic.github.io/music/assets/lincoln.png";
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/lincoln.png";
-    } else if (song === "Sumo Wrestler") {
-        playingImage.src = "https://cheekyjmusic.github.io/music/assets/sumo.png";
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/sumo.png";
-    } else if (song === "Tacobell Diss") {
-        playingImage.src = "https://cheekyjmusic.github.io/music/assets/tacobell.png";
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/tacobell.png";
-    } else if (song === "Suburbs Freestyle") {
-        playingImage.src = "https://cheekyjmusic.github.io/music/assets/suburbsfreestyle.jpg";
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/suburbsfreestyle.jpg";
-    } else if (song === "Big Hippo") {
-        playingImage.src = "https://cheekyjmusic.github.io/music/assets/bighippo.png";
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/bighippo.png";
-    } else if (song === "Hammock") {
-        favicon.href = "covers/hammock.png";
-    } else if (song === "Hotdog Stand" || song === "Metro Station" || song === "Cheeky Boomin" || song === "Mr Clean") {
-        playingImage.src = "https://cheekyjmusic.github.io/music/assets/cheekyboomin.png";
-        favicon.href = "https://cheekyjmusic.github.io/music/assets/cheekyboomin.png";
-    } else {
-        favicon.href = "https://raw.githubusercontent.com/cheekyjmusic/music/main/logo.png";
-    }
-    playingImage.style.opacity = 1;
- }*/
  function updateProgressBar() {
     const audioPlayer = document.getElementById('audio-player');
     const progressBar = document.querySelector('.progress-bar');
