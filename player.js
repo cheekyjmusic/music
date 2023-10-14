@@ -10,8 +10,8 @@ function play(itemName) {
     const progressBarContainer = document.querySelector('.progress-bar-container');
     const songPlayingName = document.querySelector('.song-name');
     
-    var songUrlInput = song.replace(/\s+/g, '');
-    var songUrl = 'https://cheekyjmusic.github.io/music/songs/' + songUrl + '.mp3';
+    var songUrlInput = itemName.replace(/\s+/g, '');
+    var songUrl = 'https://cheekyjmusic.github.io/music/songs/' + songUrlInput + '.mp3';
 
     const audioPlayer = document.getElementById('audio-player');
     updateFavicon(itemName);
