@@ -136,4 +136,5 @@ function favorite(){
     } else {
         heart.src = 'https://cheekyjmusic.github.io/music/assets/heartempty.svg';
     }
+    alert(songThatIsPlaying + 'added to saved songs');
 }
