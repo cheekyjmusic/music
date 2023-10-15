@@ -131,10 +131,10 @@ function playNext() {
 function favorite(){
     var heart = document.querySelector('.save-button');
 
-    if(heart.src === 'https://cheekyjmusic.github.io/music/assets/heartempty.svg'){
-        heart.src = 'https://cheekyjmusic.github.io/music/assets/heartselect.svg'
+    if(heart.src === 'https://cheekyjmusic.github.io/music/assets/heartempty.png'){
+        heart.src = 'https://cheekyjmusic.github.io/music/assets/heartselect.png'
     } else {
-        heart.src = 'https://cheekyjmusic.github.io/music/assets/heartempty.svg';
+        heart.src = 'https://cheekyjmusic.github.io/music/assets/heartempty.png';
     }
     alert(songThatIsPlaying + 'added to saved songs');
 }
