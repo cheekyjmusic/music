@@ -6,8 +6,6 @@
     height: 80px;
     background-color: black;
     display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .play-pause-image {
