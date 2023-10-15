@@ -107,6 +107,7 @@ document.querySelector('.progress-bar-container').addEventListener('click', seek
 
 audioPlayer.addEventListener('ended', playNext);
 
+//only for cheeky boomin
 function playNext() {
     const currentURL = window.location.href;
 
@@ -125,4 +126,14 @@ function playNext() {
             play('Cheeky Boomin');
      }
 }
+}
+
+function favorite(){
+    var heart = document.querySelector('.save-button');
+
+    if(heart.src === 'https://cheekyjmusic.github.io/music/assets/heartempty.svg'){
+        heart.src = 'https://cheekyjmusic.github.io/music/assets/heartselect.svg'
+    } else {
+        heart.src = 'https://cheekyjmusic.github.io/music/assets/heartempty.svg';
+    }
 }
