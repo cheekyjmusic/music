@@ -154,10 +154,9 @@
      font-size: 26px;
      font-weight: bold;
      }
-	  
-
+     
     </style>
-	<link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/player.css">
+    <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/player.css">
     <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/menu.css">
 </head>
 <body>
@@ -172,10 +171,6 @@
         <a style="text-decoration: none;" href="https://cheekyjmusic.github.io/music/search.html"><div style="margin-top: 10px;" class="menu-item">
             <img src="https://cdn-icons-png.flaticon.com/512/3031/3031293.png">
             <h1>Search</h1>
-        </div></a>
-        <a style="text-decoration: none;" href="https://cheekyjmusic.github.io/music/saved.html"><div style="margin-top: 10px;" class="menu-item">
-            <img src="https://cdn-icons-png.flaticon.com/512/2956/2956783.png">
-            <h1>Saved</h1>
         </div></a>
         <a style="text-decoration: none;" href="https://cheekyjmusic.github.io/music/credits.txt"><div style="margin-top: 10px;" class="menu-item">
             <img src="https://cdn-icons-png.flaticon.com/512/864/864685.png">
@@ -192,6 +187,10 @@
         <a style="text-decoration: none;" href="https://cheekyjmusic.github.io/music/archive.html"><div style="margin-top: 10px;" class="menu-item">
             <img src="https://static.thenounproject.com/png/21032-200.png">
             <h1>Archive</h1>
+        </div></a>
+        <a style="text-decoration: none;" href="https://github.com/cheekyjmusic/music/issues/new"><div style="margin-top: 10px;" class="menu-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/193/193224.png">
+            <h1>Report Bug</h1>
         </div></a>
     </div>
 
@@ -295,16 +294,12 @@
         <div class="play-pause-container" onclick="togglePlayPause()">
             <img class="play-pause-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/pause.svg">
         </div>
-        
     </div>   
     <div class="song-info">
         <img class="song-playing" src="black.png">
      <div class="playing-details">
         <div class="song-name" id="song-name">Song Name</div>
         <div class="current-time" id="current-time">0:00</div>
-		  <div onclick="favorite()" class="save-button-container">
-            <img class="save-button" src="https://cheekyjmusic.github.io/music/assets/heartempty.png">
-        </div>
       </div>
     </div>
     <div class="progress-bar-container">

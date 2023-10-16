@@ -80,17 +80,3 @@ opacity: 0%
       opacity: 0;
 		pointer-events: none;
    }
-
-   .save-button-container {
-    right: 40px;
-      bottom: -10px;
-      position: absolute;
-		z-index: 20;
-		cursor: pointer;
-      
- }
- .save-button{
-    height: 35px;
-    width: auto;
-    opacity: 0;
- }

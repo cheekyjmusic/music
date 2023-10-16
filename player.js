@@ -10,12 +10,9 @@ function play(itemName) {
     const bottomRectangle = document.querySelector('.bottom-rectangle');
     const progressBarContainer = document.querySelector('.progress-bar-container');
     const songPlayingName = document.querySelector('.song-name');
-    const saveButton = document.querySelector('.save-button');
     
     var songUrlInput = itemName.replace(/\s+/g, '');
     var songUrl = 'https://cheekyjmusic.github.io/music/songs/' + songUrlInput + '.mp3';
-
-    updateHeart();
 
     const audioPlayer = document.getElementById('audio-player');
     updateFavicon(itemName);
@@ -25,7 +22,6 @@ function play(itemName) {
     currentTime.style.opacity = 1;
     songPlayingName.style.opacity = 1;
     bottomRectangle.style.opacity = 1;
-    saveButton.style.opacity = 1;
     progressBarContainer.style.opacity = 1;
     playPause.src = 'https://cheekyjmusic.github.io/music/assets/pause.svg';
 
@@ -111,7 +107,6 @@ document.querySelector('.progress-bar-container').addEventListener('click', seek
 
 audioPlayer.addEventListener('ended', playNext);
 
-//only for cheeky boomin
 function playNext() {
     const currentURL = window.location.href;
 
@@ -131,102 +126,3 @@ function playNext() {
      }
 }
 }
-
-function favorite(){
-    var heart = document.querySelector('.save-button');
-
-    if(heart.src === 'https://cheekyjmusic.github.io/music/assets/heartempty.png'){
-        heart.src = 'https://cheekyjmusic.github.io/music/assets/heartselect.png';
-        addItem(songThatIsPlaying);
-    } else {
-        heart.src = 'https://cheekyjmusic.github.io/music/assets/heartempty.png';
-        removeItemByName(songThatIsPlaying);
-    }
-}
-function updateHeart() {
-    var heart = document.querySelector('.save-button');
-
-    // Retrieve the list of saved songs
-    var savedSongs = getSavedSongs();
-
-    // Check if songThatIsPlaying is in the list of saved songs
-    var songIsSaved = savedSongs.includes(songThatIsPlaying);
-
-    if (songIsSaved) {
-        heart.src = 'https://cheekyjmusic.github.io/music/assets/heartselect.png';
-    } else {
-        heart.src = 'https://cheekyjmusic.github.io/music/assets/heartempty.png';
-    }
-}
-
-//saved songs script 
-var dbName = "itemDB";
-var request = indexedDB.open(dbName, 1);
-var db;
-
-request.onerror = function(event) {
-    console.error("Failed to open database");
-};
-
-request.onsuccess = function(event) {
-    db = event.target.result;
-};
-
-request.onupgradeneeded = function(event) {
-    db = event.target.result;
-    var objectStore = db.createObjectStore("items", { keyPath: "id", autoIncrement: true });
-    objectStore.createIndex("name", "name", { unique: false });
-};
-
-// Add a new item to the database
-function addItem(newItemName) {
-    var transaction = db.transaction(["items"], "readwrite");
-    var objectStore = transaction.objectStore("items");
-
-    var newItem = { name: newItemName };
-    var request = objectStore.add(newItem);
-
-    request.onsuccess = function(event) {
-        // Item added to the database
-    };
-}
-
-function getSavedSongs(callback) {
-    var savedSongs = [];
-
-    var transaction = db.transaction(["items"], "readonly");
-    var objectStore = transaction.objectStore("items");
-
-    objectStore.openCursor().onsuccess = function(event) {
-        var cursor = event.target.result;
-        if (cursor) {
-            savedSongs.push(cursor.value.name);
-            cursor.continue();
-        } else {
-            if (typeof callback === "function") {
-                callback(savedSongs);
-            }
-        }
-    };
-}
-
-// Remove an item from the database by its name
-function removeItemByName(name) {
-    var transaction = db.transaction(["items"], "readwrite");
-    var objectStore = transaction.objectStore("items");
-    
-    var request = objectStore.index("name").get(name);
-    
-    request.onsuccess = function(event) {
-        var result = event.target.result;
-        if (result) {
-            var itemId = result.id;
-            var deleteRequest = objectStore.delete(itemId);
-            
-            deleteRequest.onsuccess = function(event) {
-                // Item removed from the database
-            };
-        }
-    };
-}
-
