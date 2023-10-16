@@ -92,4 +92,5 @@ opacity: 0%
  .save-button{
     height: 35px;
     width: auto;
+    opacity: 0;
  }

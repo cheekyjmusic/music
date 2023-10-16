@@ -10,6 +10,7 @@ function play(itemName) {
     const bottomRectangle = document.querySelector('.bottom-rectangle');
     const progressBarContainer = document.querySelector('.progress-bar-container');
     const songPlayingName = document.querySelector('.song-name');
+    const saveButton = document.querySelector('.save-button');
     
     var songUrlInput = itemName.replace(/\s+/g, '');
     var songUrl = 'https://cheekyjmusic.github.io/music/songs/' + songUrlInput + '.mp3';
@@ -22,6 +23,7 @@ function play(itemName) {
     currentTime.style.opacity = 1;
     songPlayingName.style.opacity = 1;
     bottomRectangle.style.opacity = 1;
+    saveButton.style.opacity = 1;
     progressBarContainer.style.opacity = 1;
     playPause.src = 'https://cheekyjmusic.github.io/music/assets/pause.svg';
 
