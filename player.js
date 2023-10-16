@@ -130,13 +130,55 @@ function playNext() {
 }
 }
 
-function favorite(){
+//favorite script
+function favorite() {
     var heart = document.querySelector('.save-button');
 
-    if(heart.src === 'https://cheekyjmusic.github.io/music/assets/heartempty.png'){
-        heart.src = 'https://cheekyjmusic.github.io/music/assets/heartselect.png'
+    // Retrieve the current saved songs
+    var currentSavedSongs = getSavedSongsCookie();
+    if (!currentSavedSongs) {
+        currentSavedSongs = []; // Initialize as an empty array if there are no saved songs yet
+    }
+
+    if (heart.src === 'https://cheekyjmusic.github.io/music/assets/heartempty.png') {
+        heart.src = 'https://cheekyjmusic.github.io/music/assets/heartselect.png';
+        currentSavedSongs.push(songThatIsPlaying); // Add the current song to the list
     } else {
         heart.src = 'https://cheekyjmusic.github.io/music/assets/heartempty.png';
+        // Remove the current song from the list (if it exists)
+        var index = currentSavedSongs.indexOf(songThatIsPlaying);
+        if (index !== -1) {
+            currentSavedSongs.splice(index, 1);
+        }
     }
-    alert(songThatIsPlaying + 'added to saved songs');
+
+    // Save the updated list of saved songs
+    setSavedSongsCookie(currentSavedSongs);
+
+    alert(songThatIsPlaying + ' added to saved songs');
 }
+
+// Retrieve the "savedSongs" variable from the cookie
+function getSavedSongsCookie() {
+    const savedSongsCookie = getCookie("savedSongs");
+    if (savedSongsCookie) {
+        return JSON.parse(savedSongsCookie);
+    }
+    return null; // Cookie not found
+}
+
+// Function to get the value of a cookie by name
+function getCookie(name) {
+    const cookieName = name + "=";
+    const cookies = document.cookie.split(';');
+
+    for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].trim();
+        if (cookie.indexOf(cookieName) === 0) {
+            return cookie.substring(cookieName.length, cookie.length);
+        }
+    }
+    return null; // Cookie not found
+}
+
+

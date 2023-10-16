@@ -1,2 +1,43 @@
-<h1>File Being Created...</h1>
-<button href="https://cheekyjmusic.github.io/music">Go Back</button>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Saved Songs</title>
+</head>
+<body>
+    <h1>Saved Songs</h1>
+    <ul id="savedSongsList"></ul>
+
+    <script>
+        // Function to get the value of a cookie by name
+        function getCookie(name) {
+            const cookieName = name + "=";
+            const cookies = document.cookie.split(';');
+
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim();
+                if (cookie.indexOf(cookieName) === 0) {
+                    return cookie.substring(cookieName.length, cookie.length);
+                }
+            }
+            return null; // Cookie not found
+        }
+
+        // Retrieve the "savedSongs" variable from the cookie
+        const savedSongsCookie = getCookie("savedSongs");
+        if (savedSongsCookie) {
+            const savedSongs = JSON.parse(savedSongsCookie);
+            const savedSongsList = document.getElementById("savedSongsList");
+
+            savedSongs.forEach(function(song) {
+                const listItem = document.createElement("li");
+                listItem.textContent = song;
+                savedSongsList.appendChild(listItem);
+            });
+        } else {
+            const noSavedSongsMessage = document.createElement("p");
+            noSavedSongsMessage.textContent = "No saved songs found.";
+            document.body.appendChild(noSavedSongsMessage);
+        }
+    </script>
+</body>
+</html>
