@@ -57,7 +57,9 @@ z-index: 2;
 .current-time {
 margin-top: 10px;
 color: white;
-opacity: 0%
+opacity: 0%;
+width: fit-content;
+pointer-events: none;
 }
 
 .song-playing {
@@ -67,7 +69,7 @@ opacity: 0%
 }
 
 .playing-details {
-    position: block;
+    display: block;
     margin-left: 15px;
    }
    .song-name {
@@ -75,18 +77,19 @@ opacity: 0%
       white-space: nowrap;
   overflow: hidden;
       max-width: 24vw;
-      background-color: transparent;
       opacity: 0;
+		pointer-events: none;
    }
 
    .save-button-container {
-    left: 130px;
-      bottom: 0px;
+    left: 120px;
+      bottom: -10px;
       position: absolute;
+		z-index: 20;
+		cursor: pointer;
       
  }
  .save-button{
     height: 35px;
     width: auto;
-    cursor: pointer;
  }
