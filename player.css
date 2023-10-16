@@ -82,7 +82,7 @@ opacity: 0%
    }
 
    .save-button-container {
-    left: 120px;
+    right: 40px;
       bottom: -10px;
       position: absolute;
 		z-index: 20;

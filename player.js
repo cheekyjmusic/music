@@ -15,6 +15,8 @@ function play(itemName) {
     var songUrlInput = itemName.replace(/\s+/g, '');
     var songUrl = 'https://cheekyjmusic.github.io/music/songs/' + songUrlInput + '.mp3';
 
+    updateHeart();
+
     const audioPlayer = document.getElementById('audio-player');
     updateFavicon(itemName);
     audioPlayer.src = songUrl;
@@ -130,55 +132,101 @@ function playNext() {
 }
 }
 
-//favorite script
-function favorite() {
+function favorite(){
     var heart = document.querySelector('.save-button');
 
-    // Retrieve the current saved songs
-    var currentSavedSongs = getSavedSongsCookie();
-    if (!currentSavedSongs) {
-        currentSavedSongs = []; // Initialize as an empty array if there are no saved songs yet
-    }
-
-    if (heart.src === 'https://cheekyjmusic.github.io/music/assets/heartempty.png') {
+    if(heart.src === 'https://cheekyjmusic.github.io/music/assets/heartempty.png'){
         heart.src = 'https://cheekyjmusic.github.io/music/assets/heartselect.png';
-        currentSavedSongs.push(songThatIsPlaying); // Add the current song to the list
+        addItem(songThatIsPlaying);
     } else {
         heart.src = 'https://cheekyjmusic.github.io/music/assets/heartempty.png';
-        // Remove the current song from the list (if it exists)
-        var index = currentSavedSongs.indexOf(songThatIsPlaying);
-        if (index !== -1) {
-            currentSavedSongs.splice(index, 1);
+        removeItemByName(songThatIsPlaying);
+    }
+}
+function updateHeart() {
+    var heart = document.querySelector('.save-button');
+
+    // Retrieve the list of saved songs
+    var savedSongs = getSavedSongs();
+
+    // Check if songThatIsPlaying is in the list of saved songs
+    var songIsSaved = savedSongs.includes(songThatIsPlaying);
+
+    if (songIsSaved) {
+        heart.src = 'https://cheekyjmusic.github.io/music/assets/heartselect.png';
+    } else {
+        heart.src = 'https://cheekyjmusic.github.io/music/assets/heartempty.png';
+    }
+}
+
+//saved songs script 
+var dbName = "itemDB";
+var request = indexedDB.open(dbName, 1);
+var db;
+
+request.onerror = function(event) {
+    console.error("Failed to open database");
+};
+
+request.onsuccess = function(event) {
+    db = event.target.result;
+};
+
+request.onupgradeneeded = function(event) {
+    db = event.target.result;
+    var objectStore = db.createObjectStore("items", { keyPath: "id", autoIncrement: true });
+    objectStore.createIndex("name", "name", { unique: false });
+};
+
+// Add a new item to the database
+function addItem(newItemName) {
+    var transaction = db.transaction(["items"], "readwrite");
+    var objectStore = transaction.objectStore("items");
+
+    var newItem = { name: newItemName };
+    var request = objectStore.add(newItem);
+
+    request.onsuccess = function(event) {
+        // Item added to the database
+    };
+}
+
+function getSavedSongs(callback) {
+    var savedSongs = [];
+
+    var transaction = db.transaction(["items"], "readonly");
+    var objectStore = transaction.objectStore("items");
+
+    objectStore.openCursor().onsuccess = function(event) {
+        var cursor = event.target.result;
+        if (cursor) {
+            savedSongs.push(cursor.value.name);
+            cursor.continue();
+        } else {
+            if (typeof callback === "function") {
+                callback(savedSongs);
+            }
         }
-    }
-
-    // Save the updated list of saved songs
-    setSavedSongsCookie(currentSavedSongs);
-
-    alert(songThatIsPlaying + ' added to saved songs');
+    };
 }
 
-// Retrieve the "savedSongs" variable from the cookie
-function getSavedSongsCookie() {
-    const savedSongsCookie = getCookie("savedSongs");
-    if (savedSongsCookie) {
-        return JSON.parse(savedSongsCookie);
-    }
-    return null; // Cookie not found
-}
-
-// Function to get the value of a cookie by name
-function getCookie(name) {
-    const cookieName = name + "=";
-    const cookies = document.cookie.split(';');
-
-    for (let i = 0; i < cookies.length; i++) {
-        let cookie = cookies[i].trim();
-        if (cookie.indexOf(cookieName) === 0) {
-            return cookie.substring(cookieName.length, cookie.length);
+// Remove an item from the database by its name
+function removeItemByName(name) {
+    var transaction = db.transaction(["items"], "readwrite");
+    var objectStore = transaction.objectStore("items");
+    
+    var request = objectStore.index("name").get(name);
+    
+    request.onsuccess = function(event) {
+        var result = event.target.result;
+        if (result) {
+            var itemId = result.id;
+            var deleteRequest = objectStore.delete(itemId);
+            
+            deleteRequest.onsuccess = function(event) {
+                // Item removed from the database
+            };
         }
-    }
-    return null; // Cookie not found
+    };
 }
-
 
