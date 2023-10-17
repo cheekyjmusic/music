@@ -1,4 +1,4 @@
-var targetDate = new Date('2023-10-11T16:00:00');
+var targetDate = new Date('2023-10-20T14:00:00');
 
 function checkUpcoming() {
     var currentDate = new Date();
@@ -19,7 +19,7 @@ function checkUpcoming() {
     } else {
         upcoming.style.display = 'inline-block';
         upcoming.style.pointerEvents = 'auto';
-        announcement.textContent = 'Hammock Hippo Out Now!';
+        announcement.textContent = 'Hammock Out Now!';
     }
 }
 
