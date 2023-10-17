@@ -252,6 +252,10 @@
         <div class="container">
             <h2 style="display: inline;" class="section-title">Singles <a href="https://cheekyjmusic.github.io/music/singles.html" class="expand-singles">Expand</a></h2>
             <div class="item-container">
+                <div class="item" onclick="play('Hammock')">
+                    <img class="item-image" src="https://cheekyjmusic.github.io/music/assets/Hammock.png">
+                    <p class="item-name">Hammock</p>
+                </div>
               <div class="item" onclick="play('Big Hippo')">
                     <img class="item-image" src="https://cheekyjmusic.github.io/music/assets/BigHippo.png">
                     <p class="item-name">Big Hippo</p>
@@ -327,6 +331,42 @@
         <div class="progress-bar"></div>
     </div>
     <script>
+
+        window.onload = checkDev;
+        function checkDev(){
+            const urlParams = new URLSearchParams(window.location.search);
+            const admin = urlParams.get("admin");
+
+            if(admin === '1' ){
+                // Step 1: Select the parent element (replace 'parent-container' with the actual ID or selector of your parent container).
+const parentContainer = document.querySelector('.item-container');
+
+// Step 2: Create the new div element.
+const newDiv = document.createElement('div');
+
+// Step 3: Set attributes for the new div element.
+newDiv.setAttribute('class', 'item');
+newDiv.setAttribute('onclick', 'play("Hammock")');
+
+// Step 4: Create and set attributes for the image element.
+const newImage = document.createElement('img');
+newImage.setAttribute('class', 'item-image');
+newImage.setAttribute('src', 'https://cheekyjmusic.github.io/music/assets/Hammock.png');
+
+// Step 5: Create and set attributes for the paragraph element.
+const newParagraph = document.createElement('p');
+newParagraph.setAttribute('class', 'item-name');
+newParagraph.textContent = 'Hammock';
+
+// Step 6: Append the image and paragraph elements to the new div element.
+newDiv.appendChild(newImage);
+newDiv.appendChild(newParagraph);
+
+// Step 7: Append the new div element to the parent container.
+parentContainer.appendChild(newDiv);
+
+            }
+        }
         window.addEventListener('scroll', function() {
             var artistNameSticky = document.getElementById('artist-name-sticky');
             var scrollPosition = window.scrollY || window.pageYOffset;
