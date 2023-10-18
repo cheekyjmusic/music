@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cheeky Boomin Vol 1</title>
+    <title>Cheeky Boomin Vol 2</title>
     <link rel="icon" href="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/cheekyboomin.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,7 @@
             color: white;
         }
         .master-album-container {
-            background-image: linear-gradient(to bottom, orange, #8B4000);
+            background-image: linear-gradient(to bottom, rgb(81, 105, 132), #00278b);
             height: fit-content;
             max-width: 100%;
             top: 0px;
@@ -70,10 +70,20 @@
         .gradient-container{
             height: 20px;
             margin-top: 0px;
-            background-image: linear-gradient(to bottom, #8B4000, black);
+            background-image: linear-gradient(to bottom, #00278b, black);
         }
         .progress-bar {
             background-color: #8B4000 !important;
+        }
+        .password {
+            height: 100%;
+            width: 100%;
+            object-position: top;
+            z-index: 999;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            background-color: white;
         }
 
         </style>
@@ -81,6 +91,7 @@
     <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/menu.css">
 </head>
 <body>
+    <div onclick="askPassword()" class="password"></div>
     <div class="menu-button">
         <img class="menu-button-img" onclick="toggleMenu()" src="https://static.thenounproject.com/png/3869892-200.png">
     </div>
@@ -118,31 +129,37 @@
     <div onclick="toggleMenu()" class="menu-shadow"></div>
 
     <div class="master-album-container">
-        <img class="album-cover" src="https://cheekyjmusic.github.io/music/assets/cheekyboomin.png">
+        <img class="album-cover" src="https://cheekyjmusic.github.io/music/assets/cheekyboomin2.png">
         <div class="album-details">
-            <h1 class="album-name">Cheeky Boomin Vol 1</h1>
-            <h1 class="album-desc">Cheeky J · August 18 2023 · 6 songs</h1>
+            <h1 class="album-name">Cheeky Boomin Vol 2</h1>
+            <h1 class="album-desc">Cheeky J · Unreleased · ? songs · Songs are not in final order</h1>
         </div>
     </div>
     <div class="gradient-container"></div>
     <div class="songs-container">
-        <div onclick="play('Cheeky Boomin')" class="song">
-            <p class="song-title">1. Cheeky Boomin (prod. XAR)</p>
+        <div onclick="play('Omelette')" class="song">
+            <p class="song-title">1. Omelette (prod. gonzu)</p>
         </div>
-        <div onclick="play('Submarine')" class="song">
-            <p class="song-title">2. Submarine (Prod. by SIGHOST x Sixweeks)</p>
+        <div onclick="play('Hammock')" class="song">
+            <p class="song-title">2. Hammock (prod. by twenty4)</p>
         </div>
-        <div onclick="play('Hotdog Stand')" class="song">
-            <p class="song-title">3. Hotdog Stand (prod. SIGHOST)</p>
+        <div onclick="play('')" class="song">
+            <p class="song-title">3. Footlong (prod. gonzu)</p>
         </div>
-        <div onclick="play('Metro Station')" class="song">
-            <p class="song-title">4. Metro Station (prod. SIGHOST)</p>
+        <div onclick="play('')" class="song">
+            <p class="song-title">4. Colosseum</p>
         </div>
-        <div onclick="play('Suburbs Freestyle Remix')" class="song">
-            <p class="song-title">5. Suburbs Freestyle Remix</p>
+        <div onclick="play('')" class="song">
+            <p class="song-title">5. Untitled</p>
         </div>
-        <div onclick="play('Mr Clean')" class="song">
-            <p class="song-title">6. Mr Clean (prod. makdouble)</p>
+        <div onclick="play('')" class="song">
+            <p class="song-title">6. Untitled</p>
+        </div>
+		  <div onclick="play('')" class="song">
+            <p class="song-title">7. Untitled</p>
+        </div>
+		  <div onclick="play('')" class="song">
+            <p class="song-title">8. Untitled</p>
         </div>
     </div>
 
@@ -168,22 +185,23 @@
     </div>
 
     <script>
+        window.onload = askPassword();
+
         const audioPlayer = document.getElementById('audio-player');
         audioPlayer.addEventListener('ended', playNext);
 
         function playNext() {
-            if(audioPlayer.src === 'https://cheekyjmusic.github.io/music/songs/CheekyBoomin.mp3'){
-                play('Submarine');
-            } else if(audioPlayer.src === 'https://cheekyjmusic.github.io/music/songs/Submarine.mp3'){
-                play('Hotdog Stand');
-            } else if(audioPlayer.src === 'https://cheekyjmusic.github.io/music/songs/HotdogStand.mp3'){
-                play('Metro Station');
-            } else if(audioPlayer.src === 'https://cheekyjmusic.github.io/music/songs/MetroStation.mp3'){
-                play('Suburbs Freestyle Remix');
-            } else if(audioPlayer.src === 'https://cheekyjmusic.github.io/music/songs/SuburbsFreestyleRemix.mp3'){
-                play('Mr Clean');
-            } else if(audioPlayer.src === 'https://cheekyjmusic.github.io/music/songs/MrClean.mp3'){
-                play('Cheeky Boomin');
+            //add the songs here when the album drops
+        }
+
+        //password
+        function askPassword(){
+            var userInput = prompt("Password:");
+            const password = document.querySelector('.password');
+            if (userInput === 'chocolate') {
+                password.remove();
+            } else {
+                alert('Wrong password');
             }
         }
 

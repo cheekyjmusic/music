@@ -16,11 +16,7 @@ function play(itemName) {
 
     const audioPlayer = document.getElementById('audio-player');
     updateFavicon(itemName);
-    if(itemName === 'Hammock'){
-        audioPlayer.src = 'file:///media/removable/Samsung%20USB/spotyf/music/hammock.wav';
-    } else {
-        audioPlayer.src = songUrl;
-    }
+    audioPlayer.src = songUrl;
     songPlayingName.textContent = itemName;
     audioPlayer.play();
     currentTime.style.opacity = 1;
