@@ -185,6 +185,7 @@
     </div>
 
     <script>
+        const correctPassword = 'gummybear';
         window.onload = askPassword();
 
         const audioPlayer = document.getElementById('audio-player');
@@ -196,13 +197,20 @@
 
         //password
         function askPassword(){
+            const urlParams = new URLSearchParams(window.location.search);
+            var urlPassword = urlParams.get("urlPassword");
+				const passwordBlock = document.querySelector('.password');
+            if(urlPassword === correctPassword ){
+                passwordBlock.remove();
+            } else {
             var userInput = prompt("Password:");
             const password = document.querySelector('.password');
             if (userInput === 'gummybear') {
-                password.remove();
+                passwordBlock.remove();
             } else {
                 alert('Wrong password');
             }
+        }
         }
 
     </script>    
