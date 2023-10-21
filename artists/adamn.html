@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A_DAMN</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/logo.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+        }
+
+        .thumbnail-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .thumbnail-container img {
+            width: 100vw;
+            height: 300px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+        }
+
+        .artist-name-container {
+            position: absolute;
+            bottom: 8px;
+            left: 16px;
+            color: white;
+        }
+
+        .artist-name {
+            font-size: calc(100vw / 10);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .main-container {
+            padding: 20px;
+            background: linear-gradient(to bottom, #403927 0%, black 7%);
+        }
+
+        .section-title {
+            color: #ffffff;
+            font-size: 24px;
+            margin-top: 40px;
+        }
+
+        .popular {
+            align-items: center;
+            display: flex;
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.750);
+            cursor: pointer;
+        }
+
+        .popular-image {
+            width: 35px;
+            height: 35px;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
+        .item-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            cursor: pointer;
+            outline: 4px solid transparent;
+            margin: 5px;
+        }
+
+        .item-name {
+            font-size: 18px;
+            color: white;
+            margin-top: 5px;
+        }
+
+        .container {
+            margin-top: 10px;
+        }
+
+        .item-container {
+            white-space: nowrap;
+            overflow-x: auto;
+        }
+
+        .item {
+            display: inline-block;
+            width: 160px;
+            margin-right: 20px;
+            vertical-align: top;
+        }
+
+  .item-image:hover {
+    outline: 4px solid white;
+    transition: outline 0.3s ease;
+  }
+  .expand-singles{
+    color:gray;
+    cursor: pointer;
+    margin-top: 0px;
+    opacity: 50%;
+    text-decoration: none;
+  }
+  .popular-container {
+    width: fit-content;
+    height: fit-content;
+  }
+  .artist-announcement {
+    width: fit-content;
+    height: fit-content;
+    background-color: #403927;
+    border-radius: 12px;
+    padding: 5px;
+  }
+  .announcement-title{
+  	color:white;
+    opacity: 0.8;
+    font-size: 28px;
+    margin: 0px;
+  }
+  .artist-announcement p {
+  	color:white;
+    opacity: 0.8;
+    font-size: 16px;
+    margin: 0px;
+  }
+  .artist-name-sticky {
+    height: auto;
+    width: 100%;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #403927;
+    z-index: 10;
+    object-position: top;
+    padding: 10px;
+  }
+     .artist-name-sticky p{
+     margin: 0px;
+     font-size: 26px;
+     font-weight: bold;
+     }
+     .about-img {
+        width: 100%;
+            height: 400px;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            border-radius: 10px;
+     }
+     .about {
+        position: absolute;
+        padding: 10px;
+        font-size: 20px;
+        color: rgba(255, 255, 255, 0.75);
+        background-color: rgba(0, 0, 0, 0.5);
+        margin-top: 0px;
+
+     }
+    </style>
+    <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/player.css">
+    <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/menu.css">
+</head>
+<body>
+    <div class="menu-button">
+        <img class="menu-button-img" onclick="toggleMenu()" src="https://static.thenounproject.com/png/3869892-200.png">
+    </div>
+    <div class="menu-container">
+        <a style="text-decoration: none;" href="http://cheekyjmusic.github.io/music"><div style="margin-top: 50px;" class="menu-item">
+            <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/logo.png">
+            <h1>Menu</h1>
+        </div></a>
+        <a style="text-decoration: none;" href="https://cheekyjmusic.github.io/music/search.html"><div style="margin-top: 10px;" class="menu-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/3031/3031293.png">
+            <h1>Search</h1>
+        </div></a>
+        <a style="text-decoration: none;" href="https://cheekyjmusic.github.io/music/credits.txt"><div style="margin-top: 10px;" class="menu-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/864/864685.png">
+            <h1>Credits</h1>
+        </div></a>
+        <a style="text-decoration: none;" href="https://cheekyjmusic.github.io/music/singles.html"><div style="margin-top: 10px;" class="menu-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/1705/1705062.png">
+            <h1>Discography</h1>
+        </div></a>
+        <div onclick="fullscreen()" style="margin-top: 10px;" class="menu-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/3354/3354155.png">
+            <h1>Fullscreen</h1>
+        </div>
+        <a style="text-decoration: none;" href="https://cheekyjmusic.github.io/music/archive.html"><div style="margin-top: 10px;" class="menu-item">
+            <img src="https://static.thenounproject.com/png/21032-200.png">
+            <h1>Archive</h1>
+        </div></a>
+        <a style="text-decoration: none;" href="https://github.com/cheekyjmusic/music/issues/new"><div style="margin-top: 10px;" class="menu-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/193/193224.png">
+            <h1>Report Bug</h1>
+        </div></a>
+    </div>
+
+    <div onclick="toggleMenu()" class="menu-shadow"></div>
+
+    <div class="thumbnail-container">
+        <img src="https://cheekyjmusic.github.io/music/assets/ui/adambackground.jpg" alt="artist-thumbnail">
+        <div class="artist-name-container">
+            <p class="artist-name">A-DAMN</p>
+        </div>
+    </div>
+
+    <div class="artist-name-sticky" id="artist-name-sticky">
+        <p>A-DAMN</p>
+    </div>
+
+    <div class="main-container">
+        <div class="top-container">
+            <div class="popular-container">
+            <h2 class="section-title">Popular</h2>
+            <p>No Singles</p>
+            </div>
+            <!--<div class="artist-announcement">
+                <h1 class="announcement-title">Announcement</h1>
+                <p id="announcement">"Hammock" Coming Soon🔜🔜</p>
+            </div>-->
+        </div>
+
+        <div class="container">
+            <h2 class="section-title">Albums</h2>
+           <p>No Albums</p>
+        </div>
+
+        <div class="container">
+            <h2 style="display: inline;" class="section-title">Singles <a href="https://cheekyjmusic.github.io/music/singles.html" class="expand-singles">Expand</a></h2>
+            <div class="item-container">
+              <p>No Singles</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2 class="section-title">Music Videos</h2>
+            <p>No Music Videos</p>
+        </div>
+        <div style="margin-bottom: 80px;" class="container">
+            <h2 class="section-title">About</h2>
+            <p class="about"></p>
+            <img class="about-img" src="https://cheekyjmusic.github.io/music/assets/ui/adamabout.jpg">
+        </div>
+    </div>
+
+    <audio class="audio" id="audio-player" controls>
+        <source id="audio-source" src="" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio> 
+    <div class="bottom-rectangle">
+        <div class="play-pause-container" onclick="togglePlayPause()">
+            <img class="play-pause-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/pause.svg">
+        </div>
+    </div>   
+    <div class="song-info">
+        <img class="song-playing" src="black.png">
+     <div class="playing-details">
+        <div class="song-name" id="song-name">Song Name</div>
+        <div class="current-time" id="current-time">0:00</div>
+      </div>
+    </div>
+    <div class="progress-bar-container">
+        <div class="progress-bar"></div>
+    </div>
+    <script>
+        window.onload = alert('This portion of the site is still under development and will be improved over the coming weeks');
+        window.addEventListener('scroll', function() {
+            var artistNameSticky = document.getElementById('artist-name-sticky');
+            var scrollPosition = window.scrollY || window.pageYOffset;
+            
+            var opacity = scrollPosition - 150;
+    
+            artistNameSticky.style.opacity = opacity + '%';
+    
+            if (scrollPosition >= 150) {
+                artistNameSticky.style.display = 'block';
+            } else {
+                artistNameSticky.style.display = 'none';
+            }
+        });
+    </script>
+    <script src="https://cheekyjmusic.github.io/music/release.js"></script>    
+    <script src="https://cheekyjmusic.github.io/music/playfromurl.js"></script>
+    <script src="https://cheekyjmusic.github.io/music/menu.js"></script>
+    <script src="https://cheekyjmusic.github.io/music/player.js"></script>
+</body>
+</html>
