@@ -1,23 +1,26 @@
 <html>
     <head>
-        <title>Redirect</title>
+        <title>Redirect...</title>
     </head>
     <body>
-        <h1>Redirecting</h1>
+        <h1>Redirecting...</h1>
         <script>
-            window.onload = redirect();
+            window.onload = redirect;
 
-            function redirect(){
-                var urlParams = new URLSearchParams(window.location.search);
-                var redirect = urlParams.get('redirect');
-                if(redirect === cheekyj){
-                    window.location.href = 'https://cheekymusic.github.io/music';
-                }else if(redirect === cheekybooin){
-                    window.location.href = 'https://cheekyjmusic.github.io/music/cheekyboomin';
-                }else if (redirect === adamn){
-                    window.location.href = 'https://cheekyjmusic.github.io/music/artists/adamn';
-                }
-            }
+function redirect() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var redirect = urlParams.get('redirect');
+    if (redirect === 'cheekyj') {
+        window.location.href = 'https://cheekyjmusic.github.io/music';
+    } else if (redirect === 'cheekyboomin') {
+        window.location.href = 'https://cheekyjmusic.github.io/music/cheekyboomin';
+    } else if (redirect === 'adamn') {
+        window.location.href = 'https://cheekyjmusic.github.io/music/artists/adamn';
+    } else if (redirect === 'home') {
+	 		window.location.href = 'https://cheekyjmusic.github.io/music/home';
+	 }
+}
+
         
         </script>
     </body>
