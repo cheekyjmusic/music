@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Redirect</title>
+    </head>
+    <body>
+        <h1>Redirecting</h1>
+        <script>
+            window.onload = redirect();
+
+            function redirect(){
+                var urlParams = new URLSearchParams(window.location.search);
+                var redirect = urlParams.get('redirect');
+                if(redirect === cheekyj){
+                    window.location.href = 'https://cheekymusic.github.io/music';
+                }else if(redirect === cheekybooin){
+                    window.location.href = 'https://cheekyjmusic.github.io/music/cheekyboomin';
+                }else if (redirect === adamn){
+                    window.location.href = 'https://cheekyjmusic.github.io/music/artists/adamn';
+                }
+            }
+        
+        </script>
+    </body>
+</html>
