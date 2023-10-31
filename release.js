@@ -1,4 +1,4 @@
-var targetDate = new Date('2023-10-20T14:00:00');
+var targetDate = new Date('2023-10-31T15:00:00');
 
 function checkUpcoming() {
     var currentDate = new Date();
@@ -15,11 +15,11 @@ function checkUpcoming() {
         var minutesLeft = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
         var secondsLeft = Math.floor((timeDifference % (1000 * 60) / 1000));
 
-        announcement.textContent = 'Hammock out in ' + daysLeft + ' days, ' + hoursLeft + ' hours, ' + minutesLeft + ' minutes, ' + secondsLeft + ' seconds';
+        announcement.textContent = '20 Dollar Bill out in ' + daysLeft + ' days, ' + hoursLeft + ' hours, ' + minutesLeft + ' minutes, ' + secondsLeft + ' seconds';
     } else {
         upcoming.style.display = 'inline-block';
         upcoming.style.pointerEvents = 'auto';
-        announcement.textContent = 'Hammock Out Now!';
+        announcement.textContent = '20 Dollar Bill Out Now!';
     }
 }
 
