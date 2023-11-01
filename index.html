@@ -47,7 +47,7 @@
 
         .main-container {
             padding: 20px;
-            background: linear-gradient(to bottom, #403927 0%, black 7%);
+            background: linear-gradient(to bottom, #43525a 0%, black 7%);
         }
 
         .section-title {
@@ -120,7 +120,7 @@
   .artist-announcement {
     width: fit-content;
     height: fit-content;
-    background-color: #403927;
+    background-color: #43525a;
     border-radius: 12px;
     padding: 5px;
   }
@@ -143,7 +143,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #403927;
+    background-color: #43525a;
     z-index: 10;
     object-position: top;
     padding: 10px;
@@ -216,7 +216,7 @@
     <div onclick="toggleMenu()" class="menu-shadow"></div>
 
     <div class="thumbnail-container">
-        <img src="https://cheekyjmusic.github.io/music/assets/background.png" alt="artist-thumbnail">
+        <img src="https://cheekyjmusic.github.io/music/assets/background.jpg" alt="artist-thumbnail">
         <div class="artist-name-container">
             <p class="artist-name">Cheeky J</p>
         </div>
@@ -228,14 +228,6 @@
 
     <div class="main-container">
         <div class="top-container">
-            <div class="popular-container">
-            <h2 class="section-title">Popular</h2>
-            <p onclick="play('Metro Station')" class="popular">1<img class="popular-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/cheekyboomin.png">Metro Station</p>
-            <p onclick="play('Omelette')" class="popular">2<img class="popular-image" src="https://cheekyjmusic.github.io/music/assets/Omelette.png">Omelette</p>
-            <p onclick="play('Big Hippo');" class="popular">3<img class="popular-image" src="https://cheekyjmusic.github.io/music/assets/BigHippo.png">Big Hippo</p>
-            <p onclick="play('Hotdog Stand')" class="popular">4<img class="popular-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/cheekyboomin.png">Hotdog Stand</p>
-            <p onclick="play('Submarine')" class="popular">5<img class="popular-image" src="https://cheekyjmusic.github.io/music/assets/Submarine.png">Submarine</p>
-            </div>
             <div class="artist-announcement">
                 <h1 class="announcement-title">Announcement</h1>
                 <p id="announcement">20 Dollar Bill out October 31 @ 3pm</p>
@@ -255,7 +247,7 @@
         <div class="container">
             <h2 style="display: inline;" class="section-title">Singles <a href="https://cheekyjmusic.github.io/music/singles.html" class="expand-singles">Expand</a></h2>
             <div class="item-container">
-                <div id="upcoming" class="item" onclick="play('20 Dollar Bill')">
+                <div class="item" onclick="play('20 Dollar Bill')">
                     <img class="item-image" src="https://cheekyjmusic.github.io/music/assets/20DollarBill.png">
                     <p class="item-name">20 Dollar Bill</p>
                 </div>
