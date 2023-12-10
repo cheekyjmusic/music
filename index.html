@@ -37,6 +37,10 @@
             bottom: 8px;
             left: 16px;
             color: white;
+            transition: color 0.3s ease;
+        }
+        .artist-name-container:hover {
+            color: rgb(55, 104, 168);
         }
 
         .artist-name {
@@ -206,7 +210,7 @@
     <div class="thumbnail-container">
         <img src="https://cheekyjmusic.github.io/music/assets/background.jpg" alt="artist-thumbnail">
         <div class="artist-name-container">
-            <p class="artist-name">Cheeky J</p>
+            <p onclick="redirect('https://www.youtube.com/@CheekyJ')" class="artist-name">Cheeky J</p>
         </div>
     </div>
 
