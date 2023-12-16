@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,9 +39,6 @@
             left: 16px;
             color: white;
             transition: color 0.3s ease;
-        }
-        .artist-name-container:hover {
-            color: rgb(55, 104, 168);
         }
 
         .artist-name {
@@ -178,6 +176,17 @@
      .menu-button-img {
         filter: invert(0%) !important;
      }
+
+     .platform{
+        width: 80px;
+        height: auto;
+        transition: all 0.3s ease;
+        cursor: pointer;
+     }
+     .platform:hover{
+        width: 90px;
+        height: auto;
+     }
      
     </style>
     <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/player.css">
@@ -211,7 +220,7 @@
     <div class="thumbnail-container">
         <img src="https://cheekyjmusic.github.io/music/assets/background.jpg" alt="artist-thumbnail">
         <div class="artist-name-container">
-            <p onclick="redirect('https://www.youtube.com/@CheekyJ')" class="artist-name">Cheeky J</p>
+            <p class="artist-name">Cheeky J</p>
         </div>
     </div>
 
@@ -221,9 +230,17 @@
 
     <div class="main-container">
         <div class="top-container">
-            <div class="artist-announcement">
+            <!--<div class="artist-announcement">
                 <h1 class="announcement-title">Announcement</h1>
                 <p id="announcement">This website will be discontinued soon.</p>
+            </div>-->
+        </div>
+
+        <div class="container">
+            <h2 class="section-title">Platforms</h2>
+            <div class="item-container">
+                <img onclick="redirect('https://www.youtube.com/@CheekyJ')" class="platform" src="https://cdn-icons-png.flaticon.com/256/1384/1384060.png">
+                <img onclick="redirect('https://soundcloud.com/cheeky-j')" class="platform" src="https://d21buns5ku92am.cloudfront.net/26628/images/419679-1x1_SoundCloudLogo_cloudmark-f5912b-large-1645807040.jpg">
             </div>
         </div>
 
@@ -288,7 +305,7 @@
         </div>
         <div style="margin-bottom: 80px;" class="container">
             <h2 class="section-title">About</h2>
-            <p class="about">Cheeky J is a humble artist from Los Angeles. After releasing his first single "Suburbs Freestyle" on May 30, he decided to keep making more songs.</p>
+            <p class="about">Cheeky J is a humble artist from Los Angeles. After releasing his first single "Suburbs Freestyle" on May 30, he decided to keep making more songs. The website was made and designed by Cheeky J. Cheeky J curated and combined a collection of images, incorporating self-captured photographs and personally designed font styles to create the compositions featured on the song covers.</p>
             <img class="about-img" src="https://cheekyjmusic.github.io/music/assets/about.jpg">
         </div>
     </div>
