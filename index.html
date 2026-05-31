@@ -7,392 +7,727 @@
     <link rel="icon" href="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/logo.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/player.css">
+    <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/menu.css">
     <style>
+        :root {
+            --bg:        #0d0c0b;
+            --surface:   #161412;
+            --surface2:  #1f1c19;
+            --border:    #2a2520;
+            --beige:     #e8dcc8;
+            --beige-dim: #a09070;
+            --red:       #c0392b;
+            --red-hot:   #e84c3d;
+            --text:      #e8dcc8;
+            --muted:     #6b5f50;
+            --radius:    10px;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
         body {
-            font-family: 'Prompt', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: black;
-            color: white;
+            background-color: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
         }
 
-        .thumbnail-container {
+        /* ── HERO ── */
+        .hero {
             position: relative;
             width: 100%;
+            height: 420px;
+            overflow: hidden;
         }
 
-        .thumbnail-container img {
-            width: 100vw;
-            height: 300px;
+        .hero-img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             object-position: top;
             display: block;
-            margin-left: calc(-50vw + 50%);
-            margin-right: calc(-50vw + 50%);
+            filter: brightness(0.45) saturate(0.7);
         }
 
-        .artist-name-container {
+        .hero-overlay {
             position: absolute;
-            bottom: 8px;
-            left: 16px;
-            color: white;
-            transition: color 0.3s ease;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 30%, var(--bg) 100%);
+        }
+
+        .hero-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0 40px 36px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
         }
 
         .artist-name {
-            font-size: calc(100vw / 10);
-            font-weight: bold;
-            margin-bottom: 10px;
-            cursor: pointer;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(72px, 14vw, 140px);
+            line-height: 0.9;
+            letter-spacing: 2px;
+            color: var(--beige);
+            margin: 0;
+            text-shadow: 0 4px 40px rgba(0,0,0,0.8);
         }
 
-        .main-container {
-            padding: 20px;
-            background: linear-gradient(to bottom, #43525a 0%, black 7%);
+        .artist-tag {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--red-hot);
+            background: rgba(200, 50, 40, 0.12);
+            border: 1px solid rgba(200,50,40,0.3);
+            padding: 6px 14px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+
+        /* ── STICKY NAV ── */
+        .sticky-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(13, 12, 11, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 40px;
+            height: 56px;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sticky-nav.visible {
+            display: flex;
+        }
+
+        .sticky-nav-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            letter-spacing: 2px;
+            color: var(--beige);
+        }
+
+        .sticky-nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--red);
+        }
+
+        /* ── MAIN ── */
+        .main {
+            padding: 0 40px 120px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ── SECTION HEADER ── */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 52px 0 20px;
         }
 
         .section-title {
-            color: #ffffff;
-            font-size: 24px;
-            margin-top: 40px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 13px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--beige-dim);
+            margin: 0;
         }
 
-        .popular {
-            align-items: center;
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── PLATFORMS ── */
+        .platforms-row {
             display: flex;
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.750);
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .platform-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
             cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, transform 0.15s;
+            text-decoration: none;
         }
 
-        .popular-image {
-            width: 35px;
-            height: 35px;
-            margin-right: 10px;
-            margin-left: 10px;
+        .platform-btn:hover {
+            background: var(--surface2);
+            border-color: var(--beige-dim);
+            transform: translateY(-2px);
         }
 
-        .item-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 10px;
+        .platform-btn img {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .platform-btn span {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--beige);
+            letter-spacing: 0.5px;
+        }
+
+        /* ── ALBUMS GRID ── */
+        .albums-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .album-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
             cursor: pointer;
-            outline: 4px solid transparent;
-            margin: 5px;
+            transition: border-color 0.2s, transform 0.2s;
+            text-decoration: none;
+            display: block;
         }
 
-        .item-name {
-            font-size: 18px;
-            color: white;
-            margin-top: 5px;
+        .album-card:hover {
+            border-color: var(--red);
+            transform: translateY(-4px);
         }
 
-        .container {
-            margin-top: 10px;
+        .album-card.preview-only {
+            opacity: 0.4;
+            filter: grayscale(60%);
+            pointer-events: none;
         }
 
-        .item-container {
+        .album-art {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            display: block;
+            filter: blur(10px);
+            transition: filter 0.4s ease;
+            background: var(--surface2);
+        }
+
+        .album-art.loaded { filter: blur(0); }
+
+        .album-info {
+            padding: 12px 14px;
+        }
+
+        .album-name {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--beige);
+            margin: 0 0 4px;
             white-space: nowrap;
-            overflow-x: auto;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        .item {
+        .album-label {
+            font-size: 11px;
+            color: var(--muted);
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .album-badge {
             display: inline-block;
-            width: 160px;
-            margin-right: 20px;
-            vertical-align: top;
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--red-hot);
+            background: rgba(200,50,40,0.12);
+            border: 1px solid rgba(200,50,40,0.25);
+            padding: 2px 7px;
+            border-radius: 3px;
+            margin-top: 6px;
         }
 
-  .item-image:hover {
-    outline: 4px solid white;
-    transition: outline 0.3s ease;
-  }
-  .expand-singles{
-    color:gray;
-    cursor: pointer;
-    margin-top: 0px;
-    opacity: 50%;
-    text-decoration: none;
-  }
-  .popular-container {
-    width: fit-content;
-    height: fit-content;
-  }
-  .artist-announcement {
-    width: fit-content;
-    height: fit-content;
-    background-color: #43525a;
-    border-radius: 12px;
-    padding: 5px;
-  }
-  .announcement-title{
-  	color:white;
-    opacity: 0.8;
-    font-size: 28px;
-    margin: 0px;
-  }
-  .artist-announcement p {
-  	color:white;
-    opacity: 0.8;
-    font-size: 16px;
-    margin: 0px;
-  }
-  .artist-name-sticky {
-    height: auto;
-    width: 100%;
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #43525a;
-    z-index: 10;
-    object-position: top;
-    padding: 10px;
-  }
-     .artist-name-sticky p{
-     margin: 0px;
-     font-size: 26px;
-     font-weight: bold;
-     }
-     .about-img {
-        width: 100%;
-            height: 400px;
+        /* ── SINGLES TRACK LIST ── */
+        .tracks-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .track-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .track-row:hover {
+            background: var(--surface);
+        }
+
+        .track-row:hover .track-num { display: none; }
+        .track-row:hover .track-play { display: flex; }
+
+        .track-num {
+            font-size: 12px;
+            color: var(--muted);
+            width: 20px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .track-play {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            flex-shrink: 0;
+            color: var(--beige);
+        }
+
+        .track-play svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--beige);
+        }
+
+        .track-thumb {
+            width: 42px;
+            height: 42px;
+            border-radius: 6px;
+            object-fit: cover;
+            flex-shrink: 0;
+            filter: blur(6px);
+            transition: filter 0.3s;
+            background: var(--surface2);
+        }
+
+        .track-thumb.loaded { filter: blur(0); }
+
+        .track-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .track-name {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--beige);
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .track-type {
+            font-size: 11px;
+            color: var(--muted);
+            margin: 2px 0 0;
+        }
+
+        .track-ext-icon {
+            flex-shrink: 0;
+            opacity: 0;
+            transition: opacity 0.15s;
+        }
+
+        .track-row:hover .track-ext-icon { opacity: 0.5; }
+
+        .track-ext-icon svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--beige-dim);
+        }
+
+        /* ── ABOUT ── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .about-text {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.85;
+            color: var(--beige-dim);
+            margin: 0;
+        }
+
+        .about-img-wrap {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .about-img {
+            width: 100%;
+            height: 320px;
             object-fit: cover;
             object-position: center;
             display: block;
-            border-radius: 10px;
-     }
-     .about {
-        position: absolute;
-        padding: 10px;
-        font-size: 20px;
-        color: rgba(255, 255, 255, 0.75);
-        background-color: rgba(0, 0, 0, 0.5);
-        margin-top: 0px;
+            filter: blur(10px) saturate(0.6);
+            transition: filter 0.5s ease;
+        }
 
-     }
-     .menu-button-img {
-        filter: invert(0%) !important;
-     }
+        .about-img.loaded {
+            filter: blur(0) saturate(0.85);
+        }
 
-     .platform{
-        width: 80px;
-        height: auto;
-        transition: all 0.3s ease;
-        cursor: pointer;
-     }
-     .platform:hover{
-        width: 90px;
-        height: auto;
-     }
+        .about-img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(192,57,43,0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
 
-     .item.preview-only {
-        opacity: 0.5;
-        filter: grayscale(100%) blur(1px);
-        transition: all 0.3s ease;
-        pointer-events: none; /* Optional: disables clicks if it's truly preview-only */
-    }
+        /* ── FOOTER ── */
+        .footer {
+            padding: 0 40px 20px;
+            text-align: center;
+        }
 
-    .item.preview-only:hover {
-        opacity: 1;
-        filter: none;
-        pointer-events: auto;
-    }
+        .footer p {
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
 
-     
+        /* ── SCROLLBAR ── */
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+        /* ── DIVIDER ── */
+        .red-accent {
+            display: inline-block;
+            width: 24px;
+            height: 3px;
+            background: var(--red);
+            border-radius: 2px;
+            vertical-align: middle;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 640px) {
+            .hero { height: 320px; }
+            .hero-content { padding: 0 20px 28px; }
+            .main { padding: 0 20px 120px; }
+            .sticky-nav { padding: 0 20px; }
+            .about-grid { grid-template-columns: 1fr; }
+            .albums-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+        }
     </style>
-    <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/player.css">
-    <link rel="stylesheet" type="text/css" href="https://cheekyjmusic.github.io/music/menu.css">
 </head>
 <body>
-    <!--<div class="menu-button">
-        <img class="menu-button-img" onclick="toggleMenu()" src="https://static.thenounproject.com/png/3869892-200.png">
-    </div>
-    <div class="menu-container">
-        <a style="text-decoration: none;" href="http://cheekyjmusic.github.io/music"><div style="margin-top: 50px;" class="menu-item">
-            <img src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/logo.png">
-            <h1>Menu</h1>
-        </div></a>
-        <a style="text-decoration: none;" href="https://cheekyjmusic.github.io/music/credits.txt"><div style="margin-top: 10px;" class="menu-item">
-            <img src="https://cdn-icons-png.flaticon.com/512/864/864685.png">
-            <h1>Credits</h1>
-        </div></a>
-        <div onclick="fullscreen()" style="margin-top: 10px;" class="menu-item">
-            <img src="https://cdn-icons-png.flaticon.com/512/3354/3354155.png">
-            <h1>Fullscreen</h1>
-        </div>
-        <a style="text-decoration: none;" href="https://cheekyjmusic.github.io/music/archive.html"><div style="margin-top: 10px;" class="menu-item">
-            <img src="https://static.thenounproject.com/png/21032-200.png">
-            <h1>Archive</h1>
-        </div></a>
-    </div>
 
-    <div onclick="toggleMenu()" class="menu-shadow"></div>-->
-
-    <div class="thumbnail-container">
-        <img src="https://cheekyjmusic.github.io/music/assets/background.jpg" alt="artist-thumbnail">
-        <div class="artist-name-container">
-            <p class="artist-name">Cheeky J</p>
+    <!-- HERO -->
+    <div class="hero">
+        <img class="hero-img" src="https://cheekyjmusic.github.io/music/assets/SSNSHomageBanner2.png" alt="Cheeky J">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="artist-name">Cheeky J</h1>
+            <div class="artist-tag">Los Angeles</div>
         </div>
     </div>
 
-    <div class="artist-name-sticky" id="artist-name-sticky">
-        <p>Cheeky J</p>
-    </div>
+    <!-- STICKY NAV -->
+    <nav class="sticky-nav" id="sticky-nav">
+        <span class="sticky-nav-name">Cheeky J</span>
+        <div class="sticky-nav-dot"></div>
+    </nav>
 
-    <div class="main-container">
-        <div class="top-container">
-            <!--<div class="artist-announcement">
-                <h1 class="announcement-title">Announcement</h1>
-                <p id="announcement">This website will be discontinued soon.</p>
-            </div>-->
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <!-- PLATFORMS -->
+        <div class="section-header">
+            <span class="red-accent"></span>
+            <h2 class="section-title">Listen on</h2>
+            <div class="section-line"></div>
         </div>
-
-        <div class="container">
-            <h2 class="section-title">Platforms</h2>
-            <div class="item-container">
-                <img onclick="redirect('https://www.youtube.com/@CheekyJ')" class="platform" src="https://cdn-icons-png.flaticon.com/256/1384/1384060.png">
-                <img onclick="redirect('https://soundcloud.com/cheeky-j')" class="platform" src="https://d21buns5ku92am.cloudfront.net/26628/images/419679-1x1_SoundCloudLogo_cloudmark-f5912b-large-1645807040.jpg">
+        <div class="platforms-row">
+            <div class="platform-btn" onclick="redirect('https://www.youtube.com/@CheekyJ')">
+                <img src="https://cdn-icons-png.flaticon.com/256/1384/1384060.png" alt="YouTube">
+                <span>YouTube</span>
+            </div>
+            <div class="platform-btn" onclick="redirect('https://soundcloud.com/cheeky-j')">
+                <img src="https://d21buns5ku92am.cloudfront.net/26628/images/419679-1x1_SoundCloudLogo_cloudmark-f5912b-large-1645807040.jpg" alt="SoundCloud">
+                <span>SoundCloud</span>
             </div>
         </div>
 
-        <div class="container">
+        <!-- ALBUMS -->
+        <div class="section-header">
+            <span class="red-accent"></span>
             <h2 class="section-title">Albums</h2>
-            <a style="text-decoration: none;" href="">
-                <div class="item preview-only">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/Dreams.png">
-                    <p class="item-name">Cheeky Boomin V2 Deluxe</p>
-                </div>
-                <div class="item">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/cheekyboomin2.png">
-                    <p class="item-name">Cheeky Boomin Vol 2</p>
-                </div>
-            </a>
-            <a style="text-decoration: none;" href="https://youtube.com/playlist?list=PLJy9H5Xxyv18TxmBDFD4oMt_2azd__hM6&si=2IbFlvgsdLc99-h7">
-                <div class="item">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/cheekyboomin.png">
-                    <p class="item-name">Cheeky Boomin Vol 1</p>
-                </div>
-            </a>
+            <div class="section-line"></div>
         </div>
-
-        <div class="container">
-            <h2 style="display: inline;" class="section-title">Singles & EPs</h2>
-            <div class="item-container">
-                                <div class="item" onclick="play('Chips')">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/Chips.png">
-                    <p class="item-name">Chips</p>
-                </div>
-                <div class="item" onclick="play('Dreams')">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/Dreams.png">
-                    <p class="item-name">Dreams</p>
-                </div>
-                <!--<div class="item" onclick="play('Mini Cooper')">
-                    <img class="item-image" src="https://cheekyjmusic.github.io/music/assets/MiniCooper.png">
-                    <p class="item-name">Mini Cooper</p>
-                </div>-->
-                <div class="item" onclick="redirect('https://youtu.be/749pME2Wdq0')">
-                    <img class="item-image" src="https://cheekyjmusic.github.io/music/assets/aftertherain.png">
-                    <p class="item-name">After The Rain</p>
-                </div>
-                 <div class="item" onclick="redirect('https://youtu.be/97WFLi0xEDQ')">
-                    <img class="item-image" src="https://cheekyjmusic.github.io/music/assets/rainyday.png">
-                    <p class="item-name">Rain Day Freestyle</p>
-                </div>
-                <div class="item" onclick="redirect('https://youtu.be/g8q4cLlgqRM')">
-                    <img class="item-image" src="https://cheekyjmusic.github.io/music/assets/Edge.png">
-                    <p class="item-name">Edge</p>
-                </div>
-                <div class="item" onclick="redirect('https://youtu.be/PuzJEMaGr74')">
-                    <img class="item-image" src="https://cheekyjmusic.github.io/music/assets/Supper.png">
-                    <p class="item-name">Supper</p>
-                </div>
-                <div class="item" onclick="redirect('https://youtu.be/AITecVD83O4')">
-                    <img class="item-image" src="https://cheekyjmusic.github.io/music/assets/20DollarBill.png">
-                    <p class="item-name">20 Dollar Bill</p>
-                </div>
-              <div class="item" onclick="redirect('https://youtu.be/fL_9fgQ-BMs')">
-                    <img class="item-image" src="https://cheekyjmusic.github.io/music/assets/BigHippo.png">
-                    <p class="item-name">Big Hippo</p>
-                </div>
-                <div class="item" onclick="redirect('https://youtu.be/xanhgXmEjWU')">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/Omelette.png">
-                    <p class="item-name">Omelette</p>
-                </div>
-                <div class="item" onclick="redirect('https://youtu.be/ftr6-m6AxHM')">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/Submarine.png">
-                    <p class="item-name">Submarine</p>
-                </div>
-                <div class="item" onclick="redirect('https://youtu.be/hQlRNGllA_Y')">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/SuburbsFreestyleRemix.png">
-                    <p class="item-name">SB Freestyle Remix</p>
-                </div>
-                <div class="item" onclick="play('Corner Store Twinkie')">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/CornerStoreTwinkie.png">
-                    <p class="item-name">Corner Store Twinkie</p>
-                </div>
-                <div class="item" onclick="play('1860s Lincoln')">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/1860sLincoln.png">
-                    <p class="item-name">1860s Lincoln</p>
-                </div>
-                <div class="item" onclick="play('Sumo Wrestler')">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/SumoWrestler.png">
-                    <p class="item-name">Sumo Wrestler</p>
-                </div>
-                <div class="item" onclick="play('Tacobell Diss')">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/TacobellDiss.png">
-                    <p class="item-name">Taco Bell Diss</p>
-                </div>
-                <div class="item" onclick="redirect('https://youtu.be/i3mEd9xiAT0')">
-                    <img class="item-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/SuburbsFreestyle.png">
-                    <p class="item-name">Suburbs Freestyle</p>
+        <div class="albums-grid">
+            <div class="album-card preview-only">
+                <img class="album-art lazy" data-src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/Dreams.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                <div class="album-info">
+                    <p class="album-name">Cheeky Boomin V2 Deluxe</p>
+                    <p class="album-label">Album</p>
+                    <span class="album-badge">Coming Soon</span>
                 </div>
             </div>
+            <a class="album-card" href="" style="text-decoration:none;">
+                <img class="album-art lazy" data-src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/cheekyboomin2.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                <div class="album-info">
+                    <p class="album-name">Cheeky Boomin Vol 2</p>
+                    <p class="album-label">Album</p>
+                </div>
+            </a>
+            <a class="album-card" href="https://youtube.com/playlist?list=PLJy9H5Xxyv18TxmBDFD4oMt_2azd__hM6&si=2IbFlvgsdLc99-h7" style="text-decoration:none;">
+                <img class="album-art lazy" data-src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/cheekyboomin.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                <div class="album-info">
+                    <p class="album-name">Cheeky Boomin Vol 1</p>
+                    <p class="album-label">Album</p>
+                </div>
+            </a>
         </div>
-        <!--<div style="margin-bottom: 80px;" class="container">
-            <h2 class="section-title">About</h2>
-            <p class="about">Cheeky J is a humble artist from Los Angeles. After releasing his first single "Suburbs Freestyle" on May 30, he decided to keep making more songs. The website was made and designed by Cheeky J. Cheeky J curated and combined a collection of images, incorporating self-captured photographs and personally designed font styles to create the compositions featured on the song covers.</p>
-            <img class="about-img" src="https://cheekyjmusic.github.io/music/assets/about.jpg">
-        </div>-->
-    </div>
 
+        <!-- SINGLES -->
+        <div class="section-header">
+            <span class="red-accent"></span>
+            <h2 class="section-title">Singles &amp; EPs</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="tracks-list">
+
+            <div class="track-row" onclick="play('Chips')">
+                <span class="track-num">1</span>
+                <span class="track-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+                <img class="track-thumb lazy" data-src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/Chips.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                <div class="track-info"><p class="track-name">Chips</p><p class="track-type">Single</p></div>
+            </div>
+
+            <div class="track-row" onclick="play('Dreams')">
+                <span class="track-num">2</span>
+                <span class="track-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+                <img class="track-thumb lazy" data-src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/Dreams.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                <div class="track-info"><p class="track-name">Dreams</p><p class="track-type">Single</p></div>
+            </div>
+
+            <div class="track-row" onclick="redirect('https://youtu.be/749pME2Wdq0')">
+                <span class="track-num">3</span>
+                <span class="track-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+                <img class="track-thumb lazy" data-src="https://cheekyjmusic.github.io/music/assets/aftertherain.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                <div class="track-info"><p class="track-name">After The Rain</p><p class="track-type">Single · YouTube</p></div>
+                <span class="track-ext-icon"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></span>
+            </div>
+
+            <div class="track-row" onclick="redirect('https://youtu.be/97WFLi0xEDQ')">
+                <span class="track-num">4</span>
+                <span class="track-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+                <img class="track-thumb lazy" data-src="https://cheekyjmusic.github.io/music/assets/rainyday.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                <div class="track-info"><p class="track-name">Rain Day Freestyle</p><p class="track-type">Single · YouTube</p></div>
+                <span class="track-ext-icon"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></span>
+            </div>
+
+            <div class="track-row" onclick="redirect('https://youtu.be/g8q4cLlgqRM')">
+                <span class="track-num">5</span>
+                <span class="track-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+                <img class="track-thumb lazy" data-src="https://cheekyjmusic.github.io/music/assets/Edge.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                <div class="track-info"><p class="track-name">Edge</p><p class="track-type">Single · YouTube</p></div>
+                <span class="track-ext-icon"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></span>
+            </div>
+
+            <div class="track-row" onclick="redirect('https://youtu.be/PuzJEMaGr74')">
+                <span class="track-num">6</span>
+                <span class="track-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+                <img class="track-thumb lazy" data-src="https://cheekyjmusic.github.io/music/assets/Supper.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                <div class="track-info"><p class="track-name">Supper</p><p class="track-type">Single · YouTube</p></div>
+                <span class="track-ext-icon"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></span>
+            </div>
+
+            <div class="track-row" onclick="redirect('https://youtu.be/AITecVD83O4')">
+                <span class="track-num">7</span>
+                <span class="track-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+                <img class="track-thumb lazy" data-src="https://cheekyjmusic.github.io/music/assets/20DollarBill.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                <div class="track-info"><p class="track-name">20 Dollar Bill</p><p class="track-type">Single · YouTube</p></div>
+                <span class="track-ext-icon"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></span>
+            </div>
+
+            <div class="track-row" onclick="redirect('https://youtu.be/fL_9fgQ-BMs')">
+                <span class="track-num">8</span>
+                <span class="track-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+                <img class="track-thumb lazy" data-src="https://cheekyjmusic.github.io/music/assets/BigHippo.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                <div class="track-info"><p class="track-name">Big Hippo</p><p class="track-type">Single · YouTube</p></div>
+                <span class="track-ext-icon"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></span>
+            </div>
+
+            <div class="track-row" onclick="redirect('https://youtu.be/xanhgXmEjWU')">
+                <span class="track-num">9</span>
+                <span class="track-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+                <img class="track-thumb lazy" data-src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/Omelette.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                <div class="track-info"><p class="track-name">Omelette</p><p class="track-type">Single · YouTube</p></div>
+                <span class="track-ext-icon"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></span>
+            </div>
+
+            <div class="track-row" onclick="redirect('https://youtu.be/ftr6-m6AxHM')">
+                <span class="track-num">10</span>
+                <span class="track-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+                <img class="track-thumb lazy" data-src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/Submarine.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                <div class="track-info"><p class="track-name">Submarine</p><p class="track-type">Single · YouTube</p></div>
+                <span class="track-ext-icon"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></span>
+            </div>
+
+            <div class="track-row" onclick="redirect('https://youtu.be/hQlRNGllA_Y')">
+                <span class="track-num">11</span>
+                <span class="track-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+                <img class="track-thumb lazy" data-src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/SuburbsFreestyleRemix.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                <div class="track-info"><p class="track-name">SB Freestyle Remix</p><p class="track-type">Single · YouTube</p></div>
+                <span class="track-ext-icon"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></span>
+            </div>
+
+            <div class="track-row" onclick="play('Corner Store Twinkie')">
+                <span class="track-num">12</span>
+                <span class="track-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+                <img class="track-thumb lazy" data-src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/CornerStoreTwinkie.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                <div class="track-info"><p class="track-name">Corner Store Twinkie</p><p class="track-type">Single</p></div>
+            </div>
+
+            <div class="track-row" onclick="play('1860s Lincoln')">
+                <span class="track-num">13</span>
+                <span class="track-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+                <img class="track-thumb lazy" data-src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/1860sLincoln.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                <div class="track-info"><p class="track-name">1860s Lincoln</p><p class="track-type">Single</p></div>
+            </div>
+
+            <div class="track-row" onclick="play('Sumo Wrestler')">
+                <span class="track-num">14</span>
+                <span class="track-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+                <img class="track-thumb lazy" data-src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/SumoWrestler.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                <div class="track-info"><p class="track-name">Sumo Wrestler</p><p class="track-type">Single</p></div>
+            </div>
+
+            <div class="track-row" onclick="play('Tacobell Diss')">
+                <span class="track-num">15</span>
+                <span class="track-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+                <img class="track-thumb lazy" data-src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/TacobellDiss.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                <div class="track-info"><p class="track-name">Taco Bell Diss</p><p class="track-type">Single</p></div>
+            </div>
+
+            <div class="track-row" onclick="redirect('https://youtu.be/i3mEd9xiAT0')">
+                <span class="track-num">16</span>
+                <span class="track-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+                <img class="track-thumb lazy" data-src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/SuburbsFreestyle.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+                <div class="track-info"><p class="track-name">Suburbs Freestyle</p><p class="track-type">Single · YouTube</p></div>
+                <span class="track-ext-icon"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></span>
+            </div>
+
+        </div>
+
+        <!-- ABOUT -->
+        <div class="section-header">
+            <span class="red-accent"></span>
+            <h2 class="section-title">About</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="about-grid">
+            <p class="about-text">Cheeky J is a humble artist from Los Angeles. After releasing his first single "Suburbs Freestyle" on May 30, he decided to keep making more songs. The website was made and designed by Cheeky J. Cheeky J curated and combined a collection of images, incorporating self-captured photographs and personally designed font styles to create the compositions featured on the song covers.</p>
+            <div class="about-img-wrap">
+                <img class="about-img lazy" data-src="https://cheekyjmusic.github.io/music/assets/about.jpg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Cheeky J">
+                <div class="about-img-overlay"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <p>© Cheeky J · Los Angeles</p>
+    </footer>
+
+    <!-- AUDIO / PLAYER (unchanged) -->
     <audio class="audio" id="audio-player" controls>
         <source id="audio-source" src="" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio> 
+    </audio>
     <div class="bottom-rectangle">
         <div class="play-pause-container" onclick="togglePlayPause()">
             <img class="play-pause-image" src="https://raw.githubusercontent.com/cheekyjmusic/music/main/assets/pause.svg">
         </div>
-    </div>   
+    </div>
     <div class="song-info">
         <img class="song-playing" src="black.png">
-     <div class="playing-details">
-        <div class="song-name" id="song-name">Song Name</div>
-        <div class="current-time" id="current-time">0:00</div>
-      </div>
+        <div class="playing-details">
+            <div class="song-name" id="song-name">Song Name</div>
+            <div class="current-time" id="current-time">0:00</div>
+        </div>
     </div>
     <div class="progress-bar-container">
         <div class="progress-bar"></div>
     </div>
+
     <script>
+        /* Sticky nav */
+        var nav = document.getElementById('sticky-nav');
         window.addEventListener('scroll', function() {
-            var artistNameSticky = document.getElementById('artist-name-sticky');
-            var scrollPosition = window.scrollY || window.pageYOffset;
-            
-            var opacity = scrollPosition - 150;
-    
-            artistNameSticky.style.opacity = opacity + '%';
-    
-            if (scrollPosition >= 150) {
-                artistNameSticky.style.display = 'block';
+            if ((window.scrollY || window.pageYOffset) >= 300) {
+                nav.classList.add('visible');
             } else {
-                artistNameSticky.style.display = 'none';
+                nav.classList.remove('visible');
+            }
+        });
+
+        /* Lazy + progressive image loading */
+        document.addEventListener('DOMContentLoaded', function() {
+            var imgs = document.querySelectorAll('img.lazy');
+            if ('IntersectionObserver' in window) {
+                var io = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(e) {
+                        if (!e.isIntersecting) return;
+                        var img = e.target;
+                        var tmp = new Image();
+                        tmp.onload = function() {
+                            img.src = img.dataset.src;
+                            img.classList.add('loaded');
+                        };
+                        tmp.src = img.dataset.src;
+                        io.unobserve(img);
+                    });
+                }, { rootMargin: '200px 400px' });
+                imgs.forEach(function(i) { io.observe(i); });
+            } else {
+                imgs.forEach(function(i) { i.src = i.dataset.src; i.classList.add('loaded'); });
             }
         });
     </script>
-    <script src="https://cheekyjmusic.github.io/music/release.js"></script>    
+
+    <script src="https://cheekyjmusic.github.io/music/release.js"></script>
     <script src="https://cheekyjmusic.github.io/music/playfromurl.js"></script>
     <script src="https://cheekyjmusic.github.io/music/menu.js"></script>
     <script src="https://cheekyjmusic.github.io/music/player.js"></script>
